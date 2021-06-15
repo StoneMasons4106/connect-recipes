@@ -1,0 +1,4 @@
+__pycache__/
+templates/inner-page.html
+templates/portfolio-details.html
+env.py
