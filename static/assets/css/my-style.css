@@ -5,3 +5,7 @@
     z-index: -10;
     object-fit: cover;
 }
+
+#search {
+    text-align:center;
+}
