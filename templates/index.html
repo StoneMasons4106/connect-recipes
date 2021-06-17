@@ -77,23 +77,26 @@
           <p>
             Find the recipe you're looking for through our clever use of tags! <i class="fas fa-tags"></i>
           </p>
+          <p>You can search by one or many, to find recipes that match one or multiple categories.</p>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-4">
-          <div class="ui fluid multiple search selection dropdown">
-            <input type="hidden" name="tags">
-            <i class="dropdown icon"></i>
-            <div class="default text">Select Tags</div>
-            <div class="menu">
-              {% for tag in tags %}
-              <div class="item" data-value="{{ tag.name }}">{{ tag.name }}</div>
-              {% endfor %}
+          <form action="{{ url_for('search') }}" method="post">
+            <div class="ui fluid multiple search selection dropdown">
+              <input type="hidden" name="tags">
+              <i class="dropdown icon"></i>
+              <div class="default text">Select Tags</div>
+              <div class="menu">
+                {% for tag in tags %}
+                <div class="item" data-value="{{ tag.name }}">{{ tag.name }}</div>
+                {% endfor %}
+              </div>
             </div>
-          </div>
-          <button type="submit getstarted">
-            <i class="fas fa-search"></i> Search
-          </button>
+            <button type="submit getstarted">
+              <i class="fas fa-search"></i> Search
+            </button>
+          </form>
         </div>
       </div>
     </div>

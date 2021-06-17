@@ -9,3 +9,26 @@
 #search {
     text-align:center;
 }
+
+p {
+    font-size: 18px;
+}
+
+#search p, #search .dropdown {
+    margin-bottom: 25px;
+}
+
+#search button {
+    padding: 8px 20px;
+    border-radius: 50px;
+    color: #37517e;
+    border: 2px solid #47b2e4;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+#search button:hover {
+    background-color: #47b2e4;
+    color:#fff;
+    transition: 0.3s;
+}
