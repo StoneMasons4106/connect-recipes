@@ -38,6 +38,11 @@ def register():
     return render_template("register.html")
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    return render_template("search.html")
+
+
 if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP", "0.0.0.0"),
