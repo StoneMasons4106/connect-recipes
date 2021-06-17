@@ -79,6 +79,15 @@
           </p>
         </div>
       </div>
+      {% for tag in tags %}
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <p>
+            {{ tag.name }}
+          </p>
+        </div>
+      </div>
+      {% endfor %}
     </div>
     </div>
   </section>
