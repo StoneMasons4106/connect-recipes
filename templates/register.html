@@ -1,34 +1,22 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block content %}
 
 <!-- ======= Header ======= -->
-<header id="header" class="fixed-top">
+<header id="header" class="fixed-top register-header">
   <div class="container d-flex align-items-center">
     <h1 class="logo me-auto">
-      <a href="#hero">Connect Recipes</a>
+      <a href="{{ url_for('index') }}">Connect Recipes</a>
     </h1>
 
     <nav id="navbar" class="navbar">
       <ul>
+        <li><a class="nav-link scrollto active" href="{{ url_for('index') }}">Home</a></li>
+        <li><a class="nav-link scrollto" href="{{ url_for('index') }}">About</a></li>
+        <li><a class="nav-link scrollto" href="{{ url_for('index') }}">Search</a></li>
         <li>
-          <a class="nav-link scrollto active" href="{{ url_for('index') }}"
-            >Home</a
-          >
+          <a class="nav-link" href="{{ url_for('new_recipe') }}">Add A Recipe</a>
         </li>
-        <li>
-          <a class="nav-link scrollto" href="{{ url_for('index') }}">About</a>
-        </li>
-        <li>
-          <a class="nav-link scrollto" href="{{ url_for('index') }}">Search</a>
-        </li>
-        <li>
-          <a class="nav-link" href="{{ url_for('new_recipe') }}"
-            >Add A Recipe</a
-          >
-        </li>
-        <li>
-          <a class="nav-link" href="{{ url_for('profile') }}">My Profile</a>
-        </li>
+        <li><a class="nav-link" href="{{ url_for('profile') }}">My Profile</a></li>
         <li><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
         <li>
           <a class="getstarted" href="{{ url_for('register') }}">Register</a>
@@ -40,5 +28,74 @@
   </div>
 </header>
 <!-- End Header -->
+
+<section class="flashes">
+  <!-- flash messages -->
+  {% with messages = get_flashed_messages() %} {% if messages %} {% for
+  message in messages %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{ message }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %} {% endif %} {% endwith %}
+</section>
+
+
+<!-- ======= Register ======= -->
+
+<section id="register" class="section-bg">
+  <div class="container-fluid" data-aos="fade-up">
+    <div class="section-title register-title">
+      <h2>Register</h2>
+    </div>
+    <form method="post" action="{{ url_for('register') }}">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <label for="email"><i class="fas fa-envelope"></i></label>
+          <input id="email" name="email" type="email" minlength="5" maxlength="50" placeholder="Email"
+            class="register-input" required>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <label for="username"><i class="fas fa-user"></i></label>
+          <input id="username" name="username" type="text" minlength="5" maxlength="20" pattern="^[a-zA-Z0-9]{5,20}$"
+            placeholder="Username" class="register-input" required>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <label for="password"><i class="fas fa-lock"></i></label>
+          <input id="password" name="password" type="password" minlength="5" maxlength="20"
+            pattern="^[a-zA-Z0-9]{5,20}$" placeholder="Password" class="register-input" required>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <label for="confirm-password"><i class="fas fa-lock"></i></label>
+          <input id="confirm-password" name="confirm-password" type="password" minlength="5" maxlength="20"
+            placeholder="Confirm Password" class="register-input" pattern="^[a-zA-Z0-9]{5,20}$" required>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-4">
+          <button type="submit getstarted">
+            <i class="fas fa-user-plus"></i> Sign Up!
+          </button>
+        </div>
+      </div>
+    </form>
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <p id="register-login-link">
+          Already Registered?
+          <a href="{{ url_for('login') }}" class="light-blue-text">Log In</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End Register -->
 
 {% endblock %}

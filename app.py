@@ -1,5 +1,8 @@
-from flask import Flask, render_template, request, flash
+from flask import (
+    Flask, flash, render_template,
+    redirect, request, session, url_for)
 import os
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_pymongo import PyMongo
 if os.path.exists("env.py"):
     import env
@@ -8,6 +11,7 @@ if os.path.exists("env.py"):
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.secret_key = os.environ.get("SECRET_KEY")
 
 mongo = PyMongo(app)
 
@@ -33,8 +37,39 @@ def profile():
     return render_template("profile.html")
 
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == "POST":
+        # check if username already exists in db
+        existing_user = mongo.db.users.find_one(
+            {"username": request.form.get("username").lower()})
+
+        existing_email = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
+
+        if existing_email:
+            flash("Email already exists in our database!")
+            return redirect(url_for("register"))
+
+        if existing_user:
+            flash("Username already exists!")
+            return redirect(url_for("register"))
+        
+        if str(request.form.get("password")) == str(request.form.get("confirm-password")):
+            register = {
+                "email": request.form.get("email").lower(),
+                "username": request.form.get("username").lower(),
+                "password": generate_password_hash(request.form.get("password"))
+            }
+            mongo.db.users.insert_one(register)
+
+            # put the new user into 'session' cookie
+            session["user"] = request.form.get("username").lower()
+            flash("Registration Successful!")
+            return redirect(url_for("profile", username=session["user"]))
+        else:
+            flash("Passwords do not match... Please try again!")
+
     return render_template("register.html")
 
 

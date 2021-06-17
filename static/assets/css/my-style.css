@@ -1,3 +1,7 @@
+.flashes {
+    background-color:#f3f5fa;
+}
+
 .hero-img img {
     width:100%;
     height:100%;
@@ -6,7 +10,7 @@
     object-fit: cover;
 }
 
-#search {
+#search, #register {
     text-align:center;
 }
 
@@ -18,7 +22,7 @@ p {
     margin-bottom: 25px;
 }
 
-#search button {
+#search button, #register button {
     padding: 10px 25px;
     border-radius: 50px;
     color: #37517e;
@@ -26,10 +30,34 @@ p {
     font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
     font-weight: 600;
     background-color: transparent;
+    margin-bottom:25px;
 }
 
-#search button:hover {
+#search button:hover, #register button:hover {
     background-color: #47b2e4;
     color:#fff;
     transition: 0.3s;
+}
+
+.register-title {
+    margin-top:4%;
+}
+
+.register-header {
+    background-color: #37517e;;
+}
+
+.register-input {
+    padding: 10px 25px;
+    color: #37517e;
+    border: 2px solid #37517e;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    background-color:transparent;
+    margin-bottom:25px;
+    border-radius: 25px;
+}
+
+#register-login-link {
+    margin-bottom: 20%;
 }
