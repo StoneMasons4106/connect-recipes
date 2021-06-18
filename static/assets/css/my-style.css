@@ -14,7 +14,7 @@
     overflow: visible !important;
 }
 
-#search, #register, #login {
+#search, #register, #login, .social-links, .credits {
     text-align:center;
 }
 
@@ -41,6 +41,32 @@ p {
     background-color: #47b2e4;
     color:#fff;
     transition: 0.3s;
+}
+
+.social-links a {
+    text-decoration: none;
+    color:white;
+    font-size: 18px;
+}
+
+.facebook {
+    margin-right: 30px;
+}
+
+.instagram {
+    margin-left: 30px;
+}
+
+.facebook:hover {
+    color:#3333ff;
+}
+
+.twitter:hover {
+    color:#3399ff;
+}
+
+.instagram:hover {
+    color:#ff66ff;
 }
 
 .register-title, .login-title {
