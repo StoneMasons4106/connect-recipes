@@ -14,7 +14,7 @@
     overflow: visible !important;
 }
 
-#search, #register {
+#search, #register, #login {
     text-align:center;
 }
 
@@ -26,7 +26,7 @@ p {
     margin-bottom: 25px;
 }
 
-#search button, #register button {
+#search button, #register button, #login button {
     padding: 10px 25px;
     border-radius: 50px;
     color: #37517e;
@@ -37,21 +37,21 @@ p {
     margin-bottom:25px;
 }
 
-#search button:hover, #register button:hover {
+#search button:hover, #register button:hover, #login button:hover {
     background-color: #47b2e4;
     color:#fff;
     transition: 0.3s;
 }
 
-.register-title {
+.register-title, .login-title {
     margin-top:4%;
 }
 
-.register-header {
+.register-header, .login-header {
     background-color: #37517e;;
 }
 
-.register-input {
+.register-input, .login-input {
     padding: 10px 25px;
     color: #37517e;
     border: 2px solid #37517e;
@@ -64,4 +64,8 @@ p {
 
 #register-login-link {
     margin-bottom: 20%;
+}
+
+#login-register-link {
+    margin-bottom: 30%;
 }

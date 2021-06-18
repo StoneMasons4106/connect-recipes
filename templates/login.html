@@ -2,7 +2,7 @@
 {% block content %}
 
 <!-- ======= Header ======= -->
-<header id="header" class="fixed-top">
+<header id="header" class="fixed-top login-header">
   <div class="container d-flex align-items-center">
     <h1 class="logo me-auto">
       <a href="{{ url_for('index') }}">Connect Recipes</a>
@@ -40,5 +40,60 @@
   </div>
 </header>
 <!-- End Header -->
+
+<section class="flashes">
+  <!-- flash messages -->
+  {% with messages = get_flashed_messages() %} {% if messages %} {% for
+  message in messages %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{ message }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %} {% endif %} {% endwith %}
+</section>
+
+<!-- ======= Login ======= -->
+
+<section id="login" class="section-bg">
+  <div class="container-fluid" data-aos="fade-up">
+    <div class="section-title login-title">
+      <h2>Login</h2>
+    </div>
+    <form method="post" action="{{ url_for('login') }}">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <label for="username"><i class="fas fa-user"></i></label>
+          <input id="username" name="username" type="text" minlength="5" maxlength="20" pattern="^[a-zA-Z0-9]{5,20}$"
+            placeholder="Username" class="login-input" required>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+          <label for="password"><i class="fas fa-lock"></i></label>
+          <input id="password" name="password" type="password" minlength="5" maxlength="20"
+            pattern="^[a-zA-Z0-9]{5,20}$" placeholder="Password" class="login-input" required>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-4">
+          <button type="submit getstarted">
+            <i class="fas fa-check"></i> Login
+          </button>
+        </div>
+      </div>
+    </form>
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <p id="login-register-link">
+          Don't Have an Account?
+          <a href="{{ url_for('register') }}" class="light-blue-text">Register</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- End Login -->
+
 
 {% endblock %}
