@@ -4,6 +4,7 @@ from flask import (
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_pymongo import PyMongo
+from datetime import date
 if os.path.exists("env.py"):
     import env
 
@@ -56,10 +57,15 @@ def register():
             return redirect(url_for("register"))
         
         if str(request.form.get("password")) == str(request.form.get("confirm-password")):
+            today = date.today()
+            date_registered = today.strftime("%B %d, %Y")
             register = {
                 "email": request.form.get("email").lower(),
                 "username": request.form.get("username").lower(),
-                "password": generate_password_hash(request.form.get("password"))
+                "password": generate_password_hash(request.form.get("password")),
+                "date_registered": str(date_registered),
+                "my_recipes": [],
+                "liked_recipes": []
             }
             mongo.db.users.insert_one(register)
 
