@@ -1,4 +1,4 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block content %}
 
 <!-- ======= Header ======= -->
@@ -11,9 +11,7 @@
     <nav id="navbar" class="navbar">
       <ul>
         <li>
-          <a class="nav-link scrollto active" href="{{ url_for('index') }}"
-            >Home</a
-          >
+          <a class="nav-link scrollto active" href="{{ url_for('index') }}">Home</a>
         </li>
         <li>
           <a class="nav-link scrollto" href="{{ url_for('index') }}">About</a>
@@ -21,18 +19,18 @@
         <li>
           <a class="nav-link scrollto" href="{{ url_for('index') }}">Search</a>
         </li>
+        {% if session.user %}
         <li>
-          <a class="nav-link" href="{{ url_for('new_recipe') }}"
-            >Add A Recipe</a
-          >
+          <a class="nav-link" href="{{ url_for('new_recipe') }}">Add A Recipe</a>
         </li>
-        <li>
-          <a class="nav-link" href="{{ url_for('profile') }}">My Profile</a>
-        </li>
+        <li><a class="nav-link" href="{{ url_for('profile', username=session['user']) }}">My Profile</a></li>
+        <li><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+        {% else %}
         <li><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
         <li>
           <a class="getstarted" href="{{ url_for('register') }}">Register</a>
         </li>
+        {% endif %}
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav>

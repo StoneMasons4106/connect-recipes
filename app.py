@@ -57,9 +57,16 @@ def new_recipe():
     return render_template("new_recipe.html")
 
 
-@app.route("/profile")
-def profile():
-    return render_template("profile.html")
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    # grab the session user's username from db
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+
+    if session["user"]:
+        return render_template("profile.html", username=username)
+
+    return redirect(url_for("login"))
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -89,7 +96,8 @@ def register():
                 "password": generate_password_hash(request.form.get("password")),
                 "date_registered": str(date_registered),
                 "my_recipes": [],
-                "liked_recipes": []
+                "liked_recipes": [],
+                "profile_picture": []
             }
             mongo.db.users.insert_one(register)
 
@@ -106,6 +114,14 @@ def register():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     return render_template("search.html")
+
+
+@app.route("/logout")
+def logout():
+    # remove user from session cookie
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":
