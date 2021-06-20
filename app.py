@@ -113,7 +113,13 @@ def register():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    return render_template("search.html")
+    # check if user is logged in, redirect to login page if not
+    try:
+        if session["user"]:
+            return render_template("search.html")
+    except KeyError:
+        flash("You must be logged in to view our recipe database.")
+        return redirect(url_for("login"))
 
 
 @app.route("/logout")
