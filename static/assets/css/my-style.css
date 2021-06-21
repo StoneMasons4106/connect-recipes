@@ -14,7 +14,7 @@
     overflow: visible !important;
 }
 
-#search, #register, #login, #profile, .social-links, .credits {
+#search, #register, #login, #profile, #change-password, .social-links, .credits {
     text-align:center;
 }
 
@@ -26,7 +26,7 @@ p {
     margin-bottom: 25px;
 }
 
-#search button, #register button, #login button {
+#search button, #register button, #login button, #change-password button, #profile a {
     padding: 10px 25px;
     border-radius: 50px;
     color: #37517e;
@@ -37,7 +37,7 @@ p {
     margin-bottom:25px;
 }
 
-#search button:hover, #register button:hover, #login button:hover {
+#search button:hover, #register button:hover, #login button:hover, #change-password button:hover, #profile a:hover {
     background-color: #47b2e4;
     color:#fff;
     transition: 0.3s;
@@ -69,8 +69,12 @@ p {
     color:#ff66ff;
 }
 
-.register-title, .login-title, .profile-title {
+.register-title, .login-title {
     margin-top:4%;
+}
+
+.change-password-title {
+    margin-top:7%;
 }
 
 .register-header, .login-header, .profile-header {
@@ -94,4 +98,58 @@ p {
 
 #login-register-link {
     margin-bottom: 30%;
+}
+
+#profile h3 {
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    margin-top: 30px;
+    position: relative;
+    color: #37517e;
+}
+
+#profile h3::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: #ddd;
+    bottom: 1px;
+    left: calc(50% - 60px);
+}
+  
+#profile h3::after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 3px;
+    background: #47b2e4;
+    bottom: 0;
+    left: calc(50% - 20px);
+}
+
+#profile-picture {
+    border-radius: 50px;
+    height:10%;
+    width:10%;
+}
+
+.profile-info {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.change-password {
+    margin-top: 80px;
+    margin-bottom:3%;
+}
+
+#change-password button {
+    margin-top:30px;
+    margin-bottom: 35%;
 }

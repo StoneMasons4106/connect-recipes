@@ -1,4 +1,4 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block content %}
 
 <!-- ======= Header ======= -->
@@ -11,9 +11,7 @@
     <nav id="navbar" class="navbar">
       <ul>
         <li>
-          <a class="nav-link scrollto active" href="{{ url_for('index') }}"
-            >Home</a
-          >
+          <a class="nav-link scrollto active" href="{{ url_for('index') }}">Home</a>
         </li>
         <li>
           <a class="nav-link scrollto" href="{{ url_for('index') }}">About</a>
@@ -60,6 +58,33 @@
   <div class="container-fluid" data-aos="fade-up">
     <div class="section-title profile-title">
       <h2>My Profile</h2>
+    </div>
+    <div class="align-items-center justify-content-center" data-aos="zoom-in" data-aos-delay="200">
+      <img src="{{ url_for('static', filename='assets/img/blank-profile-picture.png') }}" id="profile-picture" class="img-fluid profile-info"
+        alt="Profile Picture" />
+    </div>
+    <div class="row justify-content-center profile-info">
+      <div class="col-lg-4">
+        <h3>Username</h3>
+        <p class="profile-info">{{ username }}</p>
+      </div>
+    </div>
+    <div class="row justify-content-center profile-info">
+      <div class="col-lg-4">
+        <h3 class="profile-info">Email</h3>
+        <p class="profile-info">{{ email }}</p>
+      </div>
+    </div>
+    <div class="row justify-content-center profile-info">
+      <div class="col-lg-4">
+        <h3 class="profile-info">Date Registered</h3>
+        <p class="profile-info">{{ date_registered }}</p>
+      </div>
+    </div>
+    <div class="row justify-content-center change-password">
+      <div class="col-lg-4">
+        <a class="getstarted" href="{{ url_for('change_password') }}"><i class="fas fa-lock"></i> Change my Password</a>
+      </div>
     </div>
   </div>
 </section>

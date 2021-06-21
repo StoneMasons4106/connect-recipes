@@ -137,6 +137,23 @@ def search():
         return redirect(url_for("login"))
 
 
+@app.route("/change-password", methods=["GET", "POST"])
+def change_password():
+    # grab the session user's data from db
+    if request.method == "POST":
+        current_user = mongo.db.users.find_one(
+                {"username": session["user"]})
+        if str(request.form.get("password")) == str(request.form.get("confirm-password")):
+            newvalue = {"$set": {"password": generate_password_hash(str(request.form.get("password")))} }
+            mongo.db.users.update_one(current_user, newvalue)
+            flash("Password successfully updated!")
+            return redirect(url_for("profile"))
+        else:
+            flash("Passwords don't match, try again!")
+            render_template("change-password.html")
+    return render_template("change-password.html")
+
+
 @app.route("/logout")
 def logout():
     # remove user from session cookie
