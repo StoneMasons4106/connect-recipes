@@ -63,9 +63,9 @@ def new_recipe():
         return redirect(url_for("login"))
 
 
-@app.route("/profile/<username>", methods=["GET", "POST"])
-def profile(username):
-    # grab the session user's username from db
+@app.route("/my-profile", methods=["GET", "POST"])
+def profile():
+    # grab the session user's data from db
     try:
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
@@ -76,7 +76,7 @@ def profile(username):
         profile_picture = mongo.db.users.find_one(
             {"username": session["user"]})["profile_picture"]
 
-        if session["user"]==username:
+        if session["user"]:
             return render_template("profile.html", username=username, date_registered=date_registered, email=email, profile_picture=profile_picture)
 
     except KeyError:
