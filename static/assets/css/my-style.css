@@ -14,7 +14,7 @@
     overflow: visible !important;
 }
 
-#search, #register, #login, .social-links, .credits {
+#search, #register, #login, #profile, .social-links, .credits {
     text-align:center;
 }
 
@@ -69,7 +69,7 @@ p {
     color:#ff66ff;
 }
 
-.register-title, .login-title {
+.register-title, .login-title, .profile-title {
     margin-top:4%;
 }
 

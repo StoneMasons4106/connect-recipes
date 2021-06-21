@@ -57,7 +57,7 @@ def new_recipe():
     # check if user is logged in, redirect to login page if not
     try:
         if session["user"]:
-            return render_template("new-recipe.html")
+            return render_template("new_recipe.html")
     except KeyError:
         flash("You must be logged in to add a recipe to our database.")
         return redirect(url_for("login"))
