@@ -54,25 +54,34 @@ def login():
 
 @app.route("/new-recipe")
 def new_recipe():
-    return render_template("new_recipe.html")
+    # check if user is logged in, redirect to login page if not
+    try:
+        if session["user"]:
+            return render_template("new-recipe.html")
+    except KeyError:
+        flash("You must be logged in to add a recipe to our database.")
+        return redirect(url_for("login"))
 
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # grab the session user's username from db
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    date_registered = mongo.db.users.find_one(
-        {"username": session["user"]})["date_registered"]
-    email = mongo.db.users.find_one(
-        {"username": session["user"]})["email"]
-    profile_picture = mongo.db.users.find_one(
-        {"username": session["user"]})["profile_picture"]
+    try:
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        date_registered = mongo.db.users.find_one(
+            {"username": session["user"]})["date_registered"]
+        email = mongo.db.users.find_one(
+            {"username": session["user"]})["email"]
+        profile_picture = mongo.db.users.find_one(
+            {"username": session["user"]})["profile_picture"]
 
-    if session["user"]:
-        return render_template("profile.html", username=username, date_registered=date_registered, email=email, profile_picture=profile_picture)
+        if session["user"]==username:
+            return render_template("profile.html", username=username, date_registered=date_registered, email=email, profile_picture=profile_picture)
 
-    return redirect(url_for("login"))
+    except KeyError:
+        flash("You must be logged in to view a profile from our database.")
+        return redirect(url_for("login"))
 
 
 @app.route("/register", methods=["GET", "POST"])
