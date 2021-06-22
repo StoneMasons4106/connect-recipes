@@ -1,5 +1,4 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top profile-header">
@@ -11,7 +10,9 @@
     <nav id="navbar" class="navbar">
       <ul>
         <li>
-          <a class="nav-link scrollto active" href="{{ url_for('index') }}">Home</a>
+          <a class="nav-link scrollto active" href="{{ url_for('index') }}"
+            >Home</a
+          >
         </li>
         <li>
           <a class="nav-link scrollto" href="{{ url_for('index') }}">About</a>
@@ -21,9 +22,13 @@
         </li>
         {% if session.user %}
         <li>
-          <a class="nav-link" href="{{ url_for('new_recipe') }}">Add A Recipe</a>
+          <a class="nav-link" href="{{ url_for('new_recipe') }}"
+            >Add A Recipe</a
+          >
         </li>
-        <li><a class="nav-link" href="{{ url_for('profile') }}">My Profile</a></li>
+        <li>
+          <a class="nav-link" href="{{ url_for('profile') }}">My Profile</a>
+        </li>
         <li><a class="getstarted" href="{{ url_for('logout') }}">Logout</a></li>
         {% else %}
         <li><a class="getstarted" href="{{ url_for('login') }}">Login</a></li>
@@ -39,30 +44,50 @@
 </header>
 <!-- End Header -->
 
-
-<section class="flashes">
-  <!-- flash messages -->
-  {% with messages = get_flashed_messages() %} {% if messages %} {% for
-  message in messages %}
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>{{ message }}</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<!-- ======= Hero Section ======= -->
+<div
+  class="
+    d-flex
+    align-items-center
+    order-1 order-lg-2
+    hero-img
+    img-fluid
+    profile-hero
+  "
+  data-aos="zoom-in"
+  data-aos-delay="200"
+  id="hero"
+>
+  <div class="row profile-picture-row">
+    <div class="col">
+      <img
+        src="{{ url_for('static', filename='assets/img/blank-profile-picture.png') }}"
+        id="profile-picture"
+        alt="Profile Picture"
+      />
+    </div>
   </div>
-  {% endfor %} {% endif %} {% endwith %}
-</section>
+</div>
 
+<!-- End Hero -->
+
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in
+messages %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>{{ message }}</strong>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+{% endfor %} {% endif %} {% endwith %}
 
 <!-- ======= Profile ======= -->
 
 <section id="profile" class="section-bg">
   <div class="container-fluid" data-aos="fade-up">
-    <div class="section-title profile-title">
-      <h2>My Profile</h2>
-    </div>
-    <div class="align-items-center justify-content-center" data-aos="zoom-in" data-aos-delay="200">
-      <img src="{{ url_for('static', filename='assets/img/blank-profile-picture.png') }}" id="profile-picture" class="img-fluid profile-info"
-        alt="Profile Picture" />
-    </div>
     <div class="row justify-content-center profile-info">
       <div class="col-lg-4">
         <h3>Username</h3>
@@ -83,7 +108,9 @@
     </div>
     <div class="row justify-content-center change-password">
       <div class="col-lg-4">
-        <a class="getstarted" href="{{ url_for('change_password') }}"><i class="fas fa-lock"></i> Change my Password</a>
+        <a class="getstarted" href="{{ url_for('change_password') }}"
+          ><i class="fas fa-lock"></i> Change my Password</a
+        >
       </div>
     </div>
   </div>
