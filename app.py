@@ -67,17 +67,16 @@ def new_recipe():
 def profile():
     # grab the session user's data from db
     try:
-        username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
-        date_registered = mongo.db.users.find_one(
-            {"username": session["user"]})["date_registered"]
-        email = mongo.db.users.find_one(
-            {"username": session["user"]})["email"]
-        profile_picture = mongo.db.users.find_one(
-            {"username": session["user"]})["profile_picture"]
+        current_user = mongo.db.users.find_one(
+            {"username": session["user"]})
+        username = current_user["username"]
+        name = current_user["name"]
+        date_registered = current_user["date_registered"]
+        email = current_user["email"]
+        profile_picture = current_user["profile_picture"]
 
         if session["user"]:
-            return render_template("profile.html", username=username, date_registered=date_registered, email=email, profile_picture=profile_picture)
+            return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture)
 
     except KeyError:
         flash("You must be logged in to view a profile from our database.")
@@ -107,6 +106,7 @@ def register():
             date_registered = today.strftime("%B %d, %Y")
             register = {
                 "email": request.form.get("email").lower(),
+                "name": "Not Set",
                 "username": request.form.get("username").lower(),
                 "password": generate_password_hash(request.form.get("password")),
                 "date_registered": str(date_registered),
