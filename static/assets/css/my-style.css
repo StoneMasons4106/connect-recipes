@@ -77,7 +77,7 @@ p {
     margin-top:7%;
 }
 
-.register-header, .login-header {
+.register-header, .login-header, .change-password-header {
     background-color: #37517e;;
 }
 
