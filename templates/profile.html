@@ -89,15 +89,21 @@ messages %}
 <section id="profile" class="section-bg">
   <div class="container-fluid" data-aos="fade-up">
     <div class="row justify-content-center profile-info">
-      <div class="col-lg-4">
+      <div class="col-lg-4 profile-column">
         <h3>Personal Information</h3>
-        <p class="profile-info content">Name: {{ name }}</p>
-        <p class="profile-info content">Email: {{ email }}</p>
-        <p class="profile-info content">Date Registered: {{ date_registered }}</p>
-        <h3 class="profile-info">Account Information</h3>
-        <p class="profile-info content">Email: {{ email }}</p>
-        <a id="change-password-button" class="getstarted" href="{{ url_for('change_password') }}"
-          ><i class="fas fa-lock"></i> Change my Password</a>
+        <div class="content-display">
+          <p class="profile-info content"><strong>Name:</strong> {{ name }}</p>
+          <p class="profile-info content"><strong>Email:</strong> {{ email }}</p>
+          <p class="profile-info content"><strong>Date Registered:</strong> {{ date_registered }}</p>
+        </div>
+        <h3 class="profile-info" id="second-profile-header">Account Information</h3>
+        <div class="content-display">
+          <p class="profile-info content"><strong>Username:</strong> {{ username }}</p>
+        </div>
+        <div class="change-password">
+          <a id="change-password-button" class="getstarted" href="{{ url_for('change_password') }}"
+            ><i class="fas fa-lock"></i> Change my Password</a>
+        </div>
       </div>
     </div>
   </div>

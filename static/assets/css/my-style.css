@@ -26,7 +26,7 @@ p {
     margin-bottom: 25px;
 }
 
-#search button, #register button, #login button, #change-password button, #profile a {
+#search button, #register button, #login button, #change-password button {
     padding: 10px 25px;
     border-radius: 50px;
     color: #37517e;
@@ -138,7 +138,7 @@ p {
 }
 
 .change-password {
-    margin-top: 80px;
+    margin-top: 60px;
     margin-bottom:3%;
 }
 
@@ -162,6 +162,28 @@ p {
     margin-top: 120px;
 }
 
-#profile .content {
+.content-display {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     text-align: left;
+}
+
+.change-password a {
+    padding: 10px 25px;
+    border-radius: 50px;
+    color: #37517e;
+    border: 2px solid #47b2e4;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    background-color: transparent;
+    margin-bottom:5%;  
+}
+
+#second-profile-header {
+    padding-top: 50px;
+}
+
+.profile-column {
+    width:325px;
 }
