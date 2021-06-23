@@ -3,3 +3,4 @@ templates/inner-page.html
 templates/portfolio-details.html
 env.py
 node_modules
+.env
