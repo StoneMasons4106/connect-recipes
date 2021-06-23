@@ -27,7 +27,7 @@ p {
     margin-bottom: 25px;
 }
 
-#search button, #register button, #login button, #change-password button {
+#search button, #register button, #login button, #change-password button, .modal .getstarted {
     padding: 10px 25px;
     border-radius: 50px;
     color: #37517e;
@@ -38,7 +38,7 @@ p {
     margin-bottom:25px;
 }
 
-#search button:hover, #register button:hover, #login button:hover, #change-password button:hover, #profile a:hover {
+#search button:hover, #register button:hover, #login button:hover, #change-password button:hover, #profile a:hover, .modal button:hover {
     background-color: #47b2e4;
     color:#fff;
     transition: 0.3s;
@@ -82,7 +82,7 @@ p {
     background-color: #37517e;;
 }
 
-.register-input, .login-input {
+.register-input, .login-input, .profile-input {
     padding: 10px 25px;
     color: #37517e;
     border: 2px solid #37517e;
@@ -187,4 +187,8 @@ p {
 
 .profile-column {
     width:325px;
+}
+
+.pointer {
+    cursor: pointer;
 }

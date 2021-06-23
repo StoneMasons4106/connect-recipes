@@ -65,23 +65,37 @@ def new_recipe():
 
 @app.route("/my-profile", methods=["GET", "POST"])
 def profile():
-    # grab the session user's data from db
-    try:
+    if request.method == "GET":
+        # grab the session user's data from db
+        try:
+            current_user = mongo.db.users.find_one(
+                {"username": session["user"]})
+            username = current_user["username"]
+            name = current_user["name"]
+            date_registered = current_user["date_registered"]
+            email = current_user["email"]
+            profile_picture = current_user["profile_picture"]
+
+            if session["user"]:
+                return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture)
+
+        except KeyError:
+            flash("You must be logged in to view a profile from our database.")
+            return redirect(url_for("login"))
+    if request.method == "POST":
         current_user = mongo.db.users.find_one(
-            {"username": session["user"]})
+                {"username": session["user"]})
         username = current_user["username"]
         name = current_user["name"]
         date_registered = current_user["date_registered"]
         email = current_user["email"]
         profile_picture = current_user["profile_picture"]
-
-        if session["user"]:
+        newData = request.data.decode().split("=")
+        if newData[0] == 'newName':
+            newname = str(newData[1]).replace("%20", " ")
+            newvalue = {"$set": {"name": newname} }
+            mongo.db.users.update_one(current_user, newvalue)
             return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture)
-
-    except KeyError:
-        flash("You must be logged in to view a profile from our database.")
-        return redirect(url_for("login"))
-
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
