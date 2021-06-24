@@ -65,6 +65,20 @@
         id="profile-picture"
         alt="Profile Picture"
       />
+      <button id="profile-picture-edit" type="button" class="btn btn-primary">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          fill="currentColor"
+          class="bi bi-plus"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+          ></path>
+        </svg>
+      </button>
     </div>
   </div>
 </div>
@@ -73,7 +87,10 @@
 
 {% with messages = get_flashed_messages() %} {% if messages %} {% for message in
 messages %}
-<div class="alert alert-success alert-dismissible fade show flashes" role="alert">
+<div
+  class="alert alert-success alert-dismissible fade show flashes"
+  role="alert"
+>
   <strong>{{ message }}</strong>
   <button
     type="button"
@@ -91,14 +108,29 @@ messages %}
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title">Edit Name</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
-        <input id="name" name="name" type="text" minlength="5" maxlength="60"
-            placeholder="Name" class="profile-input" required>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          minlength="5"
+          maxlength="60"
+          placeholder="Name"
+          class="profile-input"
+          required
+        />
       </div>
       <div class="modal-footer">
-        <button type="button" id="name-save-changes" class="getstarted"><i class="far fa-save"></i> Save Changes</button>
+        <button type="button" id="name-save-changes" class="getstarted">
+          <i class="far fa-save"></i> Save Changes
+        </button>
       </div>
     </div>
   </div>
@@ -109,14 +141,29 @@ messages %}
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title">Edit Email</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
-        <input id="email" name="email" type="email" minlength="5" maxlength="50" placeholder="Email"
-            class="profile-input" required>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          minlength="5"
+          maxlength="50"
+          placeholder="Email"
+          class="profile-input"
+          required
+        />
       </div>
       <div class="modal-footer">
-        <button type="button" id="email-save-changes" class="getstarted"><i class="far fa-save"></i> Save Changes</button>
+        <button type="button" id="email-save-changes" class="getstarted">
+          <i class="far fa-save"></i> Save Changes
+        </button>
       </div>
     </div>
   </div>
@@ -127,14 +174,30 @@ messages %}
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title">Edit Username</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
       </div>
       <div class="modal-body">
-        <input id="username" name="username" type="text" minlength="5" maxlength="20" pattern="^[a-zA-Z0-9]{5,20}$"
-            placeholder="Username" class="profile-input" required>
+        <input
+          id="username"
+          name="username"
+          type="text"
+          minlength="5"
+          maxlength="20"
+          pattern="^[a-zA-Z0-9]{5,20}$"
+          placeholder="Username"
+          class="profile-input"
+          required
+        />
       </div>
       <div class="modal-footer">
-        <button type="button" id="username-save-changes" class="getstarted"><i class="far fa-save"></i> Save Changes</button>
+        <button type="button" id="username-save-changes" class="getstarted">
+          <i class="far fa-save"></i> Save Changes
+        </button>
       </div>
     </div>
   </div>
@@ -150,9 +213,13 @@ messages %}
       <div class="col-lg-4 profile-column">
         <h3>Personal Information</h3>
         <div class="content-display">
-          <p class="profile-info content"><strong>Name:</strong> <span id="name-field">{{ name }}</span> <i class="fas fa-pencil-alt pointer" id="name-pencil"></i></p>
           <p class="profile-info content">
-            <strong>Email:</strong> <span id="email-field">{{ email }}</span> <i class="fas fa-pencil-alt pointer" id="email-pencil"></i>
+            <strong>Name:</strong> <span id="name-field">{{ name }}</span>
+            <i class="fas fa-pencil-alt pointer" id="name-pencil"></i>
+          </p>
+          <p class="profile-info content">
+            <strong>Email:</strong> <span id="email-field">{{ email }}</span>
+            <i class="fas fa-pencil-alt pointer" id="email-pencil"></i>
           </p>
           <p class="profile-info content">
             <strong>Date Registered:</strong> {{ date_registered }}
@@ -163,7 +230,9 @@ messages %}
         </h3>
         <div class="content-display">
           <p class="profile-info content">
-            <strong>Username:</strong> <span id="username-field">{{ username }}</span> <i class="fas fa-pencil-alt pointer" id="username-pencil"></i>
+            <strong>Username:</strong>
+            <span id="username-field">{{ username }}</span>
+            <i class="fas fa-pencil-alt pointer" id="username-pencil"></i>
           </p>
         </div>
         <div class="change-password">

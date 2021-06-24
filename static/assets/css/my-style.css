@@ -159,6 +159,7 @@ p {
     border-radius: 30px;
     height:200px;
     width:175px;
+    margin-left: 20px;
 }
 
 .profile-picture-row {
@@ -166,6 +167,10 @@ p {
     text-align: center;
     margin-right:170px;
     margin-top: 120px;
+}
+
+.profile-picture-row .col {
+    width:100%;
 }
 
 .content-display {
@@ -192,6 +197,12 @@ p {
 
 .profile-column {
     width:325px;
+}
+
+#profile-picture-edit {
+    border-radius: 100px;
+    padding-right: 0.375rem !important;
+    padding-left: 0.375rem !important;
 }
 
 .pointer {
