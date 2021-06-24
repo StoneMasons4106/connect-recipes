@@ -84,6 +84,7 @@ def profile():
             return redirect(url_for("login"))
     
     if request.method == "POST":
+        
         current_user = mongo.db.users.find_one(
                 {"username": session["user"]})
         username = current_user["username"]
@@ -92,18 +93,32 @@ def profile():
         email = current_user["email"]
         profile_picture = current_user["profile_picture"]
         newData = request.data.decode().split("=")
+        
         if newData[0] == 'newName':
             newname = str(newData[1]).replace("%20", " ")
             newvalue = {"$set": {"name": newname} }
             mongo.db.users.update_one(current_user, newvalue)
-        if newData[0] == 'newEmail':
+        
+        if newData[0] == 'newEmail':            
             newemail = str(newData[1]).replace("%40", "@")
-            newvalue = {"$set": {"email": newemail} }
-            mongo.db.users.update_one(current_user, newvalue)
+            existing_email = mongo.db.users.find_one(
+            {"email": newemail.lower()})
+            if existing_email:
+                flash("Email already exists in our database!")
+            else:
+                newvalue = {"$set": {"email": newemail} }
+                mongo.db.users.update_one(current_user, newvalue)
+        
         if newData[0] == 'newUsername':
-            newvalue = {"$set": {"username": newData[1]} }
-            mongo.db.users.update_one(current_user, newvalue)
-            session["user"] = newData[1]
+            existing_user = mongo.db.users.find_one(
+            {"username": newData[1].lower()})
+            if existing_user:
+                flash("User already exists in our database!")
+            else:
+                newvalue = {"$set": {"username": newData[1]} }
+                mongo.db.users.update_one(current_user, newvalue)
+                session["user"] = newData[1]
+        
         return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture)
 
 

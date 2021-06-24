@@ -14,6 +14,10 @@ $("#username-pencil").click(function () {
   $("#username-modal").modal("show");
 });
 
+$("#profile-picture-edit").click(function () {
+  $("#profile-picture-modal").modal("show");
+});
+
 //Add event listeners for Profile Page save changes buttons
 $("#name-save-changes").click(function () {
   $.ajax({
