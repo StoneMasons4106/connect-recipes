@@ -1,5 +1,5 @@
 from flask import (
-    Flask, flash, render_template,
+    Flask, flash, jsonify, render_template,
     redirect, request, session, url_for)
 import os
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -77,7 +77,10 @@ def profile():
             profile_picture = current_user["profile_picture"]
 
             if session["user"]:
-                return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture)
+                try:
+                    return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture[0])
+                except:
+                    return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=None)
 
         except KeyError:
             flash("You must be logged in to view a profile from our database.")
@@ -98,28 +101,42 @@ def profile():
             newname = str(newData[1]).replace("%20", " ")
             newvalue = {"$set": {"name": newname} }
             mongo.db.users.update_one(current_user, newvalue)
+            return jsonify(result=newname + " added as your name!")
         
         if newData[0] == 'newEmail':            
             newemail = str(newData[1]).replace("%40", "@")
             existing_email = mongo.db.users.find_one(
             {"email": newemail.lower()})
             if existing_email:
-                flash("Email already exists in our database!")
+                return jsonify(result=newemail + " already exists in our database.")
             else:
                 newvalue = {"$set": {"email": newemail} }
                 mongo.db.users.update_one(current_user, newvalue)
+                return jsonify(result=newemail + " added as the email of your profile!")
         
         if newData[0] == 'newUsername':
             existing_user = mongo.db.users.find_one(
             {"username": newData[1].lower()})
             if existing_user:
-                flash("User already exists in our database!")
+                return jsonify(result=newData[1] + " already exists in our database.")
             else:
                 newvalue = {"$set": {"username": newData[1]} }
                 mongo.db.users.update_one(current_user, newvalue)
                 session["user"] = newData[1]
+                return jsonify(result=newData[1] + " added as the username of your profile!")
+
+        if newData[0] == 'newProfilePicture':
+            new_profile_picture_array = []
+            newURL = str(newData[1]).replace("%2F", "/").replace("%3A", ":")
+            new_profile_picture_array.append(newURL)
+            newvalue = {"$set": {"profile_picture": new_profile_picture_array} }
+            mongo.db.users.update_one(current_user, newvalue)
+            return jsonify(result="Successfully updated your profile picture!")
         
-        return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture)
+        try:
+            return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture[0])
+        except:
+            return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=None)
 
 
 @app.route("/register", methods=["GET", "POST"])

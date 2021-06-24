@@ -60,11 +60,19 @@
 >
   <div class="row profile-picture-row">
     <div class="col">
+      {%if profile_picture%}
+      <img
+        src="{{ profile_picture }}"
+        id="profile-picture"
+        alt="Profile Picture"
+      />
+      {%else%}
       <img
         src="{{ url_for('static', filename='assets/img/blank-profile-picture.png') }}"
         id="profile-picture"
         alt="Profile Picture"
       />
+      {%endif%}
       <button id="profile-picture-edit" type="button" class="btn btn-primary">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -217,8 +225,8 @@ messages %}
       </div>
       <div class="modal-body">
         <input
-          id="profile=picture"
-          name="profile=picture"
+          id="profile-picture-input"
+          name="profile-picture-input"
           type="url"
           minlength="5"
           maxlength="200"
@@ -228,7 +236,11 @@ messages %}
         />
       </div>
       <div class="modal-footer">
-        <button type="button" id="profile-picture-save-changes" class="getstarted">
+        <button
+          type="button"
+          id="profile-picture-save-changes"
+          class="getstarted"
+        >
           <i class="far fa-save"></i> Save Changes
         </button>
       </div>
