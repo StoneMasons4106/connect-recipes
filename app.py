@@ -82,6 +82,7 @@ def profile():
         except KeyError:
             flash("You must be logged in to view a profile from our database.")
             return redirect(url_for("login"))
+    
     if request.method == "POST":
         current_user = mongo.db.users.find_one(
                 {"username": session["user"]})
@@ -95,7 +96,16 @@ def profile():
             newname = str(newData[1]).replace("%20", " ")
             newvalue = {"$set": {"name": newname} }
             mongo.db.users.update_one(current_user, newvalue)
-            return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture)
+        if newData[0] == 'newEmail':
+            newemail = str(newData[1]).replace("%40", "@")
+            newvalue = {"$set": {"email": newemail} }
+            mongo.db.users.update_one(current_user, newvalue)
+        if newData[0] == 'newUsername':
+            newvalue = {"$set": {"username": newData[1]} }
+            mongo.db.users.update_one(current_user, newvalue)
+            session["user"] = newData[1]
+        return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture)
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():

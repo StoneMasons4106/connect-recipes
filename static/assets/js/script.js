@@ -23,5 +23,33 @@ $("#name-save-changes").click(function () {
     contentType: "application/json",
     dataType: "json"
   });
-  $("#name-field").html($("#name").val());
+  newName = $('#name').val()
+  $("#name-field").html(newName);
+  $("#name-modal").modal("hide");
+});
+
+$("#email-save-changes").click(function () {
+  $.ajax({
+    type: "POST",
+    url: "/my-profile",
+    data: { newEmail: $("#email").val() },
+    contentType: "application/json",
+    dataType: "json"
+  });
+  newEmail = $('#email').val()
+  $("#email-field").html(newEmail);
+  $("#email-modal").modal("hide");
+});
+
+$("#username-save-changes").click(function () {
+  $.ajax({
+    type: "POST",
+    url: "/my-profile",
+    data: { newUsername: $("#username").val() },
+    contentType: "application/json",
+    dataType: "json"
+  });
+  newUsername = $('#username').val()
+  $("#username-field").html(newUsername);
+  $("#username-modal").modal("hide");
 });

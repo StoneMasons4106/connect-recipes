@@ -116,7 +116,7 @@ messages %}
             class="profile-input" required>
       </div>
       <div class="modal-footer">
-        <button type="button" class="getstarted"><i class="far fa-save"></i> Save Changes</button>
+        <button type="button" id="email-save-changes" class="getstarted"><i class="far fa-save"></i> Save Changes</button>
       </div>
     </div>
   </div>
@@ -134,7 +134,7 @@ messages %}
             placeholder="Username" class="profile-input" required>
       </div>
       <div class="modal-footer">
-        <button type="button" class="getstarted"><i class="far fa-save"></i> Save Changes</button>
+        <button type="button" id="username-save-changes" class="getstarted"><i class="far fa-save"></i> Save Changes</button>
       </div>
     </div>
   </div>
@@ -152,7 +152,7 @@ messages %}
         <div class="content-display">
           <p class="profile-info content"><strong>Name:</strong> <span id="name-field">{{ name }}</span> <i class="fas fa-pencil-alt pointer" id="name-pencil"></i></p>
           <p class="profile-info content">
-            <strong>Email:</strong> {{ email }} <i class="fas fa-pencil-alt pointer" id="email-pencil"></i>
+            <strong>Email:</strong> <span id="email-field">{{ email }}</span> <i class="fas fa-pencil-alt pointer" id="email-pencil"></i>
           </p>
           <p class="profile-info content">
             <strong>Date Registered:</strong> {{ date_registered }}
@@ -163,7 +163,7 @@ messages %}
         </h3>
         <div class="content-display">
           <p class="profile-info content">
-            <strong>Username:</strong> {{ username }} <i class="fas fa-pencil-alt pointer" id="username-pencil"></i>
+            <strong>Username:</strong> <span id="username-field">{{ username }}</span> <i class="fas fa-pencil-alt pointer" id="username-pencil"></i>
           </p>
         </div>
         <div class="change-password">
