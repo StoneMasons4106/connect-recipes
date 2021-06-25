@@ -159,7 +159,7 @@ $("#profile-picture-save-changes").click(function () {
       '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>You cannot update this to an empty field.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
     );
     $("#profile-picture-modal").modal("hide");
-  } else if ($("#profile-picture-input").val().includes("https://") && ($("#profile-picture-input").val().includes(".jpg") || $("#profile-picture-input").val().includes(".png"))) {
+  } else if ($("#profile-picture-input").val().includes("https://i.ibb.co/") && ($("#profile-picture-input").val().includes(".jpg") || $("#profile-picture-input").val().includes(".png"))) {
     $.ajax({
       type: "POST",
       url: "/my-profile",
@@ -179,7 +179,7 @@ $("#profile-picture-save-changes").click(function () {
     $("#profile-picture-modal").modal("hide");
   } else {
     $("#hero").after(
-      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Input not a valid format. URL must begin with https:// and end with .jpg or .png.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Input not a valid ImgBB format. URL must begin with https://i.ibb.co/ and have a .jpg or .png file extension.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
     );
     $("#profile-picture-modal").modal("hide");
   }
