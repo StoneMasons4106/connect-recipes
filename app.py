@@ -127,11 +127,16 @@ def profile():
 
         if newData[0] == 'newProfilePicture':
             new_profile_picture_array = []
-            newURL = str(newData[1]).replace("%2F", "/").replace("%3A", ":")
-            new_profile_picture_array.append(newURL)
-            newvalue = {"$set": {"profile_picture": new_profile_picture_array} }
-            mongo.db.users.update_one(current_user, newvalue)
-            return jsonify(result="Successfully updated your profile picture!")
+            if newData[1] == "None":
+                newvalue = {"$set": {"profile_picture": new_profile_picture_array} }
+                mongo.db.users.update_one(current_user, newvalue)
+                return jsonify(result="Successfully removed your profile picture!")
+            else:
+                newURL = str(newData[1]).replace("%2F", "/").replace("%3A", ":")
+                new_profile_picture_array.append(newURL)
+                newvalue = {"$set": {"profile_picture": new_profile_picture_array} }
+                mongo.db.users.update_one(current_user, newvalue)
+                return jsonify(result="Successfully updated your profile picture!")
         
         try:
             return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture[0])

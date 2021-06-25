@@ -172,3 +172,29 @@ $("#profile-picture-save-changes").click(function () {
     $("#profile-picture-modal").modal("hide");
   }
 });
+
+$("#profile-picture-delete").click(function () {
+  if ($('.classname').attr('aria-expanded') == "{{ url_for('static', filename='assets/img/blank-profile-picture.png') }}") {
+    $("#hero").after(
+      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>There is no profile picture to delete you smooth brain.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+    );
+    $("#profile-picture-modal").modal("hide");
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "/my-profile",
+      data: { newProfilePicture: "None" },
+      contentType: "application/json",
+      dataType: "json",
+      success: function (data) {
+        $("#hero").after(
+          '<div class="alert alert-success alert-dismissible fade show flashes" role="alert"> <strong>' +
+            data.result +
+            '</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+        );
+      },
+    });
+    $("#profile-picture").attr("src", "/static/assets/img/blank-profile-picture.png");
+    $("#profile-picture-modal").modal("hide");
+  }
+});
