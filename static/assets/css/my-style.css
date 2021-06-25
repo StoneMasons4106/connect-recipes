@@ -208,3 +208,11 @@ p {
 .pointer {
     cursor: pointer;
 }
+
+/* -- Media Queries -- */
+
+@media screen and (max-width:991px) {
+    .profile-hero {
+        height: 500px !important;
+    }
+} 
