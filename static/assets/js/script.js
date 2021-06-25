@@ -25,12 +25,12 @@ $("#name-save-changes").click(function () {
       '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>You cannot update this to an empty field.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
     );
     $("#name-modal").modal("hide");
-  } else if ($("#name").val().length < 5) {
+  } else if ($("#name").val().length <= 5) {
     $("#hero").after(
       '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Input too short. Must be 5 characters or more.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
     );
     $("#name-modal").modal("hide");
-  } else if ($("#name").val().length > 30) {
+  } else if ($("#name").val().length >= 30) {
     $("#hero").after(
       '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Input too long. Must be 30 characters or less.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
     );
@@ -97,19 +97,25 @@ $("#email-save-changes").click(function () {
 });
 
 $("#username-save-changes").click(function () {
+  var specialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
   if ($("#username").val() == "") {
     $("#hero").after(
       '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>You cannot update this to an empty field.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
     );
     $("#username-modal").modal("hide");
-  } else if ($("#username").val().length < 5) {
+  } else if ($("#username").val().length <= 5) {
     $("#hero").after(
       '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Input too short. Must be 5 characters or more.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
     );
     $("#username-modal").modal("hide");
-  } else if ($("#username").val().length > 30) {
+  } else if ($("#username").val().length >= 30) {
     $("#hero").after(
       '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Input too long. Must be 30 characters or less.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+    );
+    $("#username-modal").modal("hide");
+  } else if (specialChar.test($("#username").val())) {
+    $("#hero").after(
+      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Special characters are against the law of the land.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
     );
     $("#username-modal").modal("hide");
   } else {
