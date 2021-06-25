@@ -38,7 +38,7 @@ p {
     margin-bottom:25px;
 }
 
-#search button:hover, #register button:hover, #login button:hover, #change-password button:hover, #profile a:hover, .modal button:hover {
+#search button:hover, #register button:hover, #login button:hover, #change-password button:hover, #profile a:hover, .modal button:hover, #imgbb:hover {
     background-color: #47b2e4;
     color:#fff;
     transition: 0.3s;
