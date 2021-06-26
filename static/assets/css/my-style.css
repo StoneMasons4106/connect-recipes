@@ -1,7 +1,11 @@
+/* -- Flash Messages Format -- */
+
 .flashes {
     background-color:#f3f5fa;
     margin-bottom: 0px !important;
 }
+
+/* -- Hero Image Format -- */
 
 .hero-img img {
     width:100%;
@@ -11,21 +15,31 @@
     object-fit: cover;
 }
 
+/* -- Home Page Search Overflow -- */
+
 #search {
     overflow: visible !important;
 }
+
+/* -- Text Align Center -- */
 
 #search, #register, #login, #profile, #change-password, .social-links, .credits {
     text-align:center;
 }
 
+/* -- Paragraph Font Size -- */
+
 p {
     font-size: 18px;
 }
 
+/* -- Search Section Spacing -- */
+
 #search p, #search .dropdown {
     margin-bottom: 25px;
 }
+
+/* -- Button and Link Styling -- */
 
 #search button, #register button, #login button, #change-password button, .modal .getstarted {
     padding: 10px 25px;
@@ -38,11 +52,15 @@ p {
     margin-bottom:25px;
 }
 
+/* -- Hover Styling -- */
+
 #search button:hover, #register button:hover, #login button:hover, #change-password-button:hover, .modal button:hover, #imgbb:hover {
     background-color: #47b2e4;
     color:#fff;
     transition: 0.3s;
 }
+
+/* -- Social Links Format -- */
 
 .social-links a {
     text-decoration: none;
@@ -70,6 +88,8 @@ p {
     color:#ff66ff;
 }
 
+/* -- Title Margin Preferences -- */
+
 .register-title, .login-title {
     margin-top:4%;
 }
@@ -78,9 +98,13 @@ p {
     margin-top:7%;
 }
 
+/* -- Header Background Color Preferences -- */
+
 .register-header, .login-header, .change-password-header {
     background-color: #37517e;;
 }
+
+/* -- Input Formats -- */
 
 .register-input, .login-input, .profile-input {
     padding: 10px 25px;
@@ -93,6 +117,8 @@ p {
     border-radius: 25px;
 }
 
+/* -- Login and Register Footer Distance to Content -- */
+
 #register-login-link {
     margin-bottom: 20%;
 }
@@ -100,6 +126,8 @@ p {
 #login-register-link {
     margin-bottom: 30%;
 }
+
+/* -- Profile Page Styling -- */
 
 #profile h3 {
     font-size: 24px;
@@ -138,16 +166,6 @@ p {
     margin-bottom: 25px;
 }
 
-.change-password {
-    margin-top: 60px;
-    margin-bottom:3%;
-}
-
-#change-password button {
-    margin-top:30px;
-    margin-bottom:35%;
-}
-
 .profile-hero {
     width: 100%;
     height: 100%;
@@ -180,17 +198,6 @@ p {
     text-align: left;
 }
 
-.change-password a {
-    padding: 10px 25px;
-    border-radius: 50px;
-    color: #37517e;
-    border: 2px solid #47b2e4;
-    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    font-weight: 600;
-    background-color: transparent;
-    margin-bottom:5%;  
-}
-
 #second-profile-header {
     padding-top: 50px;
 }
@@ -215,6 +222,31 @@ p {
     color:#fff;
     transition: 0.3s;
 }
+
+/* -- Change Password Styling -- */
+
+.change-password {
+    margin-top: 60px;
+    margin-bottom:3%;
+}
+
+#change-password button {
+    margin-top:30px;
+    margin-bottom:35%;
+}
+
+.change-password a {
+    padding: 10px 25px;
+    border-radius: 50px;
+    color: #37517e;
+    border: 2px solid #47b2e4;
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    background-color: transparent;
+    margin-bottom:5%;  
+}
+
+/* -- Pointer Class -- */
 
 .pointer {
     cursor: pointer;

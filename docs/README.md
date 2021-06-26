@@ -10,7 +10,19 @@ You'll be able to share your recipes, and save others so you can try them yourse
 
 ## UX
 
+This site is designed to give everyone an enjoyable experience when exploring and sharing recipes with others online.
+
+For inspiration, I looked at a number of [Bootstrap Templates](https://bootstrapmade.com/) to get a beautiful front end design. In the end, I settled on using the [Arsha Template](https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/).
+
+Design Features Include:
+
+* **Fixed Hero Images** - Striking hero images give the site a uniform and beautiful display.
+
+* **Mobile Menu** - Consolidating the menu down for mobile devices lets it be flexible for device size.
+
 ## Features
+
+* **AJAX Requests** - AJAX requests allow users to update information on their profile or in a recipe and not have to reload the page to see the result.
 
 ## Technologies Used
 
@@ -28,10 +40,10 @@ You'll be able to share your recipes, and save others so you can try them yourse
     * Bootstrap was used to assist with the responsiveness and styling of the website.
 
 2. [Font Awesome](https://fontawesome.com/)
-    * Font Awesome was used on all pages throughout the website to add icons for aesthetic purposes.
+    * Font Awesome was used on most pages throughout the website to add icons for aesthetic purposes.
 
 3. [Git](https://git-scm.com/)
-    * Git was used for version control by utilizing the Gitpod terminal to commit to Git and Push to GitHub.
+    * Git was used for version control by utilizing VS Code to commit to Git and Push to GitHub.
 
 4. [GitHub](https://github.com/)
     * GitHub is used to store the project's code after being pushed from Git.
@@ -43,8 +55,17 @@ You'll be able to share your recipes, and save others so you can try them yourse
     * JQuery was used to write shorter, simpler Javascript.
 
 7. [Hover.css](https://ianlunn.github.io/Hover/)
-    * Hover.css is used in the buttons to levels 1 2 and 3 changing the text color to white upon hovering over them.
-       
+    * Hover.css is used to change the text and background color of buttons and links upon hovering over them.
+
+8. [AJAX](https://api.jquery.com/Jquery.ajax/)
+    * AJAX was used to make asynchronous requests when editing fields so the database could be updated without the page reloading.
+
+9. [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+    * Flask is the web microframework this project is built on.
+
+10. [PyMongo](https://pypi.org/project/pymongo/)
+    * The PyMongo library is how this project interacts with the MongoDB where information is housed.
+
 ## Testing
 
 
@@ -62,9 +83,13 @@ You'll be able to share your recipes, and save others so you can try them yourse
 
 ### Heroku
 
-This project was deployed to GitHub Pages using the steps below:
+This project was deployed to Heroku using the steps below:
 
 1. Log into GitHub and locate the [GitHub Repository](https://github.com/StoneMasons4106/connect-recipes).
+2. Log into Heroku and create a new Python app.
+3. Under deploy, find Deployment method, and select Github.
+4. Select the appropriate repository as shown in step one, and select deploy from master.
+5. Enable automatic deploys so when a change is pushed to Github, Heroku automatically adopts the new changes.
 
 ### Forking the Repository
 
@@ -90,9 +115,15 @@ If you'd like to have a copy on your local machine, follow the steps below:
 
 #### Media
 
+* Much of the media was provided by [Pixabay](https://pixabay.com/).
+
 #### Content
 
 #### Code
+
+* Implementation of AJAX in the project came mainly from this [Flask Documentation Link](https://flask.palletsprojects.com/en/2.0.x/patterns/jquery/) and [Stack Overflow Link](https://stackoverflow.com/questions/16164604/rest-ajax-request-to-mongodb).
+
+* Checking to see if a string contained special characters via Regex and JS came from this [Stack Overflow Post](https://stackoverflow.com/questions/32311081/check-for-special-characters-in-string).
 
 #### Acknowledgments
 
