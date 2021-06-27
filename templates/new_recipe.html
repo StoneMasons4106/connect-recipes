@@ -2,7 +2,7 @@
 {% block content %}
 
 <!-- ======= Header ======= -->
-<header id="header" class="fixed-top">
+<header id="header" class="fixed-top new-recipe-header">
   <div class="container d-flex align-items-center">
     <h1 class="logo me-auto">
       <a href="{{ url_for('index') }}">Connect Recipes</a>
@@ -40,5 +40,19 @@
   </div>
 </header>
 <!-- End Header -->
+
+<!-- ======= New Recipe ======= -->
+
+<section id="new-recipe" class="section-bg">
+  <div class="container-fluid" data-aos="fade-up">
+    <div class="section-title new-recipe-title">
+      <h2>Add a Recipe</h2>
+    </div>
+    <form method="post" action="{{ url_for('new_recipe') }}">
+    </form>
+  </div>
+</section>
+
+<!-- End New Recipe -->
 
 {% endblock %}

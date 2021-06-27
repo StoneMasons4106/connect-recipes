@@ -23,7 +23,7 @@
 
 /* -- Text Align Center -- */
 
-#search, #register, #login, #profile, #change-password, .social-links, .credits {
+#search, #register, #login, #profile, #change-password, #new-recipe, .social-links, .credits {
     text-align:center;
 }
 
@@ -90,7 +90,7 @@ p {
 
 /* -- Title Margin Preferences -- */
 
-.register-title, .login-title {
+.register-title, .login-title, .new-recipe-title {
     margin-top:4%;
 }
 
@@ -100,7 +100,7 @@ p {
 
 /* -- Header Background Color Preferences -- */
 
-.register-header, .login-header, .change-password-header {
+.register-header, .login-header, .change-password-header, .new-recipe-header {
     background-color: #37517e;;
 }
 
