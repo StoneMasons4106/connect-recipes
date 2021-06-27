@@ -248,9 +248,11 @@ def api_my_recipes():
                 recipes_list.append(recipe)
             return jsonify(recipes_list)
         else:
-            return 'Invalid key provided.'
+            recipes_list.append('Invalid API key.')
+            return recipes_list[0]
     else:
-        return 'No key provided.'
+        recipes_list.append('No API key provided.')
+        return recipes_list[0]
 
 if __name__ == "__main__":
     app.run(
