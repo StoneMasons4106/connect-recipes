@@ -5,6 +5,8 @@ import os
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_pymongo import PyMongo
 from datetime import date
+import random
+import string
 if os.path.exists("env.py"):
     import env
 
@@ -166,6 +168,8 @@ def register():
         if str(request.form.get("password")) == str(request.form.get("confirm-password")):
             today = date.today()
             date_registered = today.strftime("%B %d, %Y")
+            source = string.ascii_letters + string.digits
+            result_str = ''.join((random.choice(source) for i in range(24)))
             register = {
                 "email": request.form.get("email").lower(),
                 "name": "Not Set",
@@ -174,7 +178,8 @@ def register():
                 "date_registered": str(date_registered),
                 "my_recipes": [],
                 "liked_recipes": [],
-                "profile_picture": []
+                "profile_picture": [],
+                "api_key": result_str
             }
             mongo.db.users.insert_one(register)
 
