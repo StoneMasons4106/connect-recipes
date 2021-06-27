@@ -243,7 +243,7 @@ def api_my_recipes():
         if existing_user:
             my_recipes = mongo.db.recipes.find(
             {"user": existing_user})
-            return my_recipes
+            return jsonify(my_recipes)
         else:
             return 'Invalid key provided.'
     else:
