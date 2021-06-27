@@ -234,6 +234,21 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route("/api/v1/my-recipes")
+def api_my_recipes():
+    if 'key' in request.args:
+        key = request.args['key']
+        existing_user = mongo.db.users.find_one(
+            {"api_key": key})["username"]
+        if existing_user:
+            my_recipes = mongo.db.recipes.find(
+            {"user": existing_user})
+            return my_recipes
+        else:
+            return 'Invalid key provided.'
+    else:
+        return 'No key provided.'
+
 if __name__ == "__main__":
     app.run(
         host=os.environ.get("IP", "0.0.0.0"),
