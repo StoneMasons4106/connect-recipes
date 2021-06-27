@@ -78,12 +78,13 @@ def profile():
             date_registered = current_user["date_registered"]
             email = current_user["email"]
             profile_picture = current_user["profile_picture"]
+            api_key = current_user["api_key"]
 
             if session["user"]:
                 try:
-                    return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture[0])
+                    return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture[0], api_key=api_key)
                 except:
-                    return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=None)
+                    return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=None, api_key=api_key)
 
         except KeyError:
             flash("You must be logged in to view a profile from our database.")
@@ -98,6 +99,7 @@ def profile():
         date_registered = current_user["date_registered"]
         email = current_user["email"]
         profile_picture = current_user["profile_picture"]
+        api_key = current_user["api_key"]
         newData = request.data.decode().split("=")
         
         if newData[0] == 'newName':
@@ -142,9 +144,9 @@ def profile():
                 return jsonify(result="Successfully updated your profile picture!")
         
         try:
-            return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture[0])
+            return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture[0], api_key=api_key)
         except:
-            return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=None)
+            return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=None, api_key=api_key)
 
 
 @app.route("/register", methods=["GET", "POST"])
