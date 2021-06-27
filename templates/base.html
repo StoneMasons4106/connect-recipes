@@ -75,7 +75,7 @@
     <!-- Semantic CSS -->
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='assets/css/semantic.css') }}"
+      href="{{ url_for('static', filename='assets/css/semantic.min.css') }}"
     />
     <!-- =======================================================
   * Template Name: Arsha - v4.3.0
@@ -98,16 +98,17 @@
             >. All Rights Reserved
           </div>
           <div class="col-lg-4 social-links">
-            <a href="https://www.facebook.com" target="_blank" class="facebook"
+            <a href="https://www.facebook.com" target="_blank" class="facebook" rel="noopener"
               ><i class="fab fa-facebook-f"></i
             ></a>
-            <a href="https://www.twitter.com" target="_blank" class="twitter"
+            <a href="https://www.twitter.com" target="_blank" class="twitter" rel="noopener"
               ><i class="fab fa-twitter"></i
             ></a>
             <a
               href="https://www.instagram.com"
               target="_blank"
               class="instagram"
+              rel="noopener"
               ><i class="fab fa-instagram"></i
             ></a>
           </div>
@@ -150,7 +151,7 @@
     ></script>
 
     <!-- Semantic JS Files -->
-    <script src="{{ url_for('static', filename='assets/js/semantic.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/semantic.min.js') }}"></script>
 
     <!-- My JS -->
     <script src="{{ url_for('static', filename='assets/js/script.js') }}"></script>
