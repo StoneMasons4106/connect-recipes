@@ -236,6 +236,7 @@ def logout():
 
 @app.route("/api/v1/my-recipes")
 def api_my_recipes():
+    recipes_list = []
     if 'key' in request.args:
         key = request.args['key']
         existing_user = mongo.db.users.find_one(
@@ -243,7 +244,9 @@ def api_my_recipes():
         if existing_user:
             my_recipes = mongo.db.recipes.find(
             {"user": existing_user})
-            return jsonify(my_recipes)
+            for recipe in my_recipes:
+                recipes_list.append(recipe)
+            return jsonify(recipes_list)
         else:
             return 'Invalid key provided.'
     else:
