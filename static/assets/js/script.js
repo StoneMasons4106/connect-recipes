@@ -1,7 +1,5 @@
 //Initialize dropdown for searching tags on Home Page
-$(".ui.dropdown").click(function () {
-  $(".ui.dropdown").dropdown();
-});
+$(".ui.dropdown").click().dropdown();
 
 //Add event listeners for Profile Page edit buttons
 $("#name-pencil").click(function () {
