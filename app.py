@@ -55,7 +55,7 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/new-recipe")
+@app.route("/new-recipe", methods=["GET", "POST"])
 def new_recipe():
     if request.method == "GET":
         # check if user is logged in, redirect to login page if not
@@ -66,7 +66,7 @@ def new_recipe():
             flash("You must be logged in to add a recipe to our database.")
             return redirect(url_for("login"))
     if request.method == "POST":
-        pass
+        return render_template("new_recipe.html")
 
 
 @app.route("/my-profile", methods=["GET", "POST"])

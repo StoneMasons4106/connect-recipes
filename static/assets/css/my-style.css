@@ -41,7 +41,7 @@ p {
 
 /* -- Button and Link Styling -- */
 
-#search button, #register button, #login button, #change-password button, .modal .getstarted {
+#search button, #register button, #login button, #change-password button, .modal .getstarted, #new-recipe button {
     padding: 10px 25px;
     border-radius: 50px;
     color: #37517e;
@@ -54,7 +54,7 @@ p {
 
 /* -- Hover Styling -- */
 
-#search button:hover, #register button:hover, #login button:hover, #change-password-button:hover, .modal button:hover, #imgbb:hover {
+#search button:hover, #register button:hover, #login button:hover, #change-password-button:hover, .modal button:hover, #imgbb:hover, #new-recipe button:hover {
     background-color: #47b2e4;
     color:#fff;
     transition: 0.3s;
@@ -90,12 +90,16 @@ p {
 
 /* -- Title Margin Preferences -- */
 
-.register-title, .login-title, .new-recipe-title {
+.register-title, .login-title {
     margin-top:4%;
 }
 
 .change-password-title {
     margin-top:7%;
+}
+
+.new-recipe-title {
+    margin-top:6%;
 }
 
 /* -- Header Background Color Preferences -- */
@@ -106,7 +110,7 @@ p {
 
 /* -- Input Formats -- */
 
-.register-input, .login-input, .profile-input {
+.register-input, .login-input, .profile-input, .recipe-input {
     padding: 10px 25px;
     color: #37517e;
     border: 2px solid #37517e;
@@ -250,6 +254,13 @@ p {
 
 .pointer {
     cursor: pointer;
+}
+
+/* -- Add a Recipe Page -- */
+
+#new-recipe label {
+    vertical-align: top;
+    margin-top: 10px;
 }
 
 /* -- Media Queries -- */
