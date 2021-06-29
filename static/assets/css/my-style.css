@@ -94,12 +94,8 @@ p {
     margin-top:4%;
 }
 
-.change-password-title {
+.change-password-title, .new-recipe-title {
     margin-top:7%;
-}
-
-.new-recipe-title {
-    margin-top:6%;
 }
 
 /* -- Header Background Color Preferences -- */
