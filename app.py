@@ -276,7 +276,7 @@ def api_my_recipes():
             {"owner": username})
             for recipe in my_recipes:
                 recipes_list.append(recipe)
-            return dict(recipes_list)
+            return str(recipes_list)
         else:
             recipes_list.append('Invalid API key.')
             return recipes_list[0]
