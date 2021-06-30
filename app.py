@@ -67,6 +67,17 @@ def new_recipe():
             flash("You must be logged in to add a recipe to our database.")
             return redirect(url_for("login"))
     if request.method == "POST":
+        
+        newData = request.data.decode().split("=")
+        print(newData)
+
+        if newData[0] == 'newTag':
+            newTag = {
+                "name": newData[1]
+            }
+            mongo.db.tags.insert_one(newTag)
+            return jsonify(result="Successfully added your tag!")
+        
         return render_template("new_recipe.html", tags=tags)
 
 

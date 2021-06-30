@@ -214,3 +214,38 @@ $("#profile-picture-delete").click(function () {
     $("#profile-picture-modal").modal("hide");
   }
 });
+
+$("#create-tag").click(function () {
+  existingTags = []
+  $(".item").each(function() {
+    existingTags.push($(this).attr("data-value"))
+  });
+  if ($("#new-tag").val() == "") {
+    $("#header").after(
+      '<div id="tag-update" class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>You cannot update this to an empty field.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+    );
+    $("#create-tag-modal").modal("hide");
+  } else if (existingTags.indexOf($("#new-tag").val()) > -1) {
+    $("#header").after(
+      '<div id="tag-update" class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>A tag already exists with this value or containing this value.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+    );
+    $("#create-tag-modal").modal("hide");
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "/new-recipe",
+      data: { newTag: $("#new-tag").val() },
+      contentType: "application/json",
+      dataType: "json",
+      success: function (data) {
+        $("#header").after(
+          '<div id="tag-update" class="alert alert-success alert-dismissible fade show flashes" role="alert"> <strong>' +
+            data.result +
+            '</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+        );
+      },
+    });
+    $('.item:last').after('<div class="item" data-value='+ $("#new-tag").val() +'>' + $("#new-tag").val() +'</div>');
+    $("#create-tag-modal").modal("hide");
+  }
+})

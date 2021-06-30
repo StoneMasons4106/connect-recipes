@@ -272,6 +272,10 @@ p {
     color: #4183c4;
 }
 
+#tag-update {
+    margin-top:69px;
+}
+
 /* -- Media Queries -- */
 
 @media screen and (max-width:991px) {
