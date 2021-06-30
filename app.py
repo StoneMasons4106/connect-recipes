@@ -69,7 +69,6 @@ def new_recipe():
     if request.method == "POST":
         
         newData = request.data.decode().split("=")
-        print(newData)
 
         if newData[0] == 'newTag':
             newTag = {
@@ -77,8 +76,21 @@ def new_recipe():
             }
             mongo.db.tags.insert_one(newTag)
             return jsonify(result="Successfully added your tag!")
-        
-        return render_template("new_recipe.html", tags=tags)
+        else:
+            tags_list = request.form.get("tags").split(",")
+            my_new_recipe = {
+                "recipe_picture_url": request.form.get("url"),
+                "name": request.form.get("recipe-name"),
+                "ingredients": request.form.get("recipe-ingredients"),
+                "prep_work": request.form.get("prep-work"),
+                "cooking_instructions": request.form.get("cooking-instructions"),
+                "serving_instructions": request.form.get("serving-instructions"),
+                "tags": tags_list,
+                "owner": session["user"]
+            }
+            mongo.db.recipes.insert_one(my_new_recipe)
+            flash("Successfully added your recipe!")
+            return render_template("new_recipe.html", tags=tags)
 
 
 @app.route("/my-profile", methods=["GET", "POST"])
