@@ -17,7 +17,7 @@
 
 /* -- Home Page Search Overflow -- */
 
-#search {
+#search, #new-recipe {
     overflow: visible !important;
 }
 
@@ -94,7 +94,7 @@ p {
     margin-top:4%;
 }
 
-.change-password-title, .new-recipe-title {
+.change-password-title {
     margin-top:7%;
 }
 
@@ -106,7 +106,7 @@ p {
 
 /* -- Input Formats -- */
 
-.register-input, .login-input, .profile-input, .recipe-input {
+.register-input, .login-input, .profile-input, .recipe-input, .create-a-tag-input {
     padding: 10px 25px;
     color: #37517e;
     border: 2px solid #37517e;
@@ -257,6 +257,19 @@ p {
 #new-recipe label {
     vertical-align: top;
     margin-top: 10px;
+}
+
+#add-recipe {
+    margin-top: 25px;
+}
+
+#add-recipe-tags {
+    width:270px;
+}
+
+#create-a-tag {
+    margin-top: 25px;
+    color: #4183c4;
 }
 
 /* -- Media Queries -- */

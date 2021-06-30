@@ -57,16 +57,17 @@ def login():
 
 @app.route("/new-recipe", methods=["GET", "POST"])
 def new_recipe():
+    tags = list(mongo.db.tags.find())
     if request.method == "GET":
         # check if user is logged in, redirect to login page if not
         try:
             if session["user"]:
-                return render_template("new_recipe.html")
+                return render_template("new_recipe.html", tags=tags)
         except KeyError:
             flash("You must be logged in to add a recipe to our database.")
             return redirect(url_for("login"))
     if request.method == "POST":
-        return render_template("new_recipe.html")
+        return render_template("new_recipe.html", tags=tags)
 
 
 @app.route("/my-profile", methods=["GET", "POST"])

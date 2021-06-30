@@ -41,6 +41,57 @@
 </header>
 <!-- End Header -->
 
+<section class="flashes">
+  <!-- flash messages -->
+  {% with messages = get_flashed_messages() %} {% if messages %} {% for
+  message in messages %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{ message }}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endfor %} {% endif %} {% endwith %}
+</section>
+
+<!-- Modal -->
+
+<div class="modal" id="create-tag-modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Create a Tag</h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input
+            id="new-tag"
+            name="new-tag"
+            type="text"
+            minlength="5"
+            maxlength="20"
+            pattern="^[a-zA-Z ]{5,20}$"
+            placeholder="New Tag"
+            class="create-a-tag-input"
+            required
+          />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="username-save-changes" class="getstarted">
+          <i class="fas fa-plus"></i> Create Tag
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End Modal -->
+
 <!-- ======= New Recipe ======= -->
 
 <section id="new-recipe" class="section-bg">
@@ -92,8 +143,27 @@
         </div>
       </div>
       <div class="row justify-content-center">
+        <div class="col-lg-4" id="add-recipe-tags"> 
+          <div class="ui fluid multiple search selection dropdown">
+            <input type="hidden" name="tags">
+            <i class="dropdown icon"></i>
+            <div class="default text">Add Tags</div>
+            <div class="menu">
+              {% for tag in tags %}
+              <div class="item" data-value="{{ tag.name }}">{{ tag.name }}</div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center">
         <div class="col-lg-4">
-          <button type="submit" class="getstarted">
+          <p id="create-a-tag" class="pointer">Create a Tag <i class="fas fa-tags"></i></p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-4">
+          <button type="submit" id="add-recipe" class="getstarted">
             <i class="fas fa-plus"></i> Add Recipe
           </button>
         </div>

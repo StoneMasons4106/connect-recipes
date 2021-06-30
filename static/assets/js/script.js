@@ -18,6 +18,10 @@ $("#profile-picture-edit").click(function () {
   $("#profile-picture-modal").modal("show");
 });
 
+$("#create-a-tag").click(function () {
+  $("#create-tag-modal").modal("show");
+});
+
 //Add event listeners for Profile Page save changes buttons
 $("#name-save-changes").click(function () {
   var specialChar = /[`!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~]/;
