@@ -273,7 +273,7 @@ def api_my_recipes():
         if existing_user:
             username = existing_user["username"]
             my_recipes = mongo.db.recipes.find(
-            {"user": username})
+            {"owner": username})
             for recipe in my_recipes:
                 recipes_list.append(recipe)
             return jsonify(recipes_list)
