@@ -98,20 +98,10 @@ def profile():
     if request.method == "GET":
         # grab the session user's data from db
         try:
-            current_user = mongo.db.users.find_one(
-                {"username": session["user"]})
-            username = current_user["username"]
-            name = current_user["name"]
-            date_registered = current_user["date_registered"]
-            email = current_user["email"]
-            profile_picture = current_user["profile_picture"]
-            api_key = current_user["api_key"]
-
             if session["user"]:
-                try:
-                    return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture[0], api_key=api_key)
-                except:
-                    return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=None, api_key=api_key)
+                current_user = mongo.db.users.find_one(
+                {"username": session["user"]})
+                return render_template("profile.html", user=current_user)
 
         except KeyError:
             flash("You must be logged in to view a profile from our database.")
@@ -121,12 +111,6 @@ def profile():
         
         current_user = mongo.db.users.find_one(
                 {"username": session["user"]})
-        username = current_user["username"]
-        name = current_user["name"]
-        date_registered = current_user["date_registered"]
-        email = current_user["email"]
-        profile_picture = current_user["profile_picture"]
-        api_key = current_user["api_key"]
         newData = request.data.decode().split("=")
         
         if newData[0] == 'newName':
@@ -170,10 +154,7 @@ def profile():
                 mongo.db.users.update_one(current_user, newvalue)
                 return jsonify(result="Successfully updated your profile picture!")
         
-        try:
-            return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=profile_picture[0], api_key=api_key)
-        except:
-            return render_template("profile.html", username=username, name=name, date_registered=date_registered, email=email, profile_picture=None, api_key=api_key)
+        return render_template("profile.html", user=current_user)
 
 
 @app.route("/register", methods=["GET", "POST"])

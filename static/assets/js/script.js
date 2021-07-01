@@ -27,22 +27,34 @@ $("#name-save-changes").click(function () {
   var specialChar = /[`!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~]/;
   if ($("#name").val() == "") {
     $("#hero").after(
-      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>You cannot update this to an empty field.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+        <strong>You cannot update this to an empty field.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>`
     );
     $("#name-modal").modal("hide");
   } else if ($("#name").val().length <= 5) {
     $("#hero").after(
-      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Input too short. Must be 5 characters or more.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+        <strong>Input too short. Must be 5 characters or more.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
     );
     $("#name-modal").modal("hide");
   } else if ($("#name").val().length >= 30) {
     $("#hero").after(
-      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Input too long. Must be 30 characters or less.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+        <strong>Input too long. Must be 30 characters or less.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
     );
     $("#name-modal").modal("hide");
   } else if (specialChar.test($("#name").val())) {
     $("#hero").after(
-      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Special characters are against the law of the land.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert">
+        <strong>Special characters are against the law of the land.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
     );
     $("#name-modal").modal("hide");
   } else {
@@ -54,9 +66,10 @@ $("#name-save-changes").click(function () {
       dataType: "json",
       success: function (data) {
         $("#hero").after(
-          '<div class="alert alert-success alert-dismissible fade show flashes" role="alert"> <strong>' +
-            data.result +
-            '</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+          `<div class="alert alert-success alert-dismissible fade show flashes" role="alert"> 
+            <strong>${data.result}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+          </div>`
         );
       },
     });
@@ -69,7 +82,10 @@ $("#name-save-changes").click(function () {
 $("#email-save-changes").click(function () {
   if ($("#email").val() == "") {
     $("#hero").after(
-      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>You cannot update this to an empty field.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+        <strong>You cannot update this to an empty field.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
     );
     $("#email-modal").modal("hide");
   } else if ($("#email").val().includes("@")) {
@@ -82,15 +98,17 @@ $("#email-save-changes").click(function () {
       success: function (data) {
         if (data.result.includes("already exists in our database")) {
           $("#hero").after(
-            '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>' +
-              data.result +
-              '</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+            `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+              <strong>${data.result}</strong> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+            </div>`
           );
         } else {
           $("#hero").after(
-            '<div class="alert alert-success alert-dismissible fade show flashes" role="alert"> <strong>' +
-              data.result +
-              '</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+            `<div class="alert alert-success alert-dismissible fade show flashes" role="alert"> 
+              <strong>${data.result}</strong> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+            </div>`
           );
         }
       },
@@ -100,7 +118,10 @@ $("#email-save-changes").click(function () {
     $("#email-modal").modal("hide");
   } else {
     $("#hero").after(
-      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Input not a valid email.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+        <strong>Input not a valid email.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
     );
     $("#email-modal").modal("hide");
   }
@@ -110,22 +131,34 @@ $("#username-save-changes").click(function () {
   var specialChar = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
   if ($("#username").val() == "") {
     $("#hero").after(
-      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>You cannot update this to an empty field.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+        <strong>You cannot update this to an empty field.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
     );
     $("#username-modal").modal("hide");
   } else if ($("#username").val().length <= 5) {
     $("#hero").after(
-      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Input too short. Must be 5 characters or more.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+        <strong>Input too short. Must be 5 characters or more.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
     );
     $("#username-modal").modal("hide");
   } else if ($("#username").val().length >= 30) {
     $("#hero").after(
-      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Input too long. Must be 30 characters or less.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+        <strong>Input too long. Must be 30 characters or less.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
     );
     $("#username-modal").modal("hide");
   } else if (specialChar.test($("#username").val())) {
     $("#hero").after(
-      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Special characters are against the law of the land.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+        <strong>Special characters are against the law of the land.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
     );
     $("#username-modal").modal("hide");
   } else {
@@ -138,15 +171,17 @@ $("#username-save-changes").click(function () {
       success: function (data) {
         if (data.result.includes("already exists in our database")) {
           $("#hero").after(
-            '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>' +
-              data.result +
-              '</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+            `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+              <strong>${data.result}</strong> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+            </div>`
           );
         } else {
           $("#hero").after(
-            '<div class="alert alert-success alert-dismissible fade show flashes" role="alert"> <strong>' +
-              data.result +
-              '</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+            `<div class="alert alert-success alert-dismissible fade show flashes" role="alert"> 
+              <strong>${data.result}</strong> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+            </div>`
           );
         }
       },
@@ -160,7 +195,10 @@ $("#username-save-changes").click(function () {
 $("#profile-picture-save-changes").click(function () {
   if ($("#profile-picture-input").val() == "") {
     $("#hero").after(
-      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>You cannot update this to an empty field.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+        <strong>You cannot update this to an empty field.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
     );
     $("#profile-picture-modal").modal("hide");
   } else if ($("#profile-picture-input").val().includes("https://i.ibb.co/") && ($("#profile-picture-input").val().includes(".jpg") || $("#profile-picture-input").val().includes(".png"))) {
@@ -172,9 +210,10 @@ $("#profile-picture-save-changes").click(function () {
       dataType: "json",
       success: function (data) {
         $("#hero").after(
-          '<div class="alert alert-success alert-dismissible fade show flashes" role="alert"> <strong>' +
-            data.result +
-            '</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+          `<div class="alert alert-success alert-dismissible fade show flashes" role="alert"> 
+            <strong>${data.result}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+          </div>`
         );
       },
     });
@@ -183,7 +222,10 @@ $("#profile-picture-save-changes").click(function () {
     $("#profile-picture-modal").modal("hide");
   } else {
     $("#hero").after(
-      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>Input not a valid ImgBB format. URL must begin with https://i.ibb.co/ and have a .jpg or .png file extension.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+        <strong>Input not a valid ImgBB format. URL must begin with https://i.ibb.co/ and have a .jpg or .png file extension.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
     );
     $("#profile-picture-modal").modal("hide");
   }
@@ -192,7 +234,10 @@ $("#profile-picture-save-changes").click(function () {
 $("#profile-picture-delete").click(function () {
   if ($('#profile-picture').attr('src') == "/static/assets/img/blank-profile-picture.png") {
     $("#hero").after(
-      '<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>There is no profile picture to delete you smooth brain.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+        <strong>There is no profile picture to delete you smooth brain.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
     );
     $("#profile-picture-modal").modal("hide");
   } else {
@@ -204,9 +249,10 @@ $("#profile-picture-delete").click(function () {
       dataType: "json",
       success: function (data) {
         $("#hero").after(
-          '<div class="alert alert-success alert-dismissible fade show flashes" role="alert"> <strong>' +
-            data.result +
-            '</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+          `<div class="alert alert-success alert-dismissible fade show flashes" role="alert"> 
+            <strong>${data.result}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+          </div>`
         );
       },
     });
@@ -215,6 +261,7 @@ $("#profile-picture-delete").click(function () {
   }
 });
 
+//Create Tag Function
 $("#create-tag").click(function () {
   existingTags = []
   $(".item").each(function() {
@@ -222,12 +269,18 @@ $("#create-tag").click(function () {
   });
   if ($("#new-tag").val() == "") {
     $("#header").after(
-      '<div id="tag-update" class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>You cannot update this to an empty field.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div id="tag-update" class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+        <strong>You cannot update this to an empty field.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
     );
     $("#create-tag-modal").modal("hide");
   } else if (existingTags.indexOf($("#new-tag").val()) > -1) {
     $("#header").after(
-      '<div id="tag-update" class="alert alert-warning alert-dismissible fade show flashes" role="alert"> <strong>A tag already exists with this value or containing this value.</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+      `<div id="tag-update" class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
+        <strong>A tag already exists with this value or containing this value.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
     );
     $("#create-tag-modal").modal("hide");
   } else {
@@ -239,9 +292,10 @@ $("#create-tag").click(function () {
       dataType: "json",
       success: function (data) {
         $("#header").after(
-          '<div id="tag-update" class="alert alert-success alert-dismissible fade show flashes" role="alert"> <strong>' +
-            data.result +
-            '</strong> <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> </div>'
+          `<div id="tag-update" class="alert alert-success alert-dismissible fade show flashes" role="alert"> 
+            <strong>${data.result}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+          </div>`
         );
       },
     });

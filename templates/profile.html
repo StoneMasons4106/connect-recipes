@@ -15,10 +15,10 @@
           >
         </li>
         <li>
-          <a class="nav-link scrollto" href="{{ url_for('index') }}">About</a>
+          <a class="nav-link scrollto" href="{{ url_for('index') }}#about">About</a>
         </li>
         <li>
-          <a class="nav-link scrollto" href="{{ url_for('index') }}">Search</a>
+          <a class="nav-link scrollto" href="{{ url_for('index') }}#search">Search</a>
         </li>
         {% if session.user %}
         <li>
@@ -60,9 +60,9 @@
 >
   <div class="row profile-picture-row">
     <div class="col">
-      {%if profile_picture%}
+      {%if user.profile_picture%}
       <img
-        src="{{ profile_picture }}"
+        src="{{ user.profile_picture[0] }}"
         id="profile-picture"
         alt="Profile Picture"
       />
@@ -275,15 +275,15 @@ messages %}
         <h3>Personal Information</h3>
         <div class="content-display">
           <p class="profile-info content">
-            <strong>Name:</strong> <span id="name-field">{{ name }}</span>
+            <strong>Name:</strong> <span id="name-field">{{ user.name }}</span>
             <i class="fas fa-pencil-alt pointer" id="name-pencil"></i>
           </p>
           <p class="profile-info content">
-            <strong>Email:</strong> <span id="email-field">{{ email }}</span>
+            <strong>Email:</strong> <span id="email-field">{{ user.email }}</span>
             <i class="fas fa-pencil-alt pointer" id="email-pencil"></i>
           </p>
           <p class="profile-info content">
-            <strong>Date Registered:</strong> {{ date_registered }}
+            <strong>Date Registered:</strong> {{ user.date_registered }}
           </p>
         </div>
         <h3 class="profile-info" id="second-profile-header">
@@ -292,12 +292,12 @@ messages %}
         <div class="content-display">
           <p class="profile-info content">
             <strong>Username:</strong>
-            <span id="username-field">{{ username }}</span>
+            <span id="username-field">{{ user.username }}</span>
             <i class="fas fa-pencil-alt pointer" id="username-pencil"></i>
           </p>
           <p class="profile-info content">
             <strong>API:</strong>
-            <span id="username-field">{{ api_key }}</span>
+            <span id="username-field">{{ user.api_key }}</span>
           </p>
           <p class="profile-info content">
             <strong>My Recipes:</strong>
