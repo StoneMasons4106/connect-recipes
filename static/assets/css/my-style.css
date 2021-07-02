@@ -90,12 +90,16 @@ p {
 
 /* -- Title Margin Preferences -- */
 
-.register-title, .login-title {
+.register-title, .login-title, .my-recipes-title {
     margin-top:4%;
 }
 
 .change-password-title {
     margin-top:7%;
+}
+
+.new-recipe-title {
+    margin-top:-1%;
 }
 
 /* -- Header Background Color Preferences -- */

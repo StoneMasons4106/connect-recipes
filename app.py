@@ -244,6 +244,22 @@ def change_password():
         return redirect(url_for("login"))
 
 
+@app.route("/my-recipes")
+def my_recipes():
+    # check if user is logged in, redirect to login page if not
+    try:
+        if session["user"]:
+            my_recipes_array = []
+            my_recipes = mongo.db.recipes.find(
+            {"owner": session["user"]})
+            for recipe in my_recipes:
+                my_recipes_array.append(recipe)
+            return render_template("my-recipes.html", recipes=my_recipes_array)
+    except KeyError:
+        flash("You must be logged in to view our recipe database.")
+        return redirect(url_for("login"))
+
+
 @app.route("/logout")
 def logout():
     # remove user from session cookie
