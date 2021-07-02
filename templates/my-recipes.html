@@ -61,13 +61,27 @@
       {% if loop.index % 2 != 0 %}
 
       <div class="col-md-7">
-        <h3>
+        <h2>
           <a href="/my-recipes/{{ recipe._id }}"
-            >{{ loop.index }}. {{ recipe.name }}</a
+            >{{ recipe.name }}</a
           >
-        </h3>
-        <p>{{ recipe.ingredients }}</p>
-        <p>{{ recipe.tags }}</p>
+        </h2>
+        <h3>Ingredients:</h3>
+        <ul>
+          {% set ingredients = recipe.ingredients.split('\r\n') %}
+          {% for ingredient in ingredients%}
+          <li>{{ ingredient }}</li>
+          {% endfor %}
+        </ul>
+        <h3>Tags:</h3>
+        <p>
+          {% for tag in recipe.tags %}
+          {{ tag }}
+          {% if loop.index != loop.length %}
+          , 
+          {% endif %}
+          {% endfor %}
+        </p>
       </div>
       <div class="col-md-5">
         <img
@@ -87,12 +101,12 @@
         />
       </div>
       <div class="col-md-7">
-        <h3>
+        <h2>
           <a href="/my-recipes/{{ recipe._id }}"
-            >{{ loop.index }}. {{ recipe.name }}</a
+            >{{ recipe.name }}</a
           >
-        </h3>
-        <p>{{ recipe.ingredients }}</p>
+        </h2>
+        <textarea name="Ingredients" id="" cols="30" rows="10">{{ recipe.ingredients }}</textarea>
         <p>{{ recipe.tags }}</p>
       </div>
 
