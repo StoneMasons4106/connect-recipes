@@ -57,7 +57,9 @@ def login():
 
 @app.route("/new-recipe", methods=["GET", "POST"])
 def new_recipe():
+    
     tags = list(mongo.db.tags.find())
+    
     if request.method == "GET":
         # check if user is logged in, redirect to login page if not
         try:
@@ -66,11 +68,17 @@ def new_recipe():
         except KeyError:
             flash("You must be logged in to add a recipe to our database.")
             return redirect(url_for("login"))
+    
     if request.method == "POST":
         
         newData = request.data.decode().split("=")
+        existing_recipe = mongo.db.recipes.find_one(
+            {"name": request.form.get("recipe-name"), "owner": session["user"]})
 
-        if newData[0] == 'newTag':
+        if existing_recipe:
+            flash("You have a recipe with this name already!")
+            return render_template("new_recipe.html", tags=tags)
+        elif newData[0] == 'newTag':
             newTag = {
                 "name": newData[1]
             }
