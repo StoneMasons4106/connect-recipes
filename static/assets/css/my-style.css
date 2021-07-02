@@ -259,11 +259,16 @@ p {
     margin-top: 10px;
 }
 
+#new-recipe form {
+    margin-top: 40px;
+}
+
 #add-recipe {
-    margin-top: 25px;
+    margin-top: 40px;
 }
 
 #add-recipe-tags {
+    margin-top:40px;
     width:270px;
 }
 

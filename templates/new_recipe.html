@@ -99,11 +99,15 @@
     <div class="section-title new-recipe-title">
       <h2>Add a Recipe</h2>
     </div>
+    <div>
+      <p>Pictures <strong>must</strong> be uploaded to <a href="https://imgbb.com/" target="_blank" rel="noopener">ImgBB.</a></p>
+      <p><strong>Example: </strong>https://i.ibb.co/[id]/[name].jpg</p>
+    </div>
     <form method="post" action="{{ url_for('new_recipe') }}">
       <div class="row justify-content-center">
         <div class="col-lg-6">
           <label for="url"><i class="fas fa-code"></i></label>
-          <input id="url" name="url" type="url" minlength="20" maxlength="50" pattern="https://i.ibb.co/[0-9A-Za-z]{5,10}/[0-9A-Za-z-_+]{4,50}.[jpg]{3}"
+          <input id="url" name="url" type="url" minlength="20" maxlength="50" pattern="https://i.ibb.co/[0-9A-Za-z]{5,20}/[0-9A-Za-z-_+]{4,50}.[jpg]{3}"
             placeholder="Image URL" class="recipe-input" required>
         </div>
       </div>
