@@ -1,294 +1,373 @@
 /* -- Flash Messages Format -- */
 
 .flashes {
-    background-color:#f3f5fa;
-    margin-bottom: 0px !important;
+  background-color: #f3f5fa;
+  margin-bottom: 0px !important;
 }
 
 /* -- Hero Image Format -- */
 
 .hero-img img {
-    width:100%;
-    height:100%;
-    position:fixed;
-    z-index: -10;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: -10;
+  object-fit: cover;
 }
 
 /* -- Home Page Search Overflow -- */
 
-#search, #new-recipe {
-    overflow: visible !important;
+#search,
+#new-recipe {
+  overflow: visible !important;
 }
 
 /* -- Text Align Center -- */
 
-#search, #register, #login, #profile, #change-password, #new-recipe, .social-links, .credits {
-    text-align:center;
+#search,
+#register,
+#login,
+#profile,
+#change-password,
+#new-recipe,
+#my-recipes,
+.social-links,
+.credits {
+  text-align: center;
 }
 
 /* -- Paragraph Font Size -- */
 
 p {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 /* -- Search Section Spacing -- */
 
-#search p, #search .dropdown {
-    margin-bottom: 25px;
+#search p,
+#search .dropdown {
+  margin-bottom: 25px;
 }
 
 /* -- Button and Link Styling -- */
 
-#search button, #register button, #login button, #change-password button, .modal .getstarted, #new-recipe button {
-    padding: 10px 25px;
-    border-radius: 50px;
-    color: #37517e;
-    border: 2px solid #47b2e4;
-    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    font-weight: 600;
-    background-color: transparent;
-    margin-bottom:25px;
+#search button,
+#register button,
+#login button,
+#change-password button,
+.modal .getstarted,
+#new-recipe button {
+  padding: 10px 25px;
+  border-radius: 50px;
+  color: #37517e;
+  border: 2px solid #47b2e4;
+  font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  background-color: transparent;
+  margin-bottom: 25px;
 }
 
 /* -- Hover Styling -- */
 
-#search button:hover, #register button:hover, #login button:hover, #change-password-button:hover, .modal button:hover, #imgbb:hover, #new-recipe button:hover {
-    background-color: #47b2e4;
-    color:#fff;
-    transition: 0.3s;
+#search button:hover,
+#register button:hover,
+#login button:hover,
+#change-password-button:hover,
+.modal button:hover,
+#imgbb:hover,
+#new-recipe button:hover {
+  background-color: #47b2e4;
+  color: #fff;
+  transition: 0.3s;
 }
 
 /* -- Social Links Format -- */
 
 .social-links a {
-    text-decoration: none;
-    color:white;
-    font-size: 18px;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
 }
 
 .facebook {
-    margin-right: 30px;
+  margin-right: 30px;
 }
 
 .instagram {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
 .facebook:hover {
-    color:#3333ff;
+  color: #3333ff;
 }
 
 .twitter:hover {
-    color:#3399ff;
+  color: #3399ff;
 }
 
 .instagram:hover {
-    color:#ff66ff;
+  color: #ff66ff;
 }
 
 /* -- Title Margin Preferences -- */
 
-.register-title, .login-title, .my-recipes-title {
-    margin-top:4%;
+.register-title,
+.login-title,
+.my-recipes-title {
+  margin-top: 4%;
 }
 
 .change-password-title {
-    margin-top:7%;
+  margin-top: 7%;
 }
 
 .new-recipe-title {
-    margin-top:-1%;
+  margin-top: -1%;
 }
 
 /* -- Header Background Color Preferences -- */
 
-.register-header, .login-header, .change-password-header, .new-recipe-header {
-    background-color: #37517e;;
+.register-header,
+.login-header,
+.change-password-header,
+.new-recipe-header {
+  background-color: #37517e;
 }
 
 /* -- Input Formats -- */
 
-.register-input, .login-input, .profile-input, .recipe-input, .create-a-tag-input {
-    padding: 10px 25px;
-    color: #37517e;
-    border: 2px solid #37517e;
-    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    font-weight: 600;
-    background-color:transparent;
-    margin-bottom:25px;
-    border-radius: 25px;
+.register-input,
+.login-input,
+.profile-input,
+.recipe-input,
+.create-a-tag-input {
+  padding: 10px 25px;
+  color: #37517e;
+  border: 2px solid #37517e;
+  font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  background-color: transparent;
+  margin-bottom: 25px;
+  border-radius: 25px;
 }
 
 /* -- Login and Register Footer Distance to Content -- */
 
 #register-login-link {
-    margin-bottom: 20%;
+  margin-bottom: 20%;
 }
 
 #login-register-link {
-    margin-bottom: 30%;
+  margin-bottom: 30%;
 }
 
 /* -- Profile Page Styling -- */
 
 #profile h3 {
-    font-size: 24px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    margin-top: 30px;
-    position: relative;
-    color: #37517e;
+  font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  margin-top: 30px;
+  position: relative;
+  color: #37517e;
 }
 
 #profile h3::before {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 120px;
-    height: 1px;
-    background: #ddd;
-    bottom: 1px;
-    left: calc(50% - 60px);
+  content: "";
+  position: absolute;
+  display: block;
+  width: 120px;
+  height: 1px;
+  background: #ddd;
+  bottom: 1px;
+  left: calc(50% - 60px);
 }
-  
+
 #profile h3::after {
-    content: '';
-    position: absolute;
-    display: block;
-    width: 40px;
-    height: 3px;
-    background: #47b2e4;
-    bottom: 0;
-    left: calc(50% - 20px);
+  content: "";
+  position: absolute;
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #47b2e4;
+  bottom: 0;
+  left: calc(50% - 20px);
 }
 
 .profile-info {
-    margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 .profile-hero {
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background: url(../img/veggie-pizza.jpg) no-repeat center center !important;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background: url(../img/veggie-pizza.jpg) no-repeat center center !important;
 }
 
 #profile-picture {
-    border-radius: 30px;
-    height:200px;
-    width:175px;
-    margin-left: 29px;
+  border-radius: 30px;
+  height: 200px;
+  width: 175px;
+  margin-left: 29px;
 }
 
 .profile-picture-row {
-    width: 100%;
-    text-align: center;
-    margin-right:170px;
-    margin-top: 120px;
+  width: 100%;
+  text-align: center;
+  margin-right: 170px;
+  margin-top: 120px;
 }
 
 .profile-picture-row .col {
-    width:100%;
+  width: 100%;
 }
 
 .content-display {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
 }
 
 #second-profile-header {
-    padding-top: 50px;
+  padding-top: 50px;
 }
 
 .profile-column {
-    width:325px;
+  width: 325px;
 }
 
 #profile-picture-edit {
-    border-radius: 100px;
-    padding-right: 0.375rem !important;
-    padding-left: 0.375rem !important;
+  border-radius: 100px;
+  padding-right: 0.375rem !important;
+  padding-left: 0.375rem !important;
 }
 
 #profile-picture-delete {
-    color: #381616;
-    border: 2px solid #e44747;
+  color: #381616;
+  border: 2px solid #e44747;
 }
 
 #profile-picture-delete:hover {
-    background-color: #e44747;
-    color:#fff;
-    transition: 0.3s;
+  background-color: #e44747;
+  color: #fff;
+  transition: 0.3s;
 }
 
 /* -- Change Password Styling -- */
 
 .change-password {
-    margin-top: 60px;
-    margin-bottom:3%;
+  margin-top: 60px;
+  margin-bottom: 3%;
 }
 
 #change-password button {
-    margin-top:30px;
-    margin-bottom:35%;
+  margin-top: 30px;
+  margin-bottom: 35%;
 }
 
 .change-password a {
-    padding: 10px 25px;
-    border-radius: 50px;
-    color: #37517e;
-    border: 2px solid #47b2e4;
-    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    font-weight: 600;
-    background-color: transparent;
-    margin-bottom:5%;  
+  padding: 10px 25px;
+  border-radius: 50px;
+  color: #37517e;
+  border: 2px solid #47b2e4;
+  font-family: "Lato", "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  background-color: transparent;
+  margin-bottom: 5%;
 }
 
 /* -- Pointer Class -- */
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* -- Add a Recipe Page -- */
 
 #new-recipe label {
-    vertical-align: top;
-    margin-top: 10px;
+  vertical-align: top;
+  margin-top: 10px;
 }
 
 #new-recipe form {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 #add-recipe {
-    margin-top: 40px;
+  margin-top: 40px;
 }
 
 #add-recipe-tags {
-    margin-top:40px;
-    width:270px;
+  margin-top: 40px;
+  width: 270px;
 }
 
 #create-a-tag {
-    margin-top: 25px;
-    color: #4183c4;
+  margin-top: 25px;
+  color: #4183c4;
 }
 
 #tag-update {
-    margin-top:60px;
+  margin-top: 60px;
+}
+
+/* -- My Recipes -- */
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.cards-single {
+  background: #e2dede;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  border-radius: 16px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  align-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.cards-image {
+  text-align: center;
+  width: 40%;
+  height:200px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.nolist {
+  list-style: none;
+}
+
+li span {
+    position: relative;
+    left: -20px;
 }
 
 /* -- Media Queries -- */
 
-@media screen and (max-width:991px) {
-    .profile-hero {
-        height: 500px !important;
-    }
-} 
+@media screen and (max-width: 991px) {
+  .profile-hero {
+    height: 500px !important;
+  }
+
+  .social-links {
+      margin-top: 20px;
+      margin-bottom: 20px;
+  }
+
+  .footer-row {
+      text-align:center;
+  }
+}
