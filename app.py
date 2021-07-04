@@ -216,7 +216,17 @@ def search():
     # check if user is logged in, redirect to login page if not
     try:
         if session["user"]:
-            return render_template("search.html")
+            tags_list = request.form.get("tags").split(",")
+            recipes = []
+            recipe_ids = []
+            for tag in tags_list:
+                matching_recipes = mongo.db.recipes.find(
+                {"tags": tag})
+                for recipe in matching_recipes:
+                    if recipe["_id"] not in recipe_ids:
+                        recipes.append(recipe)
+                        recipe_ids.append(recipe["_id"])
+            return render_template("search.html", recipes=recipes)
     except KeyError:
         flash("You must be logged in to view our recipe database.")
         return redirect(url_for("login"))

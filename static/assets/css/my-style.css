@@ -31,6 +31,7 @@
 #change-password,
 #new-recipe,
 #my-recipes,
+#search-recipes,
 .social-links,
 .credits {
   text-align: center;
@@ -113,7 +114,8 @@ p {
 
 .register-title,
 .login-title,
-.my-recipes-title {
+.my-recipes-title,
+.search-recipes-title {
   margin-top: 4%;
 }
 
@@ -130,7 +132,8 @@ p {
 .register-header,
 .login-header,
 .change-password-header,
-.new-recipe-header {
+.new-recipe-header,
+.search-header {
   background-color: #37517e;
 }
 
