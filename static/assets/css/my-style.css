@@ -31,6 +31,7 @@
 #change-password,
 #new-recipe,
 #my-recipes,
+#saved-recipes,
 #search-recipes,
 .social-links,
 .credits {
@@ -115,6 +116,7 @@ p {
 .register-title,
 .login-title,
 .my-recipes-title,
+.saved-recipes-title,
 .search-recipes-title {
   margin-top: 4%;
 }

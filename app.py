@@ -64,7 +64,7 @@ def new_recipe():
         # check if user is logged in, redirect to login page if not
         try:
             if session["user"]:
-                return render_template("new_recipe.html", tags=tags)
+                return render_template("new-recipe.html", tags=tags)
         except KeyError:
             flash("You must be logged in to add a recipe to our database.")
             return redirect(url_for("login"))
@@ -77,7 +77,7 @@ def new_recipe():
 
         if existing_recipe:
             flash("You have a recipe with this name already!")
-            return render_template("new_recipe.html", tags=tags)
+            return render_template("new-recipe.html", tags=tags)
         elif newData[0] == 'newTag':
             newTag = {
                 "name": newData[1]
@@ -98,7 +98,7 @@ def new_recipe():
             }
             mongo.db.recipes.insert_one(my_new_recipe)
             flash("Successfully added your recipe!")
-            return render_template("new_recipe.html", tags=tags)
+            return render_template("new-recipe.html", tags=tags)
 
 
 @app.route("/my-profile", methods=["GET", "POST"])
@@ -194,7 +194,6 @@ def register():
                 "username": request.form.get("username").lower(),
                 "password": generate_password_hash(request.form.get("password")),
                 "date_registered": str(date_registered),
-                "my_recipes": [],
                 "saved_recipes": [],
                 "profile_picture": [],
                 "api_key": result_str
@@ -266,7 +265,22 @@ def my_recipes():
                 my_recipes_array.append(recipe)
             return render_template("my-recipes.html", recipes=my_recipes_array)
     except KeyError:
-        flash("You must be logged in to view our recipe database.")
+        flash("You must be logged in to view your recipes.")
+        return redirect(url_for("login"))
+
+
+@app.route("/saved-recipes")
+def saved_recipes():
+    try:
+        if session["user"]:
+            saved_recipes_array = []
+            current_user = mongo.db.users.find_one(
+            {"username": session["user"]})
+            for id in current_user["saved_recipes"]:
+                saved_recipes_array.append(id)
+            return render_template("saved-recipes.html", recipes=saved_recipes_array)
+    except KeyError:
+        flash("You must be logged in to view your recipes.")
         return redirect(url_for("login"))
 
 
