@@ -195,7 +195,7 @@ def register():
                 "password": generate_password_hash(request.form.get("password")),
                 "date_registered": str(date_registered),
                 "my_recipes": [],
-                "liked_recipes": [],
+                "saved_recipes": [],
                 "profile_picture": [],
                 "api_key": result_str
             }
