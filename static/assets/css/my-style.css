@@ -361,6 +361,14 @@ li span {
     left: -20px;
 }
 
+/* -- Search Results -- */
+
+#search-recipes i, #saved-recipes i, #my-recipes i {
+  font-size: 250px;
+  margin-bottom: 100px;
+  margin-top: 90px;
+}
+
 /* -- Media Queries -- */
 
 @media screen and (max-width: 991px) {
