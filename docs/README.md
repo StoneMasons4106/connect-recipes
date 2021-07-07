@@ -14,15 +14,46 @@ This site is designed to give everyone an enjoyable experience when exploring an
 
 For inspiration, I looked at a number of [Bootstrap Templates](https://bootstrapmade.com/) to get a beautiful front end design. In the end, I settled on using the [Arsha Template](https://bootstrapmade.com/arsha-free-bootstrap-html-template-corporate/).
 
-Design Features Include:
+#### User Stories:
+
+* First Time Visitor Goals:
+    * Easily understand the purpose of the site and why it's important.
+    * Quickly learn how to navigate the site and make sure it is intuitively accessible.
+    * Visual appeal to have a pleasant first experience.
+
+* Returning Visitor Goals:
+    * Be able to login/register so my specific information can be seen
+    * Search, save, and create recipes to share with others
+    * Create tags so I can categorize my recipes and find others quickly
+
+* Frequent User Goals:
+    * Access data via API if I want to use my recipes for my own projects and use Connect Recipes as my database
+    * Edit current recipes/profile information
+    * Delete recipes I have no need of anymore
+
+#### Design Features Include:
 
 * **Fixed Hero Images** - Striking hero images give the site a uniform and beautiful display.
 
 * **Mobile Menu** - Consolidating the menu down for mobile devices lets it be flexible for device size.
 
+* **Gradual Fade Ins** - The content on the page has gradual fade in transitions so it's appealing to the user.
+
+### Wireframes
+
+* **Desktop** - [View](connect_recipes_desktop.pdf)
+
+* **Tablet** - [View](connect_recipes_tablet.pdf)
+
+* **Mobile** - [View](connect_recipes_mobile.pdf)
+
 ## Features
 
 * **AJAX Requests** - AJAX requests allow users to update information on their profile or in a recipe and not have to reload the page to see the result.
+
+* **REST API** - Allows the user to interact with their recipes and other data without the traditional front end website. Link to the docs [here](API_Docs.md).
+
+* **User Registration** - Allows user to store their personal information, and have recipes that they created themselves, along with recipes they saved.
 
 ## Technologies Used
 
@@ -124,6 +155,8 @@ If you'd like to have a copy on your local machine, follow the steps below:
 * Implementation of AJAX in the project came mainly from this [Flask Documentation Link](https://flask.palletsprojects.com/en/2.0.x/patterns/jquery/) and [Stack Overflow Link](https://stackoverflow.com/questions/16164604/rest-ajax-request-to-mongodb).
 
 * Checking to see if a string contained special characters via Regex and JS came from this [Stack Overflow Post](https://stackoverflow.com/questions/32311081/check-for-special-characters-in-string).
+
+* Pieces of code were taken from [this article](https://dev.to/mugas/flip-cards-with-javascript-2ad0) to create the recipe cards.
 
 #### Acknowledgments
 
