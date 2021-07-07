@@ -4,7 +4,7 @@
 
 ### My Recipes
 
-Endpoint: /api/v1/my-recipes?key=(API_KEY)
+Endpoint: /api/v1/my-recipes?key=API_KEY
 
 This endpoint allows a user to return a list of their recipes provided they supply their unique API key.
 
