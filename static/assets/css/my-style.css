@@ -156,7 +156,7 @@ p {
   border-radius: 25px;
 }
 
-/* -- Login and Register Footer Distance to Content -- */
+/* -- Login, Register, and No Content Footer Distance to Content -- */
 
 #register-login-link {
   margin-bottom: 20%;
@@ -164,6 +164,10 @@ p {
 
 #login-register-link {
   margin-bottom: 30%;
+}
+
+.no-content {
+  margin-bottom: 5%;
 }
 
 /* -- Profile Page Styling -- */
