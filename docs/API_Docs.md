@@ -1,8 +1,8 @@
 # API Docs
 
-### GET Methods
+## GET Methods
 
-##### My Recipes
+### My Recipes
 
 Endpoint: /api/v1/my-recipes?key=(API_KEY)
 
