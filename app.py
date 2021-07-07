@@ -186,7 +186,7 @@ def register():
         if str(request.form.get("password")) == str(request.form.get("confirm-password")):
             today = date.today()
             date_registered = today.strftime("%B %d, %Y")
-            source = string.ascii_letters.lower + string.digits
+            source = string.ascii_lowercase + string.digits
             result_str = ''.join((random.choice(source) for i in range(16)))
             register = {
                 "email": request.form.get("email").lower(),
