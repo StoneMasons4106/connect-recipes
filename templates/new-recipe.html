@@ -112,7 +112,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-6">
           <label for="url"><i class="fas fa-code"></i></label>
-          <input id="url" name="url" type="url" minlength="20" maxlength="50" pattern="https://i.ibb.co/[0-9A-Za-z]{5,20}/[0-9A-Za-z-_+]{4,50}.[jpg]{3}"
+          <input id="url" name="url" type="url" minlength="20" maxlength="120" pattern="https://i.ibb.co/[0-9A-Za-z]{5,20}/[0-9A-Za-z-_+]{20,120}.[jpg]{3}"
             placeholder="Image URL" class="recipe-input" required>
         </div>
       </div>
@@ -147,7 +147,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-6">
           <label for="serving-instructions"><i class="fas fa-utensils"></i></label>
-          <textarea id="serving-instructions" name="serving-instructions" minlength="10" maxlength="1000" pattern="[0-9A-Za-z./ ]{10,1000}"
+          <textarea id="serving-instructions" name="serving-instructions" minlength="3" maxlength="1000" pattern="[0-9A-Za-z./ ]{10,1000}"
             placeholder="Serving Instructions" class="recipe-input" rows="5" required></textarea>
         </div>
       </div>

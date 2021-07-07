@@ -22,6 +22,10 @@ $("#create-a-tag").click(function () {
   $("#create-tag-modal").modal("show");
 });
 
+$("#refresh").click(function () {
+  $("#refresh-api-modal").modal("show");
+});
+
 //Add event listeners for Profile Page save changes buttons
 $("#name-save-changes").click(function () {
   var specialChar = /[`!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~]/;
@@ -201,7 +205,11 @@ $("#profile-picture-save-changes").click(function () {
       </div>`
     );
     $("#profile-picture-modal").modal("hide");
-  } else if ($("#profile-picture-input").val().includes("https://i.ibb.co/") && ($("#profile-picture-input").val().includes(".jpg") || $("#profile-picture-input").val().includes(".png"))) {
+  } else if (
+    $("#profile-picture-input").val().includes("https://i.ibb.co/") &&
+    ($("#profile-picture-input").val().includes(".jpg") ||
+      $("#profile-picture-input").val().includes(".png"))
+  ) {
     $.ajax({
       type: "POST",
       url: "/my-profile",
@@ -232,7 +240,10 @@ $("#profile-picture-save-changes").click(function () {
 });
 
 $("#profile-picture-delete").click(function () {
-  if ($('#profile-picture').attr('src') == "/static/assets/img/blank-profile-picture.png") {
+  if (
+    $("#profile-picture").attr("src") ==
+    "/static/assets/img/blank-profile-picture.png"
+  ) {
     $("#hero").after(
       `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
         <strong>There is no profile picture to delete you smooth brain.</strong> 
@@ -256,16 +267,19 @@ $("#profile-picture-delete").click(function () {
         );
       },
     });
-    $("#profile-picture").attr("src", "/static/assets/img/blank-profile-picture.png");
+    $("#profile-picture").attr(
+      "src",
+      "/static/assets/img/blank-profile-picture.png"
+    );
     $("#profile-picture-modal").modal("hide");
   }
 });
 
 //Create Tag Function
 $("#create-tag").click(function () {
-  existingTags = []
-  $(".item").each(function() {
-    existingTags.push($(this).attr("data-value"))
+  existingTags = [];
+  $(".item").each(function () {
+    existingTags.push($(this).attr("data-value"));
   });
   if ($("#new-tag").val() == "") {
     $("#header").after(
@@ -299,7 +313,43 @@ $("#create-tag").click(function () {
         );
       },
     });
-    $('.item:last').after('<div class="item" data-value='+ $("#new-tag").val() +'>' + $("#new-tag").val() +'</div>');
+    $(".item:last").after(
+      '<div class="item" data-value=' +
+        $("#new-tag").val() +
+        ">" +
+        $("#new-tag").val() +
+        "</div>"
+    );
     $("#create-tag-modal").modal("hide");
   }
-})
+});
+
+//Regenerate API Key
+$("#api-key-refresh").click(function () {
+  var random = (length = 18) => {
+    let chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    let str = '';
+    for (let i = 0; i < length; i++) {
+        str += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return str;
+  };
+  newKey = random(16)
+  $.ajax({
+    type: "POST",
+    url: "/my-profile",
+    data: { newAPIKey: newKey },
+    contentType: "application/json",
+    dataType: "json",
+    success: function (data) {
+      $("#hero").after(
+        `<div class="alert alert-success alert-dismissible fade show flashes" role="alert"> 
+            <strong>${data.result}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+          </div>`
+      );
+    },
+  });
+  $("#api-field").html(newKey);
+  $("#refresh-api-modal").modal("hide");
+});

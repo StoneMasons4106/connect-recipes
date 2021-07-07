@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_pymongo import PyMongo
 from flask_talisman import Talisman
 from datetime import date
+from bson.objectid import ObjectId
 import random
 import string
 if os.path.exists("env.py"):
@@ -164,6 +165,11 @@ def profile():
                 newvalue = {"$set": {"profile_picture": new_profile_picture_array} }
                 mongo.db.users.update_one(current_user, newvalue)
                 return jsonify(result="Successfully updated your profile picture!")
+
+        if newData[0] == 'newAPIKey':
+            newvalue = {"$set": {"api_key": newData[1]} }
+            mongo.db.users.update_one(current_user, newvalue)
+            return jsonify(result="Successfully regenerated your API key!")
         
         return render_template("profile.html", user=current_user)
 
@@ -303,9 +309,8 @@ def api_my_recipes():
         existing_user = mongo.db.users.find_one(
             {"api_key": key})
         if existing_user:
-            username = existing_user["username"]
             my_recipes = mongo.db.recipes.find(
-            {"owner": username})
+            {"owner": existing_user["username"]})
             for recipe in my_recipes:
                 recipes_list.append(recipe)
             return str(recipes_list)
@@ -315,6 +320,33 @@ def api_my_recipes():
     else:
         recipes_list.append('No API key provided.')
         return recipes_list[0]
+
+
+@app.route("/api/v1/recipe")
+def my_recipe():
+    if 'key' in request.args:
+        key = request.args['key']
+        existing_user = mongo.db.users.find_one(
+            {"api_key": key})
+        if existing_user:
+            if 'id' in request.args:
+                id = request.args['id']
+                recipe = mongo.db.recipes.find_one(
+                    {"_id": ObjectId(id)})
+                if recipe:
+                    if recipe["owner"] == existing_user["username"]:
+                        return str(recipe)
+                    else:
+                        return 'You are not authorized to view this recipe.'
+                else:
+                    return 'Invalid recipe ID.'
+            else:
+                return 'No ID provided.'
+        else:
+            return 'Invalid API key.'
+    else:
+        return 'No API key provided.'
+
 
 if __name__ == "__main__":
     app.run(

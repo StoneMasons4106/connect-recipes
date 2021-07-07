@@ -264,6 +264,35 @@ messages %}
   </div>
 </div>
 
+<div class="modal" id="refresh-api-modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Warning!</h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>This will reset your API key and thus any connections through it that you have to this site!</p>
+        <p>Are you sure you want to continue?</p>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          id="api-key-refresh"
+          class="getstarted"
+        >
+        <i class="fas fa-skull"></i> Regenerate
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- End Modals -->
 
 <!-- ======= Profile ======= -->
@@ -297,7 +326,8 @@ messages %}
           </p>
           <p class="profile-info content">
             <strong>API:</strong>
-            <span id="username-field">{{ user.api_key }}</span>
+            <span id="api-field">{{ user.api_key }}</span>
+            <i class="fas fa-redo pointer" id="refresh"></i>
           </p>
           <p class="profile-info content">
             <strong>My Recipes:</strong>
