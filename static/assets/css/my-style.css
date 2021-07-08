@@ -135,7 +135,8 @@ p {
 .login-header,
 .change-password-header,
 .new-recipe-header,
-.search-header {
+.search-header,
+.recipe-header {
   background-color: #37517e;
 }
 

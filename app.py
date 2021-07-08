@@ -293,6 +293,13 @@ def saved_recipes():
         return redirect(url_for("login"))
 
 
+@app.route("/recipes/<recipe_id>", methods=["GET", "POST"])
+def recipes(recipe_id):
+    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    print(recipe)
+    return render_template("recipe.html", recipe=recipe)
+
+
 @app.route("/logout")
 def logout():
     # remove user from session cookie
