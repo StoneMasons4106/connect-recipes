@@ -33,6 +33,7 @@
 #my-recipes,
 #saved-recipes,
 #search-recipes,
+#recipe
 .social-links,
 .credits {
   text-align: center;
@@ -117,7 +118,8 @@ p {
 .login-title,
 .my-recipes-title,
 .saved-recipes-title,
-.search-recipes-title {
+.search-recipes-title,
+.recipe-row {
   margin-top: 4%;
 }
 
@@ -126,7 +128,11 @@ p {
 }
 
 .new-recipe-title {
-  margin-top: -1%;
+  margin-top: 0%;
+}
+
+#new-recipe {
+  padding-top: 0px !important;
 }
 
 /* -- Header Background Color Preferences -- */
@@ -368,7 +374,7 @@ li span {
 
 /* -- Search Results -- */
 
-#search-recipes i, #saved-recipes i, #my-recipes i {
+#search-recipes i, #saved-recipes i, #my-recipes i, #recipe i {
   font-size: 250px;
   margin-bottom: 100px;
   margin-top: 90px;

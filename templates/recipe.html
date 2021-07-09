@@ -2,50 +2,123 @@
 
 <!-- ======= Header ======= -->
 <header id="header" class="fixed-top recipe-header">
-    <div class="container d-flex align-items-center">
-      <h1 class="logo me-auto">
-        <a href="{{ url_for('index') }}">Connect Recipes</a>
-      </h1>
-  
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li>
-            <a class="nav-link scrollto active" href="{{ url_for('index') }}"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a class="nav-link scrollto" href="{{ url_for('index') }}#about"
-              >About</a
-            >
-          </li>
-          <li>
-            <a class="nav-link scrollto" href="{{ url_for('index') }}#search"
-              >Search</a
-            >
-          </li>
-          {% if session.user %}
-          <li>
-            <a class="nav-link" href="{{ url_for('new_recipe') }}"
-              >Add A Recipe</a
-            >
-          </li>
-          <li>
-            <a class="nav-link" href="{{ url_for('profile') }}">My Profile</a>
-          </li>
-          <li><a class="getstarted" href="{{ url_for('logout') }}">Logout</a></li>
-          {% else %}
-          <li><a class="getstarted" href="{{ url_for('login') }}">Login</a></li>
-          <li>
-            <a class="getstarted" href="{{ url_for('register') }}">Register</a>
-          </li>
-          {% endif %}
+  <div class="container d-flex align-items-center">
+    <h1 class="logo me-auto">
+      <a href="{{ url_for('index') }}">Connect Recipes</a>
+    </h1>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li>
+          <a class="nav-link scrollto active" href="{{ url_for('index') }}"
+            >Home</a
+          >
+        </li>
+        <li>
+          <a class="nav-link scrollto" href="{{ url_for('index') }}#about"
+            >About</a
+          >
+        </li>
+        <li>
+          <a class="nav-link scrollto" href="{{ url_for('index') }}#search"
+            >Search</a
+          >
+        </li>
+        {% if session.user %}
+        <li>
+          <a class="nav-link" href="{{ url_for('new_recipe') }}"
+            >Add A Recipe</a
+          >
+        </li>
+        <li>
+          <a class="nav-link" href="{{ url_for('profile') }}">My Profile</a>
+        </li>
+        <li><a class="getstarted" href="{{ url_for('logout') }}">Logout</a></li>
+        {% else %}
+        <li><a class="getstarted" href="{{ url_for('login') }}">Login</a></li>
+        <li>
+          <a class="getstarted" href="{{ url_for('register') }}">Register</a>
+        </li>
+        {% endif %}
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav>
+    <!-- .navbar -->
+  </div>
+</header>
+<!-- End Header -->
+
+<!-- Recipe -->
+
+<section id="recipe" class="section-bg cards">
+  <div class="container-fluid" data-aos="fade-up">
+    {% if recipe %}
+    <div class="recipe-row row justify-content-center">
+      <div class="col-lg-6">
+        <img
+          src="{{ recipe.recipe_picture_url }}"
+          alt="{{ recipe.name }}"
+          class="img-fluid cards-image"
+        />
+        <h2>{{ recipe.name }}</h2>
+        <h3>Ingredients:</h3>
+        <ul class="nolist">
+          {% set ingredients = recipe.ingredients.split('\r\n') %} {% for
+          ingredient in ingredients%}
+          <li><span>{{ ingredient }}</span></li>
+          {% endfor %}
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
-      <!-- .navbar -->
+        <h3>Tags:</h3>
+        <p>
+          {% for tag in recipe.tags %} {{ tag }} {% if loop.index != loop.length
+          %} , {% endif %} {% endfor %}
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <h3>Prep Work:</h3>
+        <ul class="nolist">
+          {% set prep_work = recipe.prep_work.split('\r\n') %} {% for prep in
+          prep_work%}
+          <li><span>{{ prep }}</span></li>
+          {% endfor %}
+        </ul>
+        <h3>Cooking Instructions:</h3>
+        <ul class="nolist">
+          {% set cooking_instructions = recipe.cooking_instructions.split('\r\n') %} {% for cooking_instruction in
+            cooking_instructions%}
+          <li><span>{{ cooking_instruction }}</span></li>
+          {% endfor %}
+        </ul>
+        <h3>Serving Instructions:</h3>
+        <ul class="nolist">
+          {% set serving_instructions = recipe.serving_instructions.split('\r\n') %} {% for serving_instruction in
+            serving_instructions%}
+          <li><span>{{ serving_instruction }}</span></li>
+          {% endfor %}
+        </ul>
+        <h3>Recipe Owner:</h3>
+        <p>
+          {{ recipe.owner }}
+        </p>
+      </div>
     </div>
-  </header>
-  <!-- End Header -->
+
+    {% else %}
+
+    <div class="row justify-content-center">
+      <div class="col-lg-4 no-content">
+        <i class="far fa-meh"></i>
+        <p>Oops! Looks like there's no recipe with this ID...</p>
+        <p>
+          Try adding a recipe <a href="{{ url_for('new_recipe') }}">here!</a>
+        </p>
+      </div>
+    </div>
+
+    {% endif %}
+  </div>
+</section>
+
+<!-- End Recipe -->
 
 {% endblock %}

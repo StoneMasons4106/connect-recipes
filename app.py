@@ -295,8 +295,10 @@ def saved_recipes():
 
 @app.route("/recipes/<recipe_id>", methods=["GET", "POST"])
 def recipes(recipe_id):
-    recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-    print(recipe)
+    try:
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    except:
+        recipe = None
     return render_template("recipe.html", recipe=recipe)
 
 
