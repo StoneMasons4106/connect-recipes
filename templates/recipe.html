@@ -54,44 +54,44 @@
   <div class="container-fluid" data-aos="fade-up">
     {% if recipe %}
     <div class="recipe-row row justify-content-center">
-      <div class="col-lg-7 paper">
+      <div class="col-lg-6 paper">
         <div class="lines"></div>
         <ul class="nolist list">
           <img
             src="{{ recipe.recipe_picture_url }}"
             alt="{{ recipe.name }}"
-            class="img-fluid cards-image"
+            class="img-fluid cards-image recipe-image"
           />
-          <li>{{ recipe.name }}</li>
-          <li>Ingredients:</li>
+          <li><strong>{{ recipe.name }}</strong></li>
+          <li><strong>Ingredients:</strong></li>
           {% set ingredients = recipe.ingredients.split('\r\n') %} {% for
           ingredient in ingredients%}
-          <li><span>{{ ingredient }}</span></li>
+          <li>{{ ingredient }}</li>
           {% endfor %}
-          <li>Tags:</li>
+          <li><strong>Prep Work:</strong></li>
+          {% set prep_work = recipe.prep_work.split('\r\n') %} {% for prep in
+          prep_work%}
+          <li>{{ prep }}</li>
+          {% endfor %}
+          <li><strong>Cooking Instructions:</strong></li>
+          {% set cooking_instructions =
+          recipe.cooking_instructions.split('\r\n') %} {% for
+          cooking_instruction in cooking_instructions%}
+          <li>{{ cooking_instruction }}</li>
+          {% endfor %}
+          <li><strong>Serving Instructions:</strong></li>
+          {% set serving_instructions =
+          recipe.serving_instructions.split('\r\n') %} {% for
+          serving_instruction in serving_instructions%}
+          <li>{{ serving_instruction }}</li>
+          {% endfor %}
+          <li><strong>Recipe Owner:</strong></li>
+          <li>{{ recipe.owner }}</li>
+          <li><strong>Tags:</strong></li>
           <li>
             {% for tag in recipe.tags %} {{ tag }} {% if loop.index !=
             loop.length %} , {% endif %} {% endfor %}
           </li>
-          <li>Prep Work:</li>
-          {% set prep_work = recipe.prep_work.split('\r\n') %} {% for prep in
-          prep_work%}
-          <li><span>{{ prep }}</span></li>
-          {% endfor %}
-          <li>Cooking Instructions:</li>
-          {% set cooking_instructions =
-          recipe.cooking_instructions.split('\r\n') %} {% for
-          cooking_instruction in cooking_instructions%}
-          <li><span>{{ cooking_instruction }}</span></li>
-          {% endfor %}
-          <li>Serving Instructions:</li>
-          {% set serving_instructions =
-          recipe.serving_instructions.split('\r\n') %} {% for
-          serving_instruction in serving_instructions%}
-          <li><span>{{ serving_instruction }}</span></li>
-          {% endfor %}
-          <li>Recipe Owner:</li>
-          <li>{{ recipe.owner }}</li>
         </ul>
       </div>
     </div>

@@ -158,6 +158,8 @@ If you'd like to have a copy on your local machine, follow the steps below:
 
 * Pieces of code were taken from [this article](https://dev.to/mugas/flip-cards-with-javascript-2ad0) to create the recipe cards.
 
+* CSS taken from [CSS Tricks](https://css-tricks.com/how-to-create-a-notebook-design-with-css/) were used to make the recipe page background with lined paper.
+
 #### Acknowledgments
 
 * My mentor for continuous and helpful support/design suggestions.
