@@ -54,52 +54,45 @@
   <div class="container-fluid" data-aos="fade-up">
     {% if recipe %}
     <div class="recipe-row row justify-content-center">
-      <div class="col-lg-6">
-        <img
-          src="{{ recipe.recipe_picture_url }}"
-          alt="{{ recipe.name }}"
-          class="img-fluid cards-image"
-        />
-        <h2>{{ recipe.name }}</h2>
-        <h3>Ingredients:</h3>
-        <ul class="nolist">
+      <div class="col-lg-7 paper">
+        <div class="lines"></div>
+        <ul class="nolist list">
+          <img
+            src="{{ recipe.recipe_picture_url }}"
+            alt="{{ recipe.name }}"
+            class="img-fluid cards-image"
+          />
+          <li>{{ recipe.name }}</li>
+          <li>Ingredients:</li>
           {% set ingredients = recipe.ingredients.split('\r\n') %} {% for
           ingredient in ingredients%}
           <li><span>{{ ingredient }}</span></li>
           {% endfor %}
-        </ul>
-        <h3>Tags:</h3>
-        <p>
-          {% for tag in recipe.tags %} {{ tag }} {% if loop.index != loop.length
-          %} , {% endif %} {% endfor %}
-        </p>
-      </div>
-      <div class="col-lg-6">
-        <h3>Prep Work:</h3>
-        <ul class="nolist">
+          <li>Tags:</li>
+          <li>
+            {% for tag in recipe.tags %} {{ tag }} {% if loop.index !=
+            loop.length %} , {% endif %} {% endfor %}
+          </li>
+          <li>Prep Work:</li>
           {% set prep_work = recipe.prep_work.split('\r\n') %} {% for prep in
           prep_work%}
           <li><span>{{ prep }}</span></li>
           {% endfor %}
-        </ul>
-        <h3>Cooking Instructions:</h3>
-        <ul class="nolist">
-          {% set cooking_instructions = recipe.cooking_instructions.split('\r\n') %} {% for cooking_instruction in
-            cooking_instructions%}
+          <li>Cooking Instructions:</li>
+          {% set cooking_instructions =
+          recipe.cooking_instructions.split('\r\n') %} {% for
+          cooking_instruction in cooking_instructions%}
           <li><span>{{ cooking_instruction }}</span></li>
           {% endfor %}
-        </ul>
-        <h3>Serving Instructions:</h3>
-        <ul class="nolist">
-          {% set serving_instructions = recipe.serving_instructions.split('\r\n') %} {% for serving_instruction in
-            serving_instructions%}
+          <li>Serving Instructions:</li>
+          {% set serving_instructions =
+          recipe.serving_instructions.split('\r\n') %} {% for
+          serving_instruction in serving_instructions%}
           <li><span>{{ serving_instruction }}</span></li>
           {% endfor %}
+          <li>Recipe Owner:</li>
+          <li>{{ recipe.owner }}</li>
         </ul>
-        <h3>Recipe Owner:</h3>
-        <p>
-          {{ recipe.owner }}
-        </p>
       </div>
     </div>
 
