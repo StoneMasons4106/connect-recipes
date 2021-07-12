@@ -48,6 +48,23 @@
 </header>
 <!-- End Header -->
 
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in
+  messages %}
+  <div
+    id="save-recipe-flash"
+    class="alert alert-success alert-dismissible fade show flashes"
+    role="alert"
+  >
+    <strong>{{ message }}</strong>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  {% endfor %} {% endif %} {% endwith %}
+
 <!-- Recipe -->
 
 <section id="recipe" class="section-bg cards">
@@ -93,6 +110,35 @@
             loop.length %} , {% endif %} {% endfor %}
           </li>
         </ul>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="save-recipe">
+          {% if saved == 1%}
+          <form
+            action="{{ url_for('recipes', recipe_id=recipe._id) }}"
+            method="post"
+          >
+            <button
+              id="save-recipe-button"
+              class="getstarted saved"
+              type="submit"
+            >
+              <i class="far fa-save"></i> Saved
+            </button>
+          </form>
+          {% elif saved == 0 %}
+          <form
+            action="{{ url_for('recipes', recipe_id=recipe._id) }}"
+            method="post"
+          >
+            <button id="save-recipe-button" class="getstarted" type="submit">
+              <i class="far fa-save"></i> Save
+            </button>
+          </form>
+          {% endif %}
+        </div>
       </div>
     </div>
 
