@@ -286,7 +286,9 @@ def saved_recipes():
             current_user = mongo.db.users.find_one(
             {"username": session["user"]})
             for recipe in current_user["saved_recipes"]:
-                saved_recipes_array.append(recipe)
+                saved_recipe = mongo.db.recipes.find_one(
+                {"_id": ObjectId(recipe)})
+                saved_recipes_array.append(saved_recipe)
             return render_template("saved-recipes.html", recipes=saved_recipes_array)
     except KeyError:
         flash("You must be logged in to view your recipes.")
