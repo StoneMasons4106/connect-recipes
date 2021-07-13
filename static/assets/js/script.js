@@ -26,6 +26,10 @@ $("#refresh").click(function () {
   $("#refresh-api-modal").modal("show");
 });
 
+$("#delete-recipe-button").click(function () {
+  $("#delete-recipe-modal").modal("show");
+});
+
 //Add event listeners for Profile Page save changes buttons
 $("#name-save-changes").click(function () {
   var specialChar = /[`!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~]/;

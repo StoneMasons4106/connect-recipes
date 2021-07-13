@@ -270,7 +270,7 @@ p {
   padding-left: 0.375rem !important;
 }
 
-#profile-picture-delete, #api-key-refresh, #delete-recipe-button {
+#profile-picture-delete, #api-key-refresh, #delete-recipe-button, #second-delete-recipe-button {
   padding: 10px 25px;
   border-radius: 50px;
   color: #381616;
@@ -281,7 +281,7 @@ p {
   margin-bottom: 25px;
 }
 
-#profile-picture-delete:hover, #api-key-refresh:hover, #delete-recipe-button:hover {
+#profile-picture-delete:hover, #api-key-refresh:hover, #delete-recipe-button:hover, #second-delete-recipe-button:hover {
   background-color: #e44747;
   color: #fff;
   transition: 0.3s;
