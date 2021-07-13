@@ -88,8 +88,8 @@ p {
 }
 
 .saved {
-  background-color: #47b2e4;
-  color: #fff;
+  background-color: #47b2e4 !important;
+  color: #fff !important;
 }
 
 /* -- Social Links Format -- */
@@ -444,7 +444,6 @@ li span {
 .save-recipe {
   margin-top: 50px;
   text-align: center;
-  font-size: 20px;
 }
 
 #save-recipe-flash {
