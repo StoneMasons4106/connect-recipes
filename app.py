@@ -301,7 +301,6 @@ def recipes(recipe_id):
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         current_user = mongo.db.users.find_one(
                 {"username": session["user"]})
-        print(current_user)
         if recipe_id in current_user["saved_recipes"]:
             saved_recipes = current_user["saved_recipes"]
             saved_recipes.remove(recipe_id)
@@ -330,8 +329,16 @@ def recipes(recipe_id):
                 saved = 0
         except:
             recipe = None
-        print(saved)
         return render_template("recipe.html", recipe=recipe, saved=saved)
+
+
+@app.route("/delete-recipe/<recipe_id>", methods=["GET", "POST"])
+def delete_recipe(recipe_id):
+    if request.method == "POST":
+        recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+        mongo.db.recipes.delete_one({"_id": ObjectId(recipe["_id"])})
+        return redirect(url_for("my_recipes"))
+    return redirect(url_for("my_recipes"))
 
 
 @app.route("/logout")
