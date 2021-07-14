@@ -110,23 +110,43 @@ messages %}
             class="img-fluid cards-image recipe-image"
           />
           <li><strong>{{ recipe.name }}</strong></li>
-          <li><strong>Ingredients:</strong></li>
+          <li>
+            {% if recipe.owner == session.user%}
+            <i class="fas fa-pencil-alt pointer"></i>
+            {% endif %}
+            <strong>Ingredients:</strong>
+          </li>
           {% set ingredients = recipe.ingredients.split('\r\n') %} {% for
           ingredient in ingredients%}
           <li>{{ ingredient }}</li>
           {% endfor %}
-          <li><strong>Prep Work:</strong></li>
+          <li>
+            {% if recipe.owner == session.user%}
+            <i class="fas fa-pencil-alt pointer"></i>
+            {% endif %}
+            <strong>Prep Work:</strong>
+          </li>
           {% set prep_work = recipe.prep_work.split('\r\n') %} {% for prep in
           prep_work%}
           <li>{{ prep }}</li>
           {% endfor %}
-          <li><strong>Cooking Instructions:</strong></li>
+          <li>
+            {% if recipe.owner == session.user%}
+            <i class="fas fa-pencil-alt pointer"></i>
+            {% endif %}
+            <strong>Cooking Instructions:</strong>
+          </li>
           {% set cooking_instructions =
           recipe.cooking_instructions.split('\r\n') %} {% for
           cooking_instruction in cooking_instructions%}
           <li>{{ cooking_instruction }}</li>
           {% endfor %}
-          <li><strong>Serving Instructions:</strong></li>
+          <li>
+            {% if recipe.owner == session.user%}
+            <i class="fas fa-pencil-alt pointer"></i>
+            {% endif %}
+            <strong>Serving Instructions:</strong>
+          </li>
           {% set serving_instructions =
           recipe.serving_instructions.split('\r\n') %} {% for
           serving_instruction in serving_instructions%}
@@ -134,7 +154,12 @@ messages %}
           {% endfor %}
           <li><strong>Recipe Owner:</strong></li>
           <li>{{ recipe.owner }}</li>
-          <li><strong>Tags:</strong></li>
+          <li>
+            {% if recipe.owner == session.user%}
+            <i class="fas fa-pencil-alt pointer"></i>
+            {% endif %}
+            <strong>Tags:</strong>
+          </li>
           <li>
             {% for tag in recipe.tags %} {{ tag }} {% if loop.index !=
             loop.length %} , {% endif %} {% endfor %}
