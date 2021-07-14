@@ -473,6 +473,24 @@ li span {
   }
 }
 
+@media screen and (width: 800px) and (min-height:1280px) {
+  .login-title {
+    margin-top: 28%;
+  }
+
+  #login-register-link {
+    margin-bottom: 47%;
+  }
+
+  .register-title {
+    margin-top: 20%;
+  }
+
+  #register-login-link {
+    margin-bottom: 40%;
+  }
+}
+
 @media screen and (width: 1024px) and (min-height:1366px) {
   .login-title {
     margin-top: 30%;
