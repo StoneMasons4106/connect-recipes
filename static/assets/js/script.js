@@ -30,6 +30,26 @@ $("#delete-recipe-button").click(function () {
   $("#delete-recipe-modal").modal("show");
 });
 
+$("#ingredients-edit").click(function () {
+  $("#ingredients-modal").modal("show");
+});
+
+$("#prep-work-edit").click(function () {
+  $("#prep-work-modal").modal("show");
+});
+
+$("#cooking-instructions-edit").click(function () {
+  $("#cooking-instructions-modal").modal("show");
+});
+
+$("#serving-instructions-edit").click(function () {
+  $("#serving-instructions-modal").modal("show");
+});
+
+$("#tags-edit").click(function () {
+  $("#tags-modal").modal("show");
+});
+
 //Add event listeners for Profile Page save changes buttons
 $("#name-save-changes").click(function () {
   var specialChar = /[`!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~]/;

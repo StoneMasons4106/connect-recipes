@@ -323,13 +323,14 @@ def recipes(recipe_id):
             recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
             current_user = mongo.db.users.find_one(
                     {"username": session["user"]})
+            tags = list(mongo.db.tags.find())
             if recipe_id in current_user["saved_recipes"]:
                 saved = 1
             else:
                 saved = 0
         except:
             recipe = None
-        return render_template("recipe.html", recipe=recipe, saved=saved)
+        return render_template("recipe.html", recipe=recipe, saved=saved, tags=tags)
 
 
 @app.route("/delete-recipe/<recipe_id>", methods=["GET", "POST"])

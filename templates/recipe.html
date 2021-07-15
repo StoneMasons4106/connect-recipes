@@ -50,6 +50,139 @@
 
 <!-- Modal -->
 
+<div class="modal" id="ingredients-modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Ingredients</h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <textarea id="recipe-ingredients" name="recipe-ingredients" minlength="10" maxlength="1000"
+            placeholder="Ingredients" class="recipe-input" rows="5" required></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="ingredients-save-changes" class="getstarted">
+          <i class="far fa-save"></i> Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="prep-work-modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Prep Work</h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <textarea id="recipe-prep-work" name="recipe-prep-work" minlength="10" maxlength="1000"
+            placeholder="Prep Work" class="recipe-input" rows="5" required></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="prep-work-save-changes" class="getstarted">
+          <i class="far fa-save"></i> Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="cooking-instructions-modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Cooking Instructions</h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <textarea id="recipe-cooking-instructions" name="recipe-cooking-instructions" minlength="10" maxlength="1000"
+            placeholder="Cooking Instructions" class="recipe-input" rows="5" required></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="cooking-instructions-save-changes" class="getstarted">
+          <i class="far fa-save"></i> Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="serving-instructions-modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Serving Instructions</h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <textarea id="recipe-serving-instructions" name="recipe-serving-instructions" minlength="10" maxlength="1000"
+            placeholder="Serving Instructions" class="recipe-input" rows="5" required></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="serving-instructions-save-changes" class="getstarted">
+          <i class="far fa-save"></i> Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="tags-modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Tags</h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="ui fluid multiple search selection dropdown">
+          <input type="hidden" name="tags">
+          <i class="dropdown icon"></i>
+          <div class="default text">Add Tags</div>
+          <div class="menu">
+            {% for tag in tags %}
+            <div class="item" data-value="{{ tag.name }}">{{ tag.name }}</div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="tags-save-changes" class="getstarted">
+          <i class="far fa-save"></i> Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal" id="delete-recipe-modal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -112,7 +245,7 @@ messages %}
           <li><strong>{{ recipe.name }}</strong></li>
           <li>
             {% if recipe.owner == session.user%}
-            <i class="fas fa-pencil-alt pointer"></i>
+            <i id="ingredients-edit" class="fas fa-pencil-alt pointer"></i>
             {% endif %}
             <strong>Ingredients:</strong>
           </li>
@@ -122,7 +255,7 @@ messages %}
           {% endfor %}
           <li>
             {% if recipe.owner == session.user%}
-            <i class="fas fa-pencil-alt pointer"></i>
+            <i id="prep-work-edit" class="fas fa-pencil-alt pointer"></i>
             {% endif %}
             <strong>Prep Work:</strong>
           </li>
@@ -132,7 +265,7 @@ messages %}
           {% endfor %}
           <li>
             {% if recipe.owner == session.user%}
-            <i class="fas fa-pencil-alt pointer"></i>
+            <i id="cooking-instructions-edit" class="fas fa-pencil-alt pointer"></i>
             {% endif %}
             <strong>Cooking Instructions:</strong>
           </li>
@@ -143,7 +276,7 @@ messages %}
           {% endfor %}
           <li>
             {% if recipe.owner == session.user%}
-            <i class="fas fa-pencil-alt pointer"></i>
+            <i id="serving-instructions-edit" class="fas fa-pencil-alt pointer"></i>
             {% endif %}
             <strong>Serving Instructions:</strong>
           </li>
@@ -156,7 +289,7 @@ messages %}
           <li>{{ recipe.owner }}</li>
           <li>
             {% if recipe.owner == session.user%}
-            <i class="fas fa-pencil-alt pointer"></i>
+            <i id="tags-edit" class="fas fa-pencil-alt pointer"></i>
             {% endif %}
             <strong>Tags:</strong>
           </li>
