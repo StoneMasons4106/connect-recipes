@@ -311,7 +311,7 @@ def recipes(recipe_id):
 
         elif newData[0] == "newPrepWork":
             newPrep = str(newData[1]).replace("%20", " ").replace("%0A", str("\r\n"))
-            newvalue = {"$set": {"ingredients": newPrep} }
+            newvalue = {"$set": {"prep_work": newPrep} }
             mongo.db.recipes.update_one(recipe, newvalue)
             return jsonify(result="Successfully updated your prep work!")
         
