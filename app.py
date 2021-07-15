@@ -301,13 +301,22 @@ def recipes(recipe_id):
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         current_user = mongo.db.users.find_one(
                 {"username": session["user"]})
-        if recipe_id in current_user["saved_recipes"]:
+        newData = request.data.decode().split("=")
+        
+        if newData[0] == "newIngredients":
+            newingredients = str(newData[1]).replace("%20", " ").replace("%0A", str("\r\n"))
+            newvalue = {"$set": {"ingredients": newingredients} }
+            mongo.db.recipes.update_one(recipe, newvalue)
+            return jsonify(result="Successfully updated your ingredients!")
+        
+        elif recipe_id in current_user["saved_recipes"]:
             saved_recipes = current_user["saved_recipes"]
             saved_recipes.remove(recipe_id)
             mongo.db.users.update_one({"_id": ObjectId(current_user["_id"])}, {"$set": {"saved_recipes": saved_recipes}})
             saved = 0
             flash("Sucessfully removed this recipe from your collection!")
             return render_template("recipe.html", recipe=recipe, saved=saved)
+        
         else:
             if current_user["saved_recipes"] == None:
                 saved_recipes = []

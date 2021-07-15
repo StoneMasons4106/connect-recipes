@@ -243,7 +243,7 @@ messages %}
             class="img-fluid cards-image recipe-image"
           />
           <li><strong>{{ recipe.name }}</strong></li>
-          <li>
+          <li id="ingredients-header">
             {% if recipe.owner == session.user%}
             <i id="ingredients-edit" class="fas fa-pencil-alt pointer"></i>
             {% endif %}
@@ -251,7 +251,7 @@ messages %}
           </li>
           {% set ingredients = recipe.ingredients.split('\r\n') %} {% for
           ingredient in ingredients%}
-          <li>{{ ingredient }}</li>
+          <li class="ingredient">{{ ingredient }}</li>
           {% endfor %}
           <li>
             {% if recipe.owner == session.user%}

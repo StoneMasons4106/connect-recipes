@@ -447,7 +447,7 @@ li span {
   text-align: center;
 }
 
-#save-recipe-flash {
+#save-recipe-flash, .update-recipe-flash {
   margin-top: 60px;
 }
 
