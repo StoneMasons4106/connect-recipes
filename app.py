@@ -308,6 +308,12 @@ def recipes(recipe_id):
             newvalue = {"$set": {"ingredients": newingredients} }
             mongo.db.recipes.update_one(recipe, newvalue)
             return jsonify(result="Successfully updated your ingredients!")
+
+        elif newData[0] == "newPrepWork":
+            newPrep = str(newData[1]).replace("%20", " ").replace("%0A", str("\r\n"))
+            newvalue = {"$set": {"ingredients": newPrep} }
+            mongo.db.recipes.update_one(recipe, newvalue)
+            return jsonify(result="Successfully updated your prep work!")
         
         elif recipe_id in current_user["saved_recipes"]:
             saved_recipes = current_user["saved_recipes"]

@@ -253,7 +253,7 @@ messages %}
           ingredient in ingredients%}
           <li class="ingredient">{{ ingredient }}</li>
           {% endfor %}
-          <li>
+          <li id="prep-work-header">
             {% if recipe.owner == session.user%}
             <i id="prep-work-edit" class="fas fa-pencil-alt pointer"></i>
             {% endif %}
@@ -261,7 +261,7 @@ messages %}
           </li>
           {% set prep_work = recipe.prep_work.split('\r\n') %} {% for prep in
           prep_work%}
-          <li>{{ prep }}</li>
+          <li class="prep">{{ prep }}</li>
           {% endfor %}
           <li>
             {% if recipe.owner == session.user%}
