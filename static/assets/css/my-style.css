@@ -182,7 +182,8 @@ p {
 }
 
 .no-content {
-  margin-bottom: 5%;
+  margin-bottom: 7%;
+  margin-top: 5%;
 }
 
 /* -- Profile Page Styling -- */
@@ -391,7 +392,7 @@ li span {
 #search-recipes i, #saved-recipes i, #my-recipes i, #recipe .fa-meh {
   font-size: 250px;
   margin-bottom: 100px;
-  margin-top: 90px;
+  margin-top: 20px;
 }
 
 /* -- Recipe -- */
@@ -463,13 +464,17 @@ li span {
   }
 }
 
-@media screen and (max-width: 1023px) and (min-width: 768px) and (min-height:1024px) {
+@media screen and (max-width: 1024px) and (min-width: 768px) and (min-height:1024px) {
   .login-title {
     margin-top: 15%;
   }
 
   .register-title {
     margin-top: 7%;
+  }
+
+  .fa-meh {
+    margin-top:135px !important;
   }
 }
 
@@ -489,6 +494,14 @@ li span {
   #register-login-link {
     margin-bottom: 40%;
   }
+
+  .fa-meh {
+    margin-top:205px !important;
+  }
+
+  .no-content {
+    margin-bottom:30%;
+  }
 }
 
 @media screen and (width: 1024px) and (min-height:1366px) {
@@ -506,5 +519,13 @@ li span {
 
   #register-login-link {
     margin-bottom: 70%;
+  }
+
+  .fa-meh {
+    margin-top:245px !important;
+  }
+
+  .no-content {
+    margin-bottom:30%;
   }
 }
