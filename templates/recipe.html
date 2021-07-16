@@ -164,7 +164,7 @@
       </div>
       <div class="modal-body">
         <div class="ui fluid multiple search selection dropdown">
-          <input type="hidden" name="tags">
+          <input type="hidden" name="tags" id="tags-value">
           <i class="dropdown icon"></i>
           <div class="default text">Add Tags</div>
           <div class="menu">
@@ -263,7 +263,7 @@ messages %}
           prep_work%}
           <li class="prep">{{ prep }}</li>
           {% endfor %}
-          <li>
+          <li id="cooking-instructions-header">
             {% if recipe.owner == session.user%}
             <i id="cooking-instructions-edit" class="fas fa-pencil-alt pointer"></i>
             {% endif %}
@@ -272,9 +272,9 @@ messages %}
           {% set cooking_instructions =
           recipe.cooking_instructions.split('\r\n') %} {% for
           cooking_instruction in cooking_instructions%}
-          <li>{{ cooking_instruction }}</li>
+          <li class="cooking">{{ cooking_instruction }}</li>
           {% endfor %}
-          <li>
+          <li id="serving-instructions-header">
             {% if recipe.owner == session.user%}
             <i id="serving-instructions-edit" class="fas fa-pencil-alt pointer"></i>
             {% endif %}
@@ -283,17 +283,17 @@ messages %}
           {% set serving_instructions =
           recipe.serving_instructions.split('\r\n') %} {% for
           serving_instruction in serving_instructions%}
-          <li>{{ serving_instruction }}</li>
+          <li class="serving">{{ serving_instruction }}</li>
           {% endfor %}
           <li><strong>Recipe Owner:</strong></li>
           <li>{{ recipe.owner }}</li>
-          <li>
+          <li id="tags-header">
             {% if recipe.owner == session.user%}
             <i id="tags-edit" class="fas fa-pencil-alt pointer"></i>
             {% endif %}
             <strong>Tags:</strong>
           </li>
-          <li>
+          <li class="tags">
             {% for tag in recipe.tags %} {{ tag }} {% if loop.index !=
             loop.length %} , {% endif %} {% endfor %}
           </li>

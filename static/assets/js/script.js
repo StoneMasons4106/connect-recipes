@@ -504,3 +504,161 @@ $("#prep-work-save-changes").click(function () {
     $("#prep-work-modal").modal("hide");
   }
 });
+
+$("#cooking-instructions-save-changes").click(function () {
+  var specialChar = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
+  var url = window.location.pathname;
+  var recipe_id = url.substring(url.lastIndexOf("/") + 1);
+  if ($("#recipe-cooking-instructions").val() == "") {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+        <strong>You cannot update this to an empty field.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
+    );
+    $("#cooking-instructions-modal").modal("hide");
+  } else if ($("#recipe-cooking-instructions").val().length <= 10) {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+        <strong>Input too short. Must be 10 characters or more.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
+    );
+    $("#cooking-instructions-modal").modal("hide");
+  } else if ($("#recipe-cooking-instructions").val().length >= 1000) {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+        <strong>Input too long. Must be 1000 characters or less.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
+    );
+    $("#cooking-instructions-modal").modal("hide");
+  } else if (specialChar.test($("#recipe-cooking-instructions").val())) {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+        <strong>Special characters are against the law of the land.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
+    );
+    $("#cooking-instructions-modal").modal("hide");
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "/recipes/" + recipe_id,
+      data: { newCookingInstructions: $("#recipe-cooking-instructions").val() },
+      contentType: "application/json",
+      dataType: "json",
+      success: function (data) {
+        $("#header").after(
+          `<div class="alert alert-success alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+              <strong>${data.result}</strong> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+            </div>`
+        );
+      },
+    });
+    newCookingInstructions = $("#recipe-cooking-instructions").val();
+    cookingInstructionsArray = newCookingInstructions.split("\n");
+    $(".cooking").remove()
+    for (i in cookingInstructionsArray.reverse()) {
+      $("#cooking-instructions-header").after(
+      `<li class="cooking">${cookingInstructionsArray[i]}</li>`
+      )};
+    $("#cooking-instructions-modal").modal("hide");
+  }
+});
+
+$("#serving-instructions-save-changes").click(function () {
+  var specialChar = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
+  var url = window.location.pathname;
+  var recipe_id = url.substring(url.lastIndexOf("/") + 1);
+  if ($("#recipe-serving-instructions").val() == "") {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+        <strong>You cannot update this to an empty field.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
+    );
+    $("#serving-instructions-modal").modal("hide");
+  } else if ($("#recipe-serving-instructions").val().length <= 3) {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+        <strong>Input too short. Must be 3 characters or more.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
+    );
+    $("#serving-instructions-modal").modal("hide");
+  } else if ($("#recipe-serving-instructions").val().length >= 1000) {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+        <strong>Input too long. Must be 1000 characters or less.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
+    );
+    $("#serving-instructions-modal").modal("hide");
+  } else if (specialChar.test($("#recipe-serving-instructions").val())) {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+        <strong>Special characters are against the law of the land.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
+    );
+    $("#serving-instructions-modal").modal("hide");
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "/recipes/" + recipe_id,
+      data: { newServingInstructions: $("#recipe-serving-instructions").val() },
+      contentType: "application/json",
+      dataType: "json",
+      success: function (data) {
+        $("#header").after(
+          `<div class="alert alert-success alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+              <strong>${data.result}</strong> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+            </div>`
+        );
+      },
+    });
+    newServingInstructions = $("#recipe-serving-instructions").val();
+    servingInstructionsArray = newServingInstructions.split("\n");
+    $(".serving").remove()
+    for (i in servingInstructionsArray.reverse()) {
+      $("#serving-instructions-header").after(
+      `<li class="serving">${servingInstructionsArray[i]}</li>`
+      )};
+    $("#serving-instructions-modal").modal("hide");
+  }
+});
+
+$("#tags-save-changes").click(function () {
+  var url = window.location.pathname;
+  var recipe_id = url.substring(url.lastIndexOf("/") + 1);
+  if ($("#tags-value").attr("value") == "") {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+        <strong>You cannot update this to an empty field.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
+    );
+    $("#tags-modal").modal("hide");
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "/recipes/" + recipe_id,
+      data: { newTags: $("#tags-value").attr("value") },
+      contentType: "application/json",
+      dataType: "json",
+      success: function (data) {
+        $("#header").after(
+          `<div class="alert alert-success alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+              <strong>${data.result}</strong> 
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+            </div>`
+        );
+      },
+    });
+    $(".tags").html($("#tags-value").attr("value"));
+    $("#tags-modal").modal("hide");
+  }
+});
