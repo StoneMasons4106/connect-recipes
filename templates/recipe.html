@@ -183,6 +183,39 @@
   </div>
 </div>
 
+<div class="modal" id="recipe-name-modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Edit Recipe Name</h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <input
+          id="recipe-name-input"
+          name="recipe-name-input"
+          type="text"
+          minlength="4"
+          maxlength="120"
+          placeholder="Recipe Name"
+          class="recipe-input"
+          required
+        />
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="recipe-name-save-changes" class="getstarted">
+          <i class="far fa-save"></i> Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal" id="delete-recipe-modal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -242,7 +275,12 @@ messages %}
             alt="{{ recipe.name }}"
             class="img-fluid cards-image recipe-image"
           />
-          <li><strong>{{ recipe.name }}</strong></li>
+          <li id="recipe-name">
+            {% if recipe.owner == session.user%}
+            <i id="recipe-name-edit" class="fas fa-pencil-alt pointer"></i>
+            {% endif %}
+            <strong>{{ recipe.name }}</strong>
+          </li>
           <li id="ingredients-header">
             {% if recipe.owner == session.user%}
             <i id="ingredients-edit" class="fas fa-pencil-alt pointer"></i>

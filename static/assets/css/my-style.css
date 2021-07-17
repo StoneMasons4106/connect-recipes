@@ -528,10 +528,11 @@ li span {
   }
 
   .fa-meh {
-    margin-top:245px !important;
+    margin-top:235px !important;
   }
 
   .no-content {
+    margin-top: 8%;
     margin-bottom:30%;
   }
 }

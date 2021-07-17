@@ -50,6 +50,10 @@ $("#tags-edit").click(function () {
   $("#tags-modal").modal("show");
 });
 
+$("#recipe-name-edit").click(function () {
+  $("#recipe-name-modal").modal("show");
+});
+
 //Add event listeners for Profile Page save changes buttons
 $("#name-save-changes").click(function () {
   var specialChar = /[`!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~]/;
