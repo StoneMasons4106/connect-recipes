@@ -383,6 +383,27 @@ $("#api-key-refresh").click(function () {
 });
 
 //Recipe Updates
+function recipeAjax(id_val, value_val) {
+  var url = window.location.pathname;
+  var recipe_id = url.substring(url.lastIndexOf("/") + 1);
+  $.ajax({
+    type: "POST",
+    url: "/recipes/" + recipe_id,
+    data: { id: id_val,
+            value: value_val },
+    contentType: "application/json",
+    dataType: "json",
+    success: function (data) {
+      $("#header").after(
+        `<div class="alert alert-success alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+            <strong>${data.result}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+          </div>`
+      );
+    },
+  });
+}
+
 $("#ingredients-save-changes").click(function () {
   var specialChar = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
   var url = window.location.pathname;
@@ -420,21 +441,7 @@ $("#ingredients-save-changes").click(function () {
     );
     $("#ingredients-modal").modal("hide");
   } else {
-    $.ajax({
-      type: "POST",
-      url: "/recipes/" + recipe_id,
-      data: { newIngredients: $("#recipe-ingredients").val() },
-      contentType: "application/json",
-      dataType: "json",
-      success: function (data) {
-        $("#header").after(
-          `<div class="alert alert-success alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
-              <strong>${data.result}</strong> 
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
-            </div>`
-        );
-      },
-    });
+    recipeAjax("newIngredients", $("#recipe-ingredients").val())
     newIngredients = $("#recipe-ingredients").val();
     ingredientsArray = newIngredients.split("\n");
     $(".ingredient").remove()
@@ -483,21 +490,7 @@ $("#prep-work-save-changes").click(function () {
     );
     $("#prep-work-modal").modal("hide");
   } else {
-    $.ajax({
-      type: "POST",
-      url: "/recipes/" + recipe_id,
-      data: { newPrepWork: $("#recipe-prep-work").val() },
-      contentType: "application/json",
-      dataType: "json",
-      success: function (data) {
-        $("#header").after(
-          `<div class="alert alert-success alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
-              <strong>${data.result}</strong> 
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
-            </div>`
-        );
-      },
-    });
+    recipeAjax("newPrepWork", $("#recipe-prep-work").val())
     newPrepWork = $("#recipe-prep-work").val();
     prepArray = newPrepWork.split("\n");
     $(".prep").remove()
@@ -546,21 +539,7 @@ $("#cooking-instructions-save-changes").click(function () {
     );
     $("#cooking-instructions-modal").modal("hide");
   } else {
-    $.ajax({
-      type: "POST",
-      url: "/recipes/" + recipe_id,
-      data: { newCookingInstructions: $("#recipe-cooking-instructions").val() },
-      contentType: "application/json",
-      dataType: "json",
-      success: function (data) {
-        $("#header").after(
-          `<div class="alert alert-success alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
-              <strong>${data.result}</strong> 
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
-            </div>`
-        );
-      },
-    });
+    recipeAjax("newCookingInstructions", $("#recipe-cooking-instructions").val())
     newCookingInstructions = $("#recipe-cooking-instructions").val();
     cookingInstructionsArray = newCookingInstructions.split("\n");
     $(".cooking").remove()
@@ -609,21 +588,7 @@ $("#serving-instructions-save-changes").click(function () {
     );
     $("#serving-instructions-modal").modal("hide");
   } else {
-    $.ajax({
-      type: "POST",
-      url: "/recipes/" + recipe_id,
-      data: { newServingInstructions: $("#recipe-serving-instructions").val() },
-      contentType: "application/json",
-      dataType: "json",
-      success: function (data) {
-        $("#header").after(
-          `<div class="alert alert-success alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
-              <strong>${data.result}</strong> 
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
-            </div>`
-        );
-      },
-    });
+    recipeAjax("newServingInstructions", $("#recipe-serving-instructions").val())
     newServingInstructions = $("#recipe-serving-instructions").val();
     servingInstructionsArray = newServingInstructions.split("\n");
     $(".serving").remove()
@@ -647,21 +612,7 @@ $("#tags-save-changes").click(function () {
     );
     $("#tags-modal").modal("hide");
   } else {
-    $.ajax({
-      type: "POST",
-      url: "/recipes/" + recipe_id,
-      data: { newTags: $("#tags-value").attr("value") },
-      contentType: "application/json",
-      dataType: "json",
-      success: function (data) {
-        $("#header").after(
-          `<div class="alert alert-success alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
-              <strong>${data.result}</strong> 
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
-            </div>`
-        );
-      },
-    });
+    recipeAjax("newTags", $("#tags-value").attr("value"))
     $(".tags").html($("#tags-value").attr("value"));
     $("#tags-modal").modal("hide");
   }
@@ -704,21 +655,7 @@ $("#recipe-name-save-changes").click(function () {
     );
     $("#recipe-name-modal").modal("hide");
   } else {
-    $.ajax({
-      type: "POST",
-      url: "/recipes/" + recipe_id,
-      data: { newRecipeName: $("#recipe-name-input").val() },
-      contentType: "application/json",
-      dataType: "json",
-      success: function (data) {
-        $("#header").after(
-          `<div class="alert alert-success alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
-            <strong>${data.result}</strong> 
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
-          </div>`
-        );
-      },
-    });
+    recipeAjax("newRecipeName", $("#recipe-name-input").val())
     newRecipeName = $("#recipe-name-input").val();
     $("#recipe-name").html(`<i id="recipe-name-edit" class="fas fa-pencil-alt pointer"></i> 
                             <strong>${newRecipeName}</strong>`);

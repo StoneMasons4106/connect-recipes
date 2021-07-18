@@ -302,41 +302,42 @@ def recipes(recipe_id):
             recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
             current_user = mongo.db.users.find_one(
                     {"username": session["user"]})
-            newData = request.data.decode().split("=")
+            newDataForm = request.data.decode().split("=")
+            newData = newDataForm[1].split("&")
             
             if newData[0] == "newIngredients":
-                newingredients = str(newData[1]).replace("%20", " ").replace("%0A", str("\r\n"))
+                newingredients = str(newDataForm[2]).replace("%20", " ").replace("%0A", str("\r\n"))
                 newvalue = {"$set": {"ingredients": newingredients} }
                 mongo.db.recipes.update_one(recipe, newvalue)
                 return jsonify(result="Successfully updated your ingredients!")
 
             elif newData[0] == "newPrepWork":
-                newPrep = str(newData[1]).replace("%20", " ").replace("%0A", str("\r\n"))
+                newPrep = str(newDataForm[2]).replace("%20", " ").replace("%0A", str("\r\n"))
                 newvalue = {"$set": {"prep_work": newPrep} }
                 mongo.db.recipes.update_one(recipe, newvalue)
                 return jsonify(result="Successfully updated your prep work!")
 
             elif newData[0] == "newCookingInstructions":
-                newCookingInstructions = str(newData[1]).replace("%20", " ").replace("%0A", str("\r\n"))
+                newCookingInstructions = str(newDataForm[2]).replace("%20", " ").replace("%0A", str("\r\n"))
                 newvalue = {"$set": {"cooking_instructions": newCookingInstructions} }
                 mongo.db.recipes.update_one(recipe, newvalue)
                 return jsonify(result="Successfully updated your cooking instructions!")
 
             elif newData[0] == "newServingInstructions":
-                newServingInstructions = str(newData[1]).replace("%20", " ").replace("%0A", str("\r\n"))
+                newServingInstructions = str(newDataForm[2]).replace("%20", " ").replace("%0A", str("\r\n"))
                 newvalue = {"$set": {"serving_instructions": newServingInstructions} }
                 mongo.db.recipes.update_one(recipe, newvalue)
                 return jsonify(result="Successfully updated your serving instructions!")
 
             elif newData[0] == "newTags":
-                tags = str(newData[1]).replace("%2C", ",").replace("%20", " ")
+                tags = str(newDataForm[2]).replace("%2C", ",").replace("%20", " ")
                 tags_list = tags.split(",")
                 newvalue = {"$set": {"tags": tags_list} }
                 mongo.db.recipes.update_one(recipe, newvalue)
                 return jsonify(result="Successfully updated your tags!")
 
             elif newData[0] == "newRecipeName":
-                recipe_name = str(newData[1]).replace("%20", " ")
+                recipe_name = str(newDataForm[2]).replace("%20", " ")
                 newvalue = {"$set": {"name": recipe_name} }
                 mongo.db.recipes.update_one(recipe, newvalue)
                 return jsonify(result="Successfully updated your recipe name to " + recipe_name + "!")
