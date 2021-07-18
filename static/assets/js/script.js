@@ -666,3 +666,62 @@ $("#tags-save-changes").click(function () {
     $("#tags-modal").modal("hide");
   }
 });
+
+$("#recipe-name-save-changes").click(function () {
+  var url = window.location.pathname;
+  var recipe_id = url.substring(url.lastIndexOf("/") + 1);
+  var specialChar = /[`!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~]/;
+  if ($("#recipe-name-input").val() == "") {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+        <strong>You cannot update this to an empty field.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>`
+    );
+    $("#recipe-name-modal").modal("hide");
+  } else if ($("#recipe-name-input").val().length <= 4) {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+        <strong>Input too short. Must be 4 characters or more.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
+    );
+    $("#recipe-name-modal").modal("hide");
+  } else if ($("#recipe-name-input").val().length >= 120) {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+        <strong>Input too long. Must be 120 characters or less.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
+    );
+    $("#recipe-name-modal").modal("hide");
+  } else if (specialChar.test($("#recipe-name-input").val())) {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert">
+        <strong>Special characters are against the law of the land.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
+    );
+    $("#recipe-name-modal").modal("hide");
+  } else {
+    $.ajax({
+      type: "POST",
+      url: "/recipes/" + recipe_id,
+      data: { newRecipeName: $("#recipe-name-input").val() },
+      contentType: "application/json",
+      dataType: "json",
+      success: function (data) {
+        $("#header").after(
+          `<div class="alert alert-success alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+            <strong>${data.result}</strong> 
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+          </div>`
+        );
+      },
+    });
+    newRecipeName = $("#recipe-name-input").val();
+    $("#recipe-name").html(`<i id="recipe-name-edit" class="fas fa-pencil-alt pointer"></i> 
+                            <strong>${newRecipeName}</strong>`);
+    $("#recipe-name-modal").modal("hide");
+  }
+});
