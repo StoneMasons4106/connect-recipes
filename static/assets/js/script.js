@@ -2,57 +2,37 @@
 $(".ui.dropdown").click().dropdown();
 
 //Add event listeners for Profile Page edit buttons
-$("#name-pencil").click(function () {
-  $("#name-modal").modal("show");
-});
+function addModalListeners(obj, modal) {
+  $(obj).click(function () {
+    $(modal).modal("show");
+  });
+}
 
-$("#email-pencil").click(function () {
-  $("#email-modal").modal("show");
-});
+addModalListeners("#name-pencil", "#name-modal");
 
-$("#username-pencil").click(function () {
-  $("#username-modal").modal("show");
-});
+addModalListeners("#email-pencil", "#email-modal");
 
-$("#profile-picture-edit").click(function () {
-  $("#profile-picture-modal").modal("show");
-});
+addModalListeners("#username-pencil", "#username-modal");
 
-$("#create-a-tag").click(function () {
-  $("#create-tag-modal").modal("show");
-});
+addModalListeners("#profile-picture-edit", "#profile-picture-modal");
 
-$("#refresh").click(function () {
-  $("#refresh-api-modal").modal("show");
-});
+addModalListeners("#create-a-tag", "#create-tag-modal");
 
-$("#delete-recipe-button").click(function () {
-  $("#delete-recipe-modal").modal("show");
-});
+addModalListeners("#refresh", "#refresh-api-modal");
 
-$("#ingredients-edit").click(function () {
-  $("#ingredients-modal").modal("show");
-});
+addModalListeners("#delete-recipe-button", "#delete-recipe-modal");
 
-$("#prep-work-edit").click(function () {
-  $("#prep-work-modal").modal("show");
-});
+addModalListeners("#ingredients-edit", "#ingredients-modal");
 
-$("#cooking-instructions-edit").click(function () {
-  $("#cooking-instructions-modal").modal("show");
-});
+addModalListeners("#prep-work-edit", "#prep-work-modal");
 
-$("#serving-instructions-edit").click(function () {
-  $("#serving-instructions-modal").modal("show");
-});
+addModalListeners("#cooking-instructions-edit", "#cooking-instructions-modal");
 
-$("#tags-edit").click(function () {
-  $("#tags-modal").modal("show");
-});
+addModalListeners("#serving-instructions-edit", "#serving-instructions-modal");
 
-$("#recipe-name-edit").click(function () {
-  $("#recipe-name-modal").modal("show");
-});
+addModalListeners("#tags-edit", "#tags-modal");
+
+addModalListeners("#recipe-name-edit", "#recipe-name-modal");
 
 //Add event listeners for Profile Page save changes buttons
 $("#name-save-changes").click(function () {
