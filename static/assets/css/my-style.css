@@ -466,7 +466,7 @@ li span {
 
 @media screen and (max-width: 450px) {
   .recipe-image {
-    margin-left: 23% !important;
+    margin-left: 22% !important;
   }
 }
 
@@ -481,6 +481,10 @@ li span {
 
   .fa-meh {
     margin-top:135px !important;
+  }
+
+  .change-password-title {
+    margin-top:12%;
   }
 }
 
@@ -508,6 +512,14 @@ li span {
   .no-content {
     margin-bottom:30%;
   }
+
+  .change-password-title {
+    margin-top:30%;
+  }
+
+  #change-password button {
+    margin-bottom:47%;
+  }
 }
 
 @media screen and (width: 1024px) and (min-height:1366px) {
@@ -534,5 +546,13 @@ li span {
   .no-content {
     margin-top: 8%;
     margin-bottom:30%;
+  }
+
+  .change-password-title {
+    margin-top:30%;
+  }
+
+  #change-password button {
+    margin-bottom:140%;
   }
 }
