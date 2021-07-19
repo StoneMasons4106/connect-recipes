@@ -127,7 +127,7 @@ $("#email-save-changes").click(function () {
         }
       },
     }),
-      (newEmail = $("#email").val());
+    newEmail = $("#email").val();
     $("#email-field").html(newEmail);
     $("#email-modal").modal("hide");
   } else {
