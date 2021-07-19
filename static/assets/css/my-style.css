@@ -61,7 +61,8 @@ p {
 #change-password button,
 .modal .getstarted,
 #new-recipe button,
-#save-recipe-button {
+#save-recipe-button,
+#recipe-picture-edit {
   padding: 10px 25px;
   border-radius: 50px;
   color: #37517e;
@@ -81,7 +82,8 @@ p {
 .modal button:hover,
 #imgbb:hover,
 #new-recipe button:hover,
-#save-recipe-button:hover {
+#save-recipe-button:hover,
+#recipe-picture-edit:hover {
   background-color: #47b2e4;
   color: #fff;
   transition: 0.3s;
@@ -449,6 +451,11 @@ li span {
 
 #save-recipe-flash, .update-recipe-flash {
   margin-top: 60px;
+}
+
+#recipe-picture-edit {
+  font-size:14px;
+  margin-right:25px;
 }
 
 /* -- Media Queries -- */

@@ -305,7 +305,7 @@ def recipes(recipe_id):
                     {"username": session["user"]})
 
             def update_recipe_data(attribute):
-                fomattedData = str(newDataForm[2]).replace("%20", " ").replace("%0A", str("\r\n")).replace("%2C", ",")
+                fomattedData = str(newDataForm[2]).replace("%20", " ").replace("%0A", str("\r\n")).replace("%2C", ",").replace("%2F", "/").replace("%3A", ":")
                 if newData[0] == "newTags":
                     formattedDataList = fomattedData.split(",")
                     newvalue = {"$set": {attribute: formattedDataList} }
@@ -341,6 +341,10 @@ def recipes(recipe_id):
                 elif newData[0] == "newRecipeName":
                     update_recipe_data("name")
                     return jsonify(result="Successfully updated your recipe name!")
+                
+                elif newData[0] == "newRecipePicture":
+                    update_recipe_data("recipe_picture_url")
+                    return jsonify(result="Successfully updated your recipe picture!")
             
             except:
                 

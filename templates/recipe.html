@@ -63,8 +63,16 @@
         ></button>
       </div>
       <div class="modal-body">
-        <textarea id="recipe-ingredients" name="recipe-ingredients" minlength="10" maxlength="1000"
-            placeholder="Ingredients" class="recipe-input" rows="5" required></textarea>
+        <textarea
+          id="recipe-ingredients"
+          name="recipe-ingredients"
+          minlength="10"
+          maxlength="1000"
+          placeholder="Ingredients"
+          class="recipe-input"
+          rows="5"
+          required
+        ></textarea>
       </div>
       <div class="modal-footer">
         <button type="submit" id="ingredients-save-changes" class="getstarted">
@@ -88,8 +96,16 @@
         ></button>
       </div>
       <div class="modal-body">
-        <textarea id="recipe-prep-work" name="recipe-prep-work" minlength="10" maxlength="1000"
-            placeholder="Prep Work" class="recipe-input" rows="5" required></textarea>
+        <textarea
+          id="recipe-prep-work"
+          name="recipe-prep-work"
+          minlength="10"
+          maxlength="1000"
+          placeholder="Prep Work"
+          class="recipe-input"
+          rows="5"
+          required
+        ></textarea>
       </div>
       <div class="modal-footer">
         <button type="submit" id="prep-work-save-changes" class="getstarted">
@@ -113,11 +129,23 @@
         ></button>
       </div>
       <div class="modal-body">
-        <textarea id="recipe-cooking-instructions" name="recipe-cooking-instructions" minlength="10" maxlength="1000"
-            placeholder="Cooking Instructions" class="recipe-input" rows="5" required></textarea>
+        <textarea
+          id="recipe-cooking-instructions"
+          name="recipe-cooking-instructions"
+          minlength="10"
+          maxlength="1000"
+          placeholder="Cooking Instructions"
+          class="recipe-input"
+          rows="5"
+          required
+        ></textarea>
       </div>
       <div class="modal-footer">
-        <button type="submit" id="cooking-instructions-save-changes" class="getstarted">
+        <button
+          type="submit"
+          id="cooking-instructions-save-changes"
+          class="getstarted"
+        >
           <i class="far fa-save"></i> Save Changes
         </button>
       </div>
@@ -138,11 +166,23 @@
         ></button>
       </div>
       <div class="modal-body">
-        <textarea id="recipe-serving-instructions" name="recipe-serving-instructions" minlength="3" maxlength="1000"
-            placeholder="Serving Instructions" class="recipe-input" rows="5" required></textarea>
+        <textarea
+          id="recipe-serving-instructions"
+          name="recipe-serving-instructions"
+          minlength="3"
+          maxlength="1000"
+          placeholder="Serving Instructions"
+          class="recipe-input"
+          rows="5"
+          required
+        ></textarea>
       </div>
       <div class="modal-footer">
-        <button type="submit" id="serving-instructions-save-changes" class="getstarted">
+        <button
+          type="submit"
+          id="serving-instructions-save-changes"
+          class="getstarted"
+        >
           <i class="far fa-save"></i> Save Changes
         </button>
       </div>
@@ -164,7 +204,7 @@
       </div>
       <div class="modal-body">
         <div class="ui fluid multiple search selection dropdown">
-          <input type="hidden" name="tags" id="tags-value">
+          <input type="hidden" name="tags" id="tags-value" />
           <i class="dropdown icon"></i>
           <div class="default text">Add Tags</div>
           <div class="menu">
@@ -216,6 +256,48 @@
   </div>
 </div>
 
+<div class="modal" id="recipe-picture-modal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Insert Recipe Picture URL</h3>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input
+            id="recipe-picture-input"
+            name="recipe-picture-input"
+            type="url"
+            minlength="5"
+            maxlength="200"
+            placeholder="Image URL"
+            class="recipe-input"
+            required
+          />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a id="imgbb" class="getstarted" href="https://imgbb.com/" target="_blank"
+          ><i class="fas fa-plus"></i> Upload to ImgBB</a
+        >
+        <button
+          type="button"
+          id="recipe-picture-save-changes"
+          class="getstarted"
+        >
+          <i class="far fa-save"></i> Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="modal" id="delete-recipe-modal" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -232,8 +314,15 @@
         <p>Proceeding will delete this recipe forever!</p>
       </div>
       <div class="modal-footer">
-        <form action="{{ url_for('delete_recipe', recipe_id=recipe._id) }}" method="post">
-          <button id="second-delete-recipe-button" class="getstarted" type="submit">
+        <form
+          action="{{ url_for('delete_recipe', recipe_id=recipe._id) }}"
+          method="post"
+        >
+          <button
+            id="second-delete-recipe-button"
+            class="getstarted"
+            type="submit"
+          >
             <i class="fas fa-trash"></i> Continue Deleting
           </button>
         </form>
@@ -274,6 +363,7 @@ messages %}
             src="{{ recipe.recipe_picture_url }}"
             alt="{{ recipe.name }}"
             class="img-fluid cards-image recipe-image"
+            id="recipe-image"
           />
           <li id="recipe-name">
             {% if recipe.owner == session.user%}
@@ -303,7 +393,10 @@ messages %}
           {% endfor %}
           <li id="cooking-instructions-header">
             {% if recipe.owner == session.user%}
-            <i id="cooking-instructions-edit" class="fas fa-pencil-alt pointer"></i>
+            <i
+              id="cooking-instructions-edit"
+              class="fas fa-pencil-alt pointer"
+            ></i>
             {% endif %}
             <strong>Cooking Instructions:</strong>
           </li>
@@ -314,7 +407,10 @@ messages %}
           {% endfor %}
           <li id="serving-instructions-header">
             {% if recipe.owner == session.user%}
-            <i id="serving-instructions-edit" class="fas fa-pencil-alt pointer"></i>
+            <i
+              id="serving-instructions-edit"
+              class="fas fa-pencil-alt pointer"
+            ></i>
             {% endif %}
             <strong>Serving Instructions:</strong>
           </li>
@@ -342,6 +438,12 @@ messages %}
       <div class="col-lg-6">
         <div class="save-recipe">
           {% if recipe.owner == session.user%}
+          <button
+            id="recipe-picture-edit"
+            type="button"
+            class="getstarted"
+          ><i class="fas fa-pencil-alt"></i> Edit Recipe Picture
+          </button>
           <button id="delete-recipe-button" class="getstarted" type="button">
             <i class="fas fa-trash"></i> Delete
           </button>

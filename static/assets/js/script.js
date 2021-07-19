@@ -34,6 +34,8 @@ addModalListeners("#tags-edit", "#tags-modal");
 
 addModalListeners("#recipe-name-edit", "#recipe-name-modal");
 
+addModalListeners("#recipe-picture-edit", "#recipe-picture-modal");
+
 //Add event listeners for Profile Page save changes buttons
 $("#name-save-changes").click(function () {
   var specialChar = /[`!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~]/;
@@ -634,5 +636,34 @@ $("#recipe-name-save-changes").click(function () {
     newRecipeName = $("#recipe-name-input").val();
     $("#recipe-name-strong").html(newRecipeName);
     $("#recipe-name-modal").modal("hide");
+  }
+});
+
+$("#recipe-picture-save-changes").click(function () {
+  if ($("#recipe-picture-input").val() == "") {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+        <strong>You cannot update this to an empty field.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
+    );
+    $("#recipe-picture-modal").modal("hide");
+  } else if (
+    $("#recipe-picture-input").val().includes("https://i.ibb.co/") &&
+    ($("#recipe-picture-input").val().includes(".jpg") ||
+      $("#recipe-picture-input").val().includes(".png"))
+  ) {
+    recipeAjax("newRecipePicture", $("#recipe-picture-input").val());
+    newRecipePicture = $("#recipe-picture-input").val();
+    $("#recipe-image").attr("src", newRecipePicture);
+    $("#recipe-picture-modal").modal("hide");
+  } else {
+    $("#header").after(
+      `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
+        <strong>Input not a valid ImgBB format. URL must begin with https://i.ibb.co/ and have a .jpg or .png file extension.</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+      </div>`
+    );
+    $("#recipe-picture-modal").modal("hide");
   }
 });
