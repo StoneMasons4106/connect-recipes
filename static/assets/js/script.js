@@ -369,16 +369,15 @@ function recipeAjax(id_val, value_val) {
   $.ajax({
     type: "POST",
     url: "/recipes/" + recipe_id,
-    data: { id: id_val,
-            value: value_val },
-    contentType: "application/json",
+    data: { id: id_val, value: value_val },
+    contentType: "application/javascript",
     dataType: "json",
     success: function (data) {
       $("#header").after(
         `<div class="alert alert-success alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
-            <strong>${data.result}</strong> 
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
-          </div>`
+          <strong>${data.result}</strong> 
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+        </div>`
       );
     },
   });
@@ -386,8 +385,6 @@ function recipeAjax(id_val, value_val) {
 
 $("#ingredients-save-changes").click(function () {
   var specialChar = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
-  var url = window.location.pathname;
-  var recipe_id = url.substring(url.lastIndexOf("/") + 1);
   if ($("#recipe-ingredients").val() == "") {
     $("#header").after(
       `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
@@ -421,22 +418,21 @@ $("#ingredients-save-changes").click(function () {
     );
     $("#ingredients-modal").modal("hide");
   } else {
-    recipeAjax("newIngredients", $("#recipe-ingredients").val())
+    recipeAjax("newIngredients", $("#recipe-ingredients").val());
     newIngredients = $("#recipe-ingredients").val();
     ingredientsArray = newIngredients.split("\n");
-    $(".ingredient").remove()
+    $(".ingredient").remove();
     for (i in ingredientsArray.reverse()) {
       $("#ingredients-header").after(
-      `<li class="ingredient">${ingredientsArray[i]}</li>`
-      )};
+        `<li class="ingredient">${ingredientsArray[i]}</li>`
+      );
+    }
     $("#ingredients-modal").modal("hide");
   }
 });
 
 $("#prep-work-save-changes").click(function () {
   var specialChar = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
-  var url = window.location.pathname;
-  var recipe_id = url.substring(url.lastIndexOf("/") + 1);
   if ($("#recipe-prep-work").val() == "") {
     $("#header").after(
       `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
@@ -470,22 +466,19 @@ $("#prep-work-save-changes").click(function () {
     );
     $("#prep-work-modal").modal("hide");
   } else {
-    recipeAjax("newPrepWork", $("#recipe-prep-work").val())
+    recipeAjax("newPrepWork", $("#recipe-prep-work").val());
     newPrepWork = $("#recipe-prep-work").val();
     prepArray = newPrepWork.split("\n");
-    $(".prep").remove()
+    $(".prep").remove();
     for (i in prepArray.reverse()) {
-      $("#prep-work-header").after(
-      `<li class="prep">${prepArray[i]}</li>`
-      )};
+      $("#prep-work-header").after(`<li class="prep">${prepArray[i]}</li>`);
+    }
     $("#prep-work-modal").modal("hide");
   }
 });
 
 $("#cooking-instructions-save-changes").click(function () {
   var specialChar = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
-  var url = window.location.pathname;
-  var recipe_id = url.substring(url.lastIndexOf("/") + 1);
   if ($("#recipe-cooking-instructions").val() == "") {
     $("#header").after(
       `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
@@ -519,22 +512,24 @@ $("#cooking-instructions-save-changes").click(function () {
     );
     $("#cooking-instructions-modal").modal("hide");
   } else {
-    recipeAjax("newCookingInstructions", $("#recipe-cooking-instructions").val())
+    recipeAjax(
+      "newCookingInstructions",
+      $("#recipe-cooking-instructions").val()
+    );
     newCookingInstructions = $("#recipe-cooking-instructions").val();
     cookingInstructionsArray = newCookingInstructions.split("\n");
-    $(".cooking").remove()
+    $(".cooking").remove();
     for (i in cookingInstructionsArray.reverse()) {
       $("#cooking-instructions-header").after(
-      `<li class="cooking">${cookingInstructionsArray[i]}</li>`
-      )};
+        `<li class="cooking">${cookingInstructionsArray[i]}</li>`
+      );
+    }
     $("#cooking-instructions-modal").modal("hide");
   }
 });
 
 $("#serving-instructions-save-changes").click(function () {
   var specialChar = /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/;
-  var url = window.location.pathname;
-  var recipe_id = url.substring(url.lastIndexOf("/") + 1);
   if ($("#recipe-serving-instructions").val() == "") {
     $("#header").after(
       `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
@@ -568,21 +563,23 @@ $("#serving-instructions-save-changes").click(function () {
     );
     $("#serving-instructions-modal").modal("hide");
   } else {
-    recipeAjax("newServingInstructions", $("#recipe-serving-instructions").val())
+    recipeAjax(
+      "newServingInstructions",
+      $("#recipe-serving-instructions").val()
+    );
     newServingInstructions = $("#recipe-serving-instructions").val();
     servingInstructionsArray = newServingInstructions.split("\n");
-    $(".serving").remove()
+    $(".serving").remove();
     for (i in servingInstructionsArray.reverse()) {
       $("#serving-instructions-header").after(
-      `<li class="serving">${servingInstructionsArray[i]}</li>`
-      )};
+        `<li class="serving">${servingInstructionsArray[i]}</li>`
+      );
+    }
     $("#serving-instructions-modal").modal("hide");
   }
 });
 
 $("#tags-save-changes").click(function () {
-  var url = window.location.pathname;
-  var recipe_id = url.substring(url.lastIndexOf("/") + 1);
   if ($("#tags-value").attr("value") == "") {
     $("#header").after(
       `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
@@ -592,15 +589,13 @@ $("#tags-save-changes").click(function () {
     );
     $("#tags-modal").modal("hide");
   } else {
-    recipeAjax("newTags", $("#tags-value").attr("value"))
+    recipeAjax("newTags", $("#tags-value").attr("value"));
     $(".tags").html($("#tags-value").attr("value"));
     $("#tags-modal").modal("hide");
   }
 });
 
 $("#recipe-name-save-changes").click(function () {
-  var url = window.location.pathname;
-  var recipe_id = url.substring(url.lastIndexOf("/") + 1);
   var specialChar = /[`!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~]/;
   if ($("#recipe-name-input").val() == "") {
     $("#header").after(
@@ -635,10 +630,9 @@ $("#recipe-name-save-changes").click(function () {
     );
     $("#recipe-name-modal").modal("hide");
   } else {
-    recipeAjax("newRecipeName", $("#recipe-name-input").val())
+    recipeAjax("newRecipeName", $("#recipe-name-input").val());
     newRecipeName = $("#recipe-name-input").val();
-    $("#recipe-name").html(`<i id="recipe-name-edit" class="fas fa-pencil-alt pointer"></i> 
-                            <strong>${newRecipeName}</strong>`);
+    $("#recipe-name-strong").html(newRecipeName);
     $("#recipe-name-modal").modal("hide");
   }
 });

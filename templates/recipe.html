@@ -279,7 +279,7 @@ messages %}
             {% if recipe.owner == session.user%}
             <i id="recipe-name-edit" class="fas fa-pencil-alt pointer"></i>
             {% endif %}
-            <strong>{{ recipe.name }}</strong>
+            <strong id="recipe-name-strong">{{ recipe.name }}</strong>
           </li>
           <li id="ingredients-header">
             {% if recipe.owner == session.user%}

@@ -300,10 +300,11 @@ def recipes(recipe_id):
     try:
         if request.method == "POST":
             recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+            tags = list(mongo.db.tags.find())
             current_user = mongo.db.users.find_one(
                     {"username": session["user"]})
 
-            def update_recipe_data(attribute, obj):
+            def update_recipe_data(attribute):
                 fomattedData = str(newDataForm[2]).replace("%20", " ").replace("%0A", str("\r\n")).replace("%2C", ",")
                 if newData[0] == "newTags":
                     formattedDataList = fomattedData.split(",")
@@ -311,60 +312,67 @@ def recipes(recipe_id):
                 else:
                     newvalue = {"$set": {attribute: fomattedData} }
                 mongo.db.recipes.update_one(recipe, newvalue)
-                return jsonify(result="Successfully updated your " + obj + "!")
 
             newDataForm = request.data.decode().split("=")
-            newData = newDataForm[1].split("&")
-            
-            if newData[0] == "newIngredients":
-                update_recipe_data("ingredients", "ingredients")
-
-            elif newData[0] == "newPrepWork":
-                update_recipe_data("prep_work", "prep work")
-
-            elif newData[0] == "newCookingInstructions":
-                update_recipe_data("cooking_instructions", "cooking instructions")
-
-            elif newData[0] == "newServingInstructions":
-                update_recipe_data("serving_instructions", "serving instructions")
-
-            elif newData[0] == "newTags":
-                update_recipe_data("tags", "tags")
-
-            elif newData[0] == "newRecipeName":
-                update_recipe_data("name", "recipe name")
-            
-            elif recipe_id in current_user["saved_recipes"]:
-                saved_recipes = current_user["saved_recipes"]
-                saved_recipes.remove(recipe_id)
-                mongo.db.users.update_one({"_id": ObjectId(current_user["_id"])}, {"$set": {"saved_recipes": saved_recipes}})
-                saved = 0
-                flash("Sucessfully removed this recipe from your collection!")
-                return render_template("recipe.html", recipe=recipe, saved=saved)
-            
-            else:
-                if current_user["saved_recipes"] == None:
-                    saved_recipes = []
-                else:
-                    saved_recipes = current_user["saved_recipes"]
-                saved_recipes.append(recipe_id)
-                mongo.db.users.update_one({"_id": ObjectId(current_user["_id"])}, {"$set": {"saved_recipes": saved_recipes}})
-                saved = 1
-                flash("Sucessfully saved this recipe!")
-                return render_template("recipe.html", recipe=recipe, saved=saved)
-        else:
+            saved = 0
             try:
-                recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
-                current_user = mongo.db.users.find_one(
-                        {"username": session["user"]})
-                tags = list(mongo.db.tags.find())
-                if recipe_id in current_user["saved_recipes"]:
-                    saved = 1
-                else:
-                    saved = 0
+                newData = newDataForm[1].split("&")
+            
+                if newData[0] == "newIngredients":
+                    update_recipe_data("ingredients")
+                    return jsonify(result="Successfully updated your ingredients!")
+
+                elif newData[0] == "newPrepWork":
+                    update_recipe_data("prep_work")
+                    return jsonify(result="Successfully updated your prep work!")
+
+                elif newData[0] == "newCookingInstructions":
+                    update_recipe_data("cooking_instructions")
+                    return jsonify(result="Successfully updated your cooking instructions!")
+
+                elif newData[0] == "newServingInstructions":
+                    update_recipe_data("serving_instructions")
+                    return jsonify(result="Successfully updated your serving instructions!")
+
+                elif newData[0] == "newTags":
+                    update_recipe_data("tags")
+                    return jsonify(result="Successfully updated your tags!")
+
+                elif newData[0] == "newRecipeName":
+                    update_recipe_data("name")
+                    return jsonify(result="Successfully updated your recipe name!")
+            
             except:
-                recipe = None
-            return render_template("recipe.html", recipe=recipe, saved=saved, tags=tags)
+                
+                if recipe_id in current_user["saved_recipes"]:
+                    saved_recipes = current_user["saved_recipes"]
+                    saved_recipes.remove(recipe_id)
+                    mongo.db.users.update_one({"_id": ObjectId(current_user["_id"])}, {"$set": {"saved_recipes": saved_recipes}})
+                    saved = 0
+                    flash("Sucessfully removed this recipe from your collection!")
+                
+                else:
+                    if current_user["saved_recipes"] == None:
+                        saved_recipes = []
+                    else:
+                        saved_recipes = current_user["saved_recipes"]
+                    saved_recipes.append(recipe_id)
+                    mongo.db.users.update_one({"_id": ObjectId(current_user["_id"])}, {"$set": {"saved_recipes": saved_recipes}})
+                    saved = 1
+                    flash("Sucessfully saved this recipe!")
+
+        else:
+            recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+            current_user = mongo.db.users.find_one(
+                    {"username": session["user"]})
+            tags = list(mongo.db.tags.find())
+            if recipe_id in current_user["saved_recipes"]:
+                saved = 1
+            else:
+                saved = 0
+        
+        return render_template("recipe.html", recipe=recipe, saved=saved, tags=tags)
+    
     except(KeyError):
         flash("You must be logged in to view any recipes.")
         return redirect(url_for("login"))
