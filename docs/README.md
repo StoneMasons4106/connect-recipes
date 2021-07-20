@@ -97,6 +97,9 @@ For inspiration, I looked at a number of [Bootstrap Templates](https://bootstrap
 10. [PyMongo](https://pypi.org/project/pymongo/)
     * The PyMongo library is how this project interacts with the MongoDB where information is housed.
 
+11. [Talisman](https://pypi.org/project/flask-talisman/)
+    * The Talisman library is responsible for redirecting traffic from http to https.
+
 ## Testing
 
 
@@ -154,11 +157,13 @@ If you'd like to have a copy on your local machine, follow the steps below:
 
 * Implementation of AJAX in the project came mainly from this [Flask Documentation Link](https://flask.palletsprojects.com/en/2.0.x/patterns/jquery/) and [Stack Overflow Link](https://stackoverflow.com/questions/16164604/rest-ajax-request-to-mongodb).
 
-* Checking to see if a string contained special characters via Regex and JS came from this [Stack Overflow Post](https://stackoverflow.com/questions/32311081/check-for-special-characters-in-string).
+* Checking to see if a string contained special characters via Regex and JS came from this [Stack Overflow](https://stackoverflow.com/questions/32311081/check-for-special-characters-in-string) post.
 
 * Pieces of code were taken from [this article](https://dev.to/mugas/flip-cards-with-javascript-2ad0) to create the recipe cards.
 
 * CSS taken from [CSS Tricks](https://css-tricks.com/how-to-create-a-notebook-design-with-css/) were used to make the recipe page background with lined paper.
+
+* Use of Talisman to redirect to https for Heroku came from this [Stack Overflow](https://stackoverflow.com/questions/15116312/redirect-http-to-https-on-flaskheroku) post.
 
 #### Acknowledgments
 

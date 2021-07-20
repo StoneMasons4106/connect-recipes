@@ -14,6 +14,7 @@ if os.path.exists("env.py"):
 
 
 app = Flask(__name__)
+# Lines 17 and 18 to get the app to redirect to https was taken from Stack Overflow.
 if 'DYNO' in os.environ:
     Talisman(app, content_security_policy=None)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
@@ -26,6 +27,7 @@ mongo = PyMongo(app)
 
 @app.route("/")
 def index():
+    # homepage display
     tags = list(mongo.db.tags.find())
     return render_template("index.html", tags=tags)
 
@@ -61,6 +63,7 @@ def login():
 
 @app.route("/new-recipe", methods=["GET", "POST"])
 def new_recipe():
+    # create a new recipe, unless there's a duplicate recipe with the same name for session.user
     
     tags = list(mongo.db.tags.find())
     
@@ -107,6 +110,7 @@ def new_recipe():
 
 @app.route("/my-profile", methods=["GET", "POST"])
 def profile():
+    # responsible for all get and post requests related to the user profile
     if request.method == "GET":
         # grab the session user's data from db
         try:
@@ -280,6 +284,7 @@ def my_recipes():
 
 @app.route("/saved-recipes")
 def saved_recipes():
+    # return saved recipes list for session.user
     try:
         if session["user"]:
             saved_recipes_array = []
@@ -297,6 +302,7 @@ def saved_recipes():
 
 @app.route("/recipes/<recipe_id>", methods=["GET", "POST"])
 def recipes(recipe_id):
+    # handles all get and post requests related to recipes except for deleting the recipe itself
     try:
         if request.method == "POST":
             recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
@@ -384,6 +390,7 @@ def recipes(recipe_id):
 
 @app.route("/delete-recipe/<recipe_id>", methods=["GET", "POST"])
 def delete_recipe(recipe_id):
+    # delete recipe and redirect to my_recipes
     if request.method == "POST":
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         mongo.db.recipes.delete_one({"_id": ObjectId(recipe["_id"])})

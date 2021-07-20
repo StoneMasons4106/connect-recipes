@@ -350,6 +350,8 @@ p {
 
 /* -- My Recipes -- */
 
+/* -- Lines 355 to 383 were taken from a dev.to article. -- */
+
 .cards {
   display: flex;
   flex-direction: column;
@@ -398,6 +400,8 @@ li span {
 }
 
 /* -- Recipe -- */
+
+/* -- Lines 404 to 443 were taken from CSS Tricks to get a paper like appearance. -- */
 
 .paper {
   background-color: #f5f5f5;

@@ -38,6 +38,7 @@ addModalListeners("#recipe-picture-edit", "#recipe-picture-modal");
 
 //Add event listeners for Profile Page save changes buttons
 $("#name-save-changes").click(function () {
+  //Checking for special characters via Regex and JS was taken from a Stack Overflow post.
   var specialChar = /[`!@#$%^&*()_+\-=\[\]{};:"\\|,.<>\/?~]/;
   if ($("#name").val() == "") {
     $("#hero").after(
@@ -72,6 +73,7 @@ $("#name-save-changes").click(function () {
     );
     $("#name-modal").modal("hide");
   } else {
+    //AJAX was implemented from a combination of Flask documentation and Stack Overflow.
     $.ajax({
       type: "POST",
       url: "/my-profile",
