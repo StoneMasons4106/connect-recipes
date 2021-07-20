@@ -83,7 +83,8 @@ p {
 #imgbb:hover,
 #new-recipe button:hover,
 #save-recipe-button:hover,
-#recipe-picture-edit:hover {
+#recipe-picture-edit:hover,
+#change-password button:hover {
   background-color: #47b2e4;
   color: #fff;
   transition: 0.3s;
