@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 //Initialize dropdown for searching tags on Home Page
 $(".ui.dropdown").click().dropdown();
 
@@ -89,7 +91,7 @@ $("#name-save-changes").click(function () {
         );
       },
     });
-    newName = $("#name").val();
+    var newName = $("#name").val();
     $("#name-field").html(newName);
     $("#name-modal").modal("hide");
   }
@@ -128,8 +130,8 @@ $("#email-save-changes").click(function () {
           );
         }
       },
-    }),
-    newEmail = $("#email").val();
+    });
+    var newEmail = $("#email").val();
     $("#email-field").html(newEmail);
     $("#email-modal").modal("hide");
   } else {
@@ -202,7 +204,7 @@ $("#username-save-changes").click(function () {
         }
       },
     });
-    newUsername = $("#username").val();
+    var newUsername = $("#username").val();
     $("#username-field").html(newUsername);
     $("#username-modal").modal("hide");
   }
@@ -237,7 +239,7 @@ $("#profile-picture-save-changes").click(function () {
         );
       },
     });
-    newProfilePicture = $("#profile-picture-input").val();
+    var newProfilePicture = $("#profile-picture-input").val();
     $("#profile-picture").attr("src", newProfilePicture);
     $("#profile-picture-modal").modal("hide");
   } else {
@@ -289,7 +291,7 @@ $("#profile-picture-delete").click(function () {
 
 //Create Tag Function
 $("#create-tag").click(function () {
-  existingTags = [];
+  var existingTags = [];
   $(".item").each(function () {
     existingTags.push($(this).attr("data-value"));
   });
@@ -346,7 +348,7 @@ $("#api-key-refresh").click(function () {
     }
     return str;
   };
-  newKey = random(16);
+  var newKey = random(16);
   $.ajax({
     type: "POST",
     url: "/my-profile",
@@ -423,10 +425,10 @@ $("#ingredients-save-changes").click(function () {
     $("#ingredients-modal").modal("hide");
   } else {
     recipeAjax("newIngredients", $("#recipe-ingredients").val());
-    newIngredients = $("#recipe-ingredients").val();
-    ingredientsArray = newIngredients.split("\n");
+    var newIngredients = $("#recipe-ingredients").val();
+    var ingredientsArray = newIngredients.split("\n");
     $(".ingredient").remove();
-    for (i in ingredientsArray.reverse()) {
+    for (var i in ingredientsArray.reverse()) {
       $("#ingredients-header").after(
         `<li class="ingredient">${ingredientsArray[i]}</li>`
       );
@@ -471,10 +473,10 @@ $("#prep-work-save-changes").click(function () {
     $("#prep-work-modal").modal("hide");
   } else {
     recipeAjax("newPrepWork", $("#recipe-prep-work").val());
-    newPrepWork = $("#recipe-prep-work").val();
-    prepArray = newPrepWork.split("\n");
+    var newPrepWork = $("#recipe-prep-work").val();
+    var prepArray = newPrepWork.split("\n");
     $(".prep").remove();
-    for (i in prepArray.reverse()) {
+    for (var i in prepArray.reverse()) {
       $("#prep-work-header").after(`<li class="prep">${prepArray[i]}</li>`);
     }
     $("#prep-work-modal").modal("hide");
@@ -520,10 +522,10 @@ $("#cooking-instructions-save-changes").click(function () {
       "newCookingInstructions",
       $("#recipe-cooking-instructions").val()
     );
-    newCookingInstructions = $("#recipe-cooking-instructions").val();
-    cookingInstructionsArray = newCookingInstructions.split("\n");
+    var newCookingInstructions = $("#recipe-cooking-instructions").val();
+    var cookingInstructionsArray = newCookingInstructions.split("\n");
     $(".cooking").remove();
-    for (i in cookingInstructionsArray.reverse()) {
+    for (var i in cookingInstructionsArray.reverse()) {
       $("#cooking-instructions-header").after(
         `<li class="cooking">${cookingInstructionsArray[i]}</li>`
       );
@@ -571,10 +573,10 @@ $("#serving-instructions-save-changes").click(function () {
       "newServingInstructions",
       $("#recipe-serving-instructions").val()
     );
-    newServingInstructions = $("#recipe-serving-instructions").val();
-    servingInstructionsArray = newServingInstructions.split("\n");
+    var newServingInstructions = $("#recipe-serving-instructions").val();
+    var servingInstructionsArray = newServingInstructions.split("\n");
     $(".serving").remove();
-    for (i in servingInstructionsArray.reverse()) {
+    for (var i in servingInstructionsArray.reverse()) {
       $("#serving-instructions-header").after(
         `<li class="serving">${servingInstructionsArray[i]}</li>`
       );
@@ -635,7 +637,7 @@ $("#recipe-name-save-changes").click(function () {
     $("#recipe-name-modal").modal("hide");
   } else {
     recipeAjax("newRecipeName", $("#recipe-name-input").val());
-    newRecipeName = $("#recipe-name-input").val();
+    var newRecipeName = $("#recipe-name-input").val();
     $("#recipe-name-strong").html(newRecipeName);
     $("#recipe-name-modal").modal("hide");
   }
@@ -656,7 +658,7 @@ $("#recipe-picture-save-changes").click(function () {
       $("#recipe-picture-input").val().includes(".png"))
   ) {
     recipeAjax("newRecipePicture", $("#recipe-picture-input").val());
-    newRecipePicture = $("#recipe-picture-input").val();
+    var newRecipePicture = $("#recipe-picture-input").val();
     $("#recipe-image").attr("src", newRecipePicture);
     $("#recipe-picture-modal").modal("hide");
   } else {

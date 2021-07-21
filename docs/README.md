@@ -55,6 +55,8 @@ For inspiration, I looked at a number of [Bootstrap Templates](https://bootstrap
 
 * **User Registration** - Allows user to store their personal information, and have recipes that they created themselves, along with recipes they saved.
 
+* **Tag Association** - Allows categorization of recipes to be found easier when searching.
+
 ## Technologies Used
 
 **Languages Used**
@@ -152,6 +154,8 @@ If you'd like to have a copy on your local machine, follow the steps below:
 * Much of the media was provided by [Pixabay](https://pixabay.com/).
 
 #### Content
+
+* All content was written by the developer.
 
 #### Code
 

@@ -2,7 +2,8 @@ from flask import (
     Flask, flash, jsonify, render_template,
     redirect, request, session, url_for)
 import os
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import (
+    generate_password_hash, check_password_hash)
 from flask_pymongo import PyMongo
 from flask_talisman import Talisman
 from datetime import date
@@ -357,7 +358,8 @@ def recipes(recipe_id):
                 if recipe_id in current_user["saved_recipes"]:
                     saved_recipes = current_user["saved_recipes"]
                     saved_recipes.remove(recipe_id)
-                    mongo.db.users.update_one({"_id": ObjectId(current_user["_id"])}, {"$set": {"saved_recipes": saved_recipes}})
+                    mongo.db.users.update_one({"_id": ObjectId(current_user["_id"])}, 
+                    {"$set": {"saved_recipes": saved_recipes}})
                     saved = 0
                     flash("Sucessfully removed this recipe from your collection!")
                 
@@ -367,7 +369,8 @@ def recipes(recipe_id):
                     else:
                         saved_recipes = current_user["saved_recipes"]
                     saved_recipes.append(recipe_id)
-                    mongo.db.users.update_one({"_id": ObjectId(current_user["_id"])}, {"$set": {"saved_recipes": saved_recipes}})
+                    mongo.db.users.update_one({"_id": ObjectId(current_user["_id"])}, 
+                                        {"$set": {"saved_recipes": saved_recipes}})
                     saved = 1
                     flash("Sucessfully saved this recipe!")
 
