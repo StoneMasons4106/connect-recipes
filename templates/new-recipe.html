@@ -41,21 +41,19 @@
 </header>
 <!-- End Header -->
 
-<section class="flashes">
   <!-- flash messages -->
   {% with messages = get_flashed_messages() %} {% if messages %} {% for
   message in messages %} {% if "already" in message %}
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>{{ message }}</strong>
+  <div class="alert alert-warning alert-dismissible fade show flashes" role="alert">
+    <h5 class="flash-heading">{{ message }}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   {% else %}
   <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>{{ message }}</strong>
+    <h5 class="flash-heading">{{ message }}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
   {% endif %} {% endfor %} {% endif %} {% endwith %}
-</section>
 
 <!-- Modal -->
 

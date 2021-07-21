@@ -15,10 +15,14 @@
           >
         </li>
         <li>
-          <a class="nav-link scrollto" href="{{ url_for('index') }}#about">About</a>
+          <a class="nav-link scrollto" href="{{ url_for('index') }}#about"
+            >About</a
+          >
         </li>
         <li>
-          <a class="nav-link scrollto" href="{{ url_for('index') }}#search">Search</a>
+          <a class="nav-link scrollto" href="{{ url_for('index') }}#search"
+            >Search</a
+          >
         </li>
         {% if session.user %}
         <li>
@@ -92,22 +96,18 @@
 </div>
 
 <!-- End Hero -->
-
-{% with messages = get_flashed_messages() %} {% if messages %} {% for message in
-messages %}
-<div
-  class="alert alert-success alert-dismissible fade show flashes"
-  role="alert"
->
-  <strong>{{ message }}</strong>
-  <button
-    type="button"
-    class="btn-close"
-    data-bs-dismiss="alert"
-    aria-label="Close"
-  ></button>
-</div>
-{% endfor %} {% endif %} {% endwith %}
+  {% with messages = get_flashed_messages() %} {% if messages %} {% for message
+  in messages %}
+  <div class="alert alert-success alert-dismissible fade show flashes" role="alert">
+    <h5 class="flash-heading">{{ message }}</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  {% endfor %} {% endif %} {% endwith %}
 
 <!-- Modals -->
 
@@ -242,7 +242,11 @@ messages %}
         </form>
       </div>
       <div class="modal-footer">
-        <a id="imgbb" class="getstarted" href="https://imgbb.com/" target="_blank"
+        <a
+          id="imgbb"
+          class="getstarted"
+          href="https://imgbb.com/"
+          target="_blank"
           ><i class="fas fa-plus"></i> Upload to ImgBB</a
         >
         <button
@@ -252,12 +256,8 @@ messages %}
         >
           <i class="far fa-save"></i> Save Changes
         </button>
-        <button
-          type="button"
-          id="profile-picture-delete"
-          class="getstarted"
-        >
-        <i class="fas fa-trash"></i> Delete
+        <button type="button" id="profile-picture-delete" class="getstarted">
+          <i class="fas fa-trash"></i> Delete
         </button>
       </div>
     </div>
@@ -277,16 +277,15 @@ messages %}
         ></button>
       </div>
       <div class="modal-body">
-        <p>This will reset your API key and thus any connections through it that you have to this site!</p>
+        <p>
+          This will reset your API key and thus any connections through it that
+          you have to this site!
+        </p>
         <p>Are you sure you want to continue?</p>
       </div>
       <div class="modal-footer">
-        <button
-          type="button"
-          id="api-key-refresh"
-          class="getstarted"
-        >
-        <i class="fas fa-skull"></i> Regenerate
+        <button type="button" id="api-key-refresh" class="getstarted">
+          <i class="fas fa-skull"></i> Regenerate
         </button>
       </div>
     </div>
@@ -308,7 +307,8 @@ messages %}
             <i class="fas fa-pencil-alt pointer" id="name-pencil"></i>
           </p>
           <p class="profile-info content">
-            <strong>Email:</strong> <span id="email-field">{{ user.email }}</span>
+            <strong>Email:</strong>
+            <span id="email-field">{{ user.email }}</span>
             <i class="fas fa-pencil-alt pointer" id="email-pencil"></i>
           </p>
           <p class="profile-info content">
@@ -331,11 +331,19 @@ messages %}
           </p>
           <p class="profile-info content">
             <strong>My Recipes:</strong>
-            <a href="{{ url_for('my_recipes') }}" class="light-blue-text profile-info-recipes">See My Recipes</a>
+            <a
+              href="{{ url_for('my_recipes') }}"
+              class="light-blue-text profile-info-recipes"
+              >See My Recipes</a
+            >
           </p>
           <p class="profile-info content">
             <strong>Saved Recipes:</strong>
-            <a href="{{ url_for('saved_recipes') }}" class="light-blue-text profile-info-recipes">See Saved Recipes</a>
+            <a
+              href="{{ url_for('saved_recipes') }}"
+              class="light-blue-text profile-info-recipes"
+              >See Saved Recipes</a
+            >
           </p>
         </div>
         <div class="change-password">

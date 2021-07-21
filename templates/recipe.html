@@ -283,7 +283,11 @@
         </form>
       </div>
       <div class="modal-footer">
-        <a id="imgbb" class="getstarted" href="https://imgbb.com/" target="_blank"
+        <a
+          id="imgbb"
+          class="getstarted"
+          href="https://imgbb.com/"
+          target="_blank"
           ><i class="fas fa-plus"></i> Upload to ImgBB</a
         >
         <button
@@ -333,22 +337,23 @@
 
 <!-- End Modal -->
 
-{% with messages = get_flashed_messages() %} {% if messages %} {% for message in
-messages %}
-<div
-  id="save-recipe-flash"
-  class="alert alert-success alert-dismissible fade show flashes"
-  role="alert"
->
-  <strong>{{ message }}</strong>
-  <button
-    type="button"
-    class="btn-close"
-    data-bs-dismiss="alert"
-    aria-label="Close"
-  ></button>
-</div>
-{% endfor %} {% endif %} {% endwith %}
+  {% with messages = get_flashed_messages() %} {% if messages %} {% for message
+  in messages %}
+  <div
+    id="save-recipe-flash"
+    class="alert alert-success alert-dismissible fade show flashes"
+    role="alert"
+  >
+    <h5 class="flash-heading">{{ message }}</h5>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+  {% endfor %} {% endif %} {% endwith %}
+
 
 <!-- Recipe -->
 
@@ -438,11 +443,8 @@ messages %}
       <div class="col-lg-6">
         <div class="save-recipe">
           {% if recipe.owner == session.user%}
-          <button
-            id="recipe-picture-edit"
-            type="button"
-            class="getstarted"
-          ><i class="fas fa-pencil-alt"></i> Edit Recipe Picture
+          <button id="recipe-picture-edit" type="button" class="getstarted">
+            <i class="fas fa-pencil-alt"></i> Edit Recipe Picture
           </button>
           <button id="delete-recipe-button" class="getstarted" type="button">
             <i class="fas fa-trash"></i> Delete
