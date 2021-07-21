@@ -572,3 +572,9 @@ li span {
     margin-bottom:140%;
   }
 }
+
+@media screen and (max-width:348px) {
+  .my-recipes-title, .saved-recipes-title, .search-recipes-title {
+    margin-top:15%;
+  }
+}

@@ -104,6 +104,11 @@ For inspiration, I looked at a number of [Bootstrap Templates](https://bootstrap
 
 ## Testing
 
+I used the W3C Markup Validator, W3C CSS Validator Services, and JSHint to validate every page of the project, and all JS code to ensure there were no major syntax errors in the project.
+
+[W3C Markup Validator](https://validator.w3.org/)
+[W3C CSS Validator](http://jigsaw.w3.org/css-validator/)
+[JSHint](https://jshint.com/)
 
 ### Testing User Stories from UX Section
 
@@ -113,7 +118,8 @@ For inspiration, I looked at a number of [Bootstrap Templates](https://bootstrap
 
 ### Known Bugs
 
-
+* Currently, if a user has no saved recipes, there is a slight whitespace beneath the footer for iPads on the saved-recipes.html page, even though none was there in the Chrome dev tools preview.
+    * I suspect it has to do with how Safari handles the project as opposed to other browsers.
     
 ## Deployment
 
