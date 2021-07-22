@@ -57,6 +57,8 @@ For inspiration, I looked at a number of [Bootstrap Templates](https://bootstrap
 
 * **Tag Association** - Allows categorization of recipes to be found easier when searching.
 
+* **IMGBB Integration** - Users automatically upload pictures to the Connect Recipes ImgBB account via the requests library in Python and ImgBB API.
+
 ## Technologies Used
 
 **Languages Used**
