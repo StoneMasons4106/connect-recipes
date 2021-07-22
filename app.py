@@ -430,6 +430,12 @@ def delete_recipe(recipe_id):
     if request.method == "POST":
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         mongo.db.recipes.delete_one({"_id": ObjectId(recipe["_id"])})
+        users = mongo.db.users.find({"saved_recipes": recipe_id})
+        for user in users:
+            saved_recipes = user["saved_recipes"]
+            saved_recipes.remove(recipe_id)
+            mongo.db.users.update_one({"_id": ObjectId(user["_id"])},
+                                              {"$set": {"saved_recipes": saved_recipes}})
         return redirect(url_for("my_recipes"))
     return redirect(url_for("my_recipes"))
 
