@@ -104,14 +104,13 @@
       <h2>Add a Recipe</h2>
     </div>
     <div>
-      <p>Pictures <strong>must</strong> be uploaded to <a href="https://imgbb.com/" target="_blank" rel="noopener">ImgBB.</a></p>
-      <p><a href="https://youtu.be/1KBYRQ_6184" target="_blank" rel="noopener">Find my ImgBB URL</a></p>
+      <p>Pictures are automatically uploaded to ImgBB if they have a valid .jpg or .png file format.</p>
     </div>
     <form method="post" action="{{ url_for('new_recipe') }}">
       <div class="row justify-content-center">
         <div class="col-lg-6">
           <label for="url"><i class="fas fa-code"></i></label>
-          <input id="url" name="url" type="url" minlength="30" maxlength="551" pattern="https://i.ibb.co/[0-9A-Za-z]{3,30}/[0-9A-Za-z-_+]{5,500}.[jpg]{3}"
+          <input id="url" name="url" type="url" minlength="30" maxlength="551" pattern="https://.+[jpg]{3}"
             placeholder="ImgBB URL" class="recipe-input" required>
         </div>
       </div>

@@ -220,7 +220,7 @@ $("#profile-picture-save-changes").click(function () {
     );
     $("#profile-picture-modal").modal("hide");
   } else if (
-    $("#profile-picture-input").val().includes("https://i.ibb.co/") &&
+    $("#profile-picture-input").val().includes("https://") &&
     ($("#profile-picture-input").val().includes(".jpg") ||
       $("#profile-picture-input").val().includes(".png"))
   ) {
@@ -245,7 +245,7 @@ $("#profile-picture-save-changes").click(function () {
   } else {
     $("#hero").after(
       `<div class="alert alert-warning alert-dismissible fade show flashes" role="alert"> 
-        <strong>Input not a valid ImgBB format. URL must begin with https://i.ibb.co/ and have a .jpg or .png file extension.</strong> 
+        <strong>Input not a URL format. URL must begin with https:// and have a .jpg or .png file extension.</strong> 
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
       </div>`
     );
@@ -653,7 +653,7 @@ $("#recipe-picture-save-changes").click(function () {
     );
     $("#recipe-picture-modal").modal("hide");
   } else if (
-    $("#recipe-picture-input").val().includes("https://i.ibb.co/") &&
+    $("#recipe-picture-input").val().includes("https://") &&
     ($("#recipe-picture-input").val().includes(".jpg") ||
       $("#recipe-picture-input").val().includes(".png"))
   ) {
@@ -664,7 +664,7 @@ $("#recipe-picture-save-changes").click(function () {
   } else {
     $("#header").after(
       `<div class="alert alert-warning alert-dismissible fade show flashes update-recipe-flash" role="alert"> 
-        <strong>Input not a valid ImgBB format. URL must begin with https://i.ibb.co/ and have a .jpg or .png file extension.</strong> 
+        <strong>Input not a valid URL format. URL must begin with https:// and have a .jpg or .png file extension.</strong> 
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
       </div>`
     );
