@@ -111,47 +111,47 @@
         <div class="col-lg-6">
           <label for="url"><i class="fas fa-code"></i></label>
           <input id="url" name="url" type="url" minlength="10" maxlength="1000" pattern="https://.+[jpg]{3}|https://.+[png]{3}"
-            placeholder="Image URL" class="recipe-input" required>
+            placeholder="Image URL" class="recipe-input add-a-recipe" required>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-6">
           <label for="recipe-name"><i class="fas fa-user"></i></label>
           <input id="recipe-name" name="recipe-name" type="text" minlength="4" maxlength="120" pattern="[0-9A-Za-z ]{4,120}"
-            placeholder="Recipe Name" class="recipe-input" required>
+            placeholder="Recipe Name" class="recipe-input add-a-recipe" required>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-6">
           <label for="recipe-ingredients"><i class="fas fa-egg"></i></label>
           <textarea id="recipe-ingredients" name="recipe-ingredients" minlength="10" maxlength="1000" pattern="[0-9A-Za-z./ ]{10,1000}"
-            placeholder="Ingredients" class="recipe-input" rows="5" required></textarea>
+            placeholder="Ingredients" class="recipe-input add-a-recipe" rows="5" required></textarea>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-6">
           <label for="prep-work"><i class="fas fa-mortar-pestle"></i></label>
           <textarea id="prep-work" name="prep-work" minlength="10" maxlength="1000" pattern="[0-9A-Za-z./ ]{10,1000}"
-            placeholder="Prep Work" class="recipe-input" rows="5" required></textarea>
+            placeholder="Prep Work" class="recipe-input add-a-recipe" rows="5" required></textarea>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-6">
           <label for="cooking-instructions"><i class="fas fa-list"></i></label>
           <textarea id="cooking-instructions" name="cooking-instructions" minlength="10" maxlength="1000" pattern="[0-9A-Za-z./ ]{10,1000}"
-            placeholder="Cooking Instructions" class="recipe-input" rows="5" required></textarea>
+            placeholder="Cooking Instructions" class="recipe-input add-a-recipe" rows="5" required></textarea>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-6">
           <label for="serving-instructions"><i class="fas fa-utensils"></i></label>
           <textarea id="serving-instructions" name="serving-instructions" minlength="3" maxlength="1000" pattern="[0-9A-Za-z./ ]{10,1000}"
-            placeholder="Serving Instructions" class="recipe-input" rows="5" required></textarea>
+            placeholder="Serving Instructions" class="recipe-input add-a-recipe" rows="5" required></textarea>
         </div>
       </div>
       <div class="row justify-content-center">
         <div class="col-lg-4" id="add-recipe-tags"> 
-          <div class="ui fluid multiple search selection dropdown">
+          <div class="ui fluid multiple search selection dropdown add-a-recipe">
             <input type="hidden" name="tags">
             <i class="dropdown icon"></i>
             <div class="default text">Add Tags</div>

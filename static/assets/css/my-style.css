@@ -353,6 +353,10 @@ p {
   margin-top: 60px;
 }
 
+.add-a-recipe {
+  width: 400px;
+}
+
 /* -- My Recipes -- */
 
 /* -- Lines 355 to 383 were taken from a dev.to article. -- */
@@ -570,6 +574,12 @@ li span {
 
   #change-password button {
     margin-bottom:140%;
+  }
+}
+
+@media screen and (max-width:450px) {
+  .add-a-recipe {
+    width: 200px;
   }
 }
 

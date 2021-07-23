@@ -430,6 +430,8 @@ def delete_recipe(recipe_id):
     if request.method == "POST":
         recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
         mongo.db.recipes.delete_one({"_id": ObjectId(recipe["_id"])})
+        # Removing the recipe from saved_recipes attribute in the user, 
+        # otherwise an invalid ObjectId will cause failure of Saved Recipes to load.
         users = mongo.db.users.find({"saved_recipes": recipe_id})
         for user in users:
             saved_recipes = user["saved_recipes"]
