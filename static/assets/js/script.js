@@ -128,11 +128,11 @@ $("#email-save-changes").click(function () {
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
             </div>`
           );
+          var newEmail = $("#email").val();
+          $("#email-field").html(newEmail);
         }
       },
     });
-    var newEmail = $("#email").val();
-    $("#email-field").html(newEmail);
     $("#email-modal").modal("hide");
   } else {
     $("#hero").after(
@@ -201,11 +201,11 @@ $("#username-save-changes").click(function () {
               <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
             </div>`
           );
+          var newUsername = $("#username").val();
+          $("#username-field").html(newUsername);
         }
       },
     });
-    var newUsername = $("#username").val();
-    $("#username-field").html(newUsername);
     $("#username-modal").modal("hide");
   }
 });

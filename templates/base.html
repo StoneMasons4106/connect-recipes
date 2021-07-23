@@ -5,17 +5,40 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
     <title>Connect Recipes</title>
-    <meta content="" name="description" />
-    <meta content="" name="keywords" />
+    <meta
+      content="We are passionate about connecting through food, and we know that food is an important way memories are
+    created. Food bridges cultural gaps and differences to bring us together, and not divide. It's for this
+    reason we found it important to give people a dedicated medium to share and explore new
+    culinary ideas together."
+      name="description"
+    />
+    <meta
+      content="recipes, food, connect recipes, share recipes, food ideas, free recipe sharing"
+      name="keywords"
+    />
 
     <!-- Favicons -->
+
     <link
-      href="{{ url_for('static', filename='assets/img/favicon.png') }}"
-      rel="icon"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{{ url_for('static', filename='assets/img/apple-touch-icon.png') }}"
     />
     <link
-      href="{{ url_for('static', filename='assets/img/apple-touch-icon.png') }}"
-      rel="apple-touch-icon"
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{{ url_for('static', filename='assets/img/favicon-32x32.png') }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{{ url_for('static', filename='assets/img/favicon-16x16.png') }}"
+    />
+    <link
+      rel="manifest"
+      href="{{ url_for('static', filename='assets/img/site.webmanifest') }}"
     />
 
     <!-- Google Fonts -->
@@ -98,10 +121,18 @@
             >. All Rights Reserved
           </div>
           <div class="col-lg-4 social-links">
-            <a href="https://www.facebook.com" target="_blank" class="facebook" rel="noopener"
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              class="facebook"
+              rel="noopener"
               ><i class="fab fa-facebook-f"></i
             ></a>
-            <a href="https://www.twitter.com" target="_blank" class="twitter" rel="noopener"
+            <a
+              href="https://www.twitter.com"
+              target="_blank"
+              class="twitter"
+              rel="noopener"
               ><i class="fab fa-twitter"></i
             ></a>
             <a

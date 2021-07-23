@@ -81,18 +81,21 @@ def new_recipe():
     if request.method == "POST":
 
         newData = request.data.decode().split("=")
+        # check for a recipe with the same name owned by the same user
         existing_recipe = mongo.db.recipes.find_one(
             {"name": request.form.get("recipe-name"), "owner": session["user"]})
 
         if existing_recipe:
             flash("You have a recipe with this name already!")
             return render_template("new-recipe.html", tags=tags)
+        # if the AJAX request has the key newTag, create a new tag
         elif newData[0] == 'newTag':
             newTag = {
                 "name": newData[1]
             }
             mongo.db.tags.insert_one(newTag)
             return jsonify(result="Successfully added your tag!")
+        # create new recipe while hosting the user's image on Connect Recipes ImgBB
         else:
             tags_list = request.form.get("tags").split(",")
             imgbb_api = os.environ.get("IMGBBAPI")
@@ -134,17 +137,17 @@ def profile():
             return redirect(url_for("login"))
 
     if request.method == "POST":
-
+        # get the current user and split the AJAX response to be handled based on key value
         current_user = mongo.db.users.find_one(
             {"username": session["user"]})
         newData = request.data.decode().split("=")
-
+        # update name
         if newData[0] == 'newName':
             newname = str(newData[1]).replace("%20", " ")
             newvalue = {"$set": {"name": newname}}
             mongo.db.users.update_one(current_user, newvalue)
             return jsonify(result=newname + " added as your name!")
-
+        # update email, only if it doesn't already exist
         if newData[0] == 'newEmail':
             newemail = str(newData[1]).replace("%40", "@")
             existing_email = mongo.db.users.find_one(
@@ -155,7 +158,7 @@ def profile():
                 newvalue = {"$set": {"email": newemail}}
                 mongo.db.users.update_one(current_user, newvalue)
                 return jsonify(result=newemail + " added as the email of your profile!")
-
+        # update username, only if it doesn't already exist
         if newData[0] == 'newUsername':
             existing_user = mongo.db.users.find_one(
                 {"username": newData[1].lower()})
@@ -166,7 +169,7 @@ def profile():
                 mongo.db.users.update_one(current_user, newvalue)
                 session["user"] = newData[1]
                 return jsonify(result=newData[1] + " added as the username of your profile!")
-
+        # update profile picture using ImgBB API, also handles deletion of profile pictures
         if newData[0] == 'newProfilePicture':
             new_profile_picture_array = []
             if newData[1] == "None":
@@ -190,7 +193,7 @@ def profile():
                     "$set": {"profile_picture": new_profile_picture_array}}
                 mongo.db.users.update_one(current_user, newvalue)
                 return jsonify(result="Successfully updated your profile picture!")
-
+        # update API Key when user regenerates
         if newData[0] == 'newAPIKey':
             newvalue = {"$set": {"api_key": newData[1]}}
             mongo.db.users.update_one(current_user, newvalue)
@@ -205,7 +208,7 @@ def register():
         # check if username already exists in db
         existing_user = mongo.db.users.find_one(
             {"username": request.form.get("username").lower()})
-
+        # check if email already exists in db
         existing_email = mongo.db.users.find_one(
             {"email": request.form.get("email").lower()})
 
@@ -217,6 +220,7 @@ def register():
             flash("Username already exists!")
             return redirect(url_for("register"))
 
+        # check if passwords given match, if yes, create user in mongoDB
         if str(request.form.get("password")) == str(request.form.get("confirm-password")):
             today = date.today()
             date_registered = today.strftime("%B %d, %Y")
@@ -246,7 +250,7 @@ def register():
 
 @app.route("/search", methods=["GET", "POST"])
 def search():
-    # check if user is logged in, redirect to login page if not
+    # return matches for the user's search, filters duplicates for recipes that match multiple tags
     try:
         if session["user"]:
             tags_list = request.form.get("tags").split(",")
@@ -267,7 +271,7 @@ def search():
 
 @app.route("/change-password", methods=["GET", "POST"])
 def change_password():
-    # grab the session user's data from db
+    # checks if passwords enter match, if yes, updates password, if not, notify the user
     try:
         if session["user"]:
             if request.method == "POST":
@@ -290,7 +294,7 @@ def change_password():
 
 @app.route("/my-recipes")
 def my_recipes():
-    # check if user is logged in, redirect to login page if not
+    # returns the list of recipes that are owned by the current user
     try:
         if session["user"]:
             my_recipes_array = []
@@ -306,7 +310,7 @@ def my_recipes():
 
 @app.route("/saved-recipes")
 def saved_recipes():
-    # return saved recipes list for session.user
+    # returns the list of recipes that are saved by the current user
     try:
         if session["user"]:
             saved_recipes_array = []
@@ -327,11 +331,12 @@ def recipes(recipe_id):
     # handles all get and post requests related to recipes except for deleting the recipe itself
     try:
         if request.method == "POST":
+            # get current recipe, all tags, and current user
             recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
             tags = list(mongo.db.tags.find())
             current_user = mongo.db.users.find_one(
                 {"username": session["user"]})
-
+            # function to update recipe fields to econmize lines of code
             def update_recipe_data(attribute):
                 formattedData = str(newDataForm[2]).replace("%20", " ").replace(
                     "%0A", str("\r\n")).replace("%2C", ",").replace("%2F", "/").replace("%3A", ":")
@@ -341,36 +346,37 @@ def recipes(recipe_id):
                 else:
                     newvalue = {"$set": {attribute: formattedData}}
                 mongo.db.recipes.update_one(recipe, newvalue)
-
+            # split AJAX data, give saved a default value
+            # the saved variable is used to display to the user whether the recipe is saved by the user already or not
             newDataForm = request.data.decode().split("=")
             saved = 0
             try:
                 newData = newDataForm[1].split("&")
-
+                # update new ingredients
                 if newData[0] == "newIngredients":
                     update_recipe_data("ingredients")
                     return jsonify(result="Successfully updated your ingredients!")
-
+                # update new prep work
                 elif newData[0] == "newPrepWork":
                     update_recipe_data("prep_work")
                     return jsonify(result="Successfully updated your prep work!")
-
+                # update new cooking instructions
                 elif newData[0] == "newCookingInstructions":
                     update_recipe_data("cooking_instructions")
                     return jsonify(result="Successfully updated your cooking instructions!")
-
+                # update new serving instructions
                 elif newData[0] == "newServingInstructions":
                     update_recipe_data("serving_instructions")
                     return jsonify(result="Successfully updated your serving instructions!")
-
+                # update new tags
                 elif newData[0] == "newTags":
                     update_recipe_data("tags")
                     return jsonify(result="Successfully updated your tags!")
-
+                # update new recipe name
                 elif newData[0] == "newRecipeName":
                     update_recipe_data("name")
                     return jsonify(result="Successfully updated your recipe name!")
-
+                # update new recipe picture with ImgBB API
                 elif newData[0] == "newRecipePicture":
                     formattedData = str(newDataForm[2]).replace("%20", " ").replace(
                     "%0A", str("\r\n")).replace("%2C", ",").replace("%2F", "/").replace("%3A", ":")
@@ -387,7 +393,7 @@ def recipes(recipe_id):
                     return jsonify(result="Successfully updated your recipe picture!")
 
             except:
-
+                # unsave a recipe
                 if recipe_id in current_user["saved_recipes"]:
                     saved_recipes = current_user["saved_recipes"]
                     saved_recipes.remove(recipe_id)
@@ -395,7 +401,7 @@ def recipes(recipe_id):
                                               {"$set": {"saved_recipes": saved_recipes}})
                     saved = 0
                     flash("Sucessfully removed this recipe from your collection!")
-
+                # save a recipe
                 else:
                     if current_user["saved_recipes"] == None:
                         saved_recipes = []
@@ -406,7 +412,7 @@ def recipes(recipe_id):
                                               {"$set": {"saved_recipes": saved_recipes}})
                     saved = 1
                     flash("Sucessfully saved this recipe!")
-
+        # get method handled here
         else:
             recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
             current_user = mongo.db.users.find_one(
@@ -419,7 +425,7 @@ def recipes(recipe_id):
 
         return render_template("recipe.html", recipe=recipe, saved=saved, tags=tags)
 
-    except(KeyError):
+    except:
         flash("You must be logged in to view any recipes.")
         return redirect(url_for("login"))
 
@@ -452,6 +458,8 @@ def logout():
 
 @app.route("/api/v1/my-recipes")
 def api_my_recipes():
+    # gets list of recipes owned by the user, identified by API key
+    # precise error notifications
     recipes_list = []
     if 'key' in request.args:
         key = request.args['key']
@@ -473,6 +481,8 @@ def api_my_recipes():
 
 @app.route("/api/v1/recipe")
 def my_recipe():
+    # gets specific recipe owned by the user, identified by API key and ObjectId
+    # precise error notifications
     if 'key' in request.args:
         key = request.args['key']
         existing_user = mongo.db.users.find_one(
@@ -498,6 +508,7 @@ def my_recipe():
 
 
 if __name__ == "__main__":
+    # run the app.boi
     app.run(
         host=os.environ.get("IP"),
         port=int(os.environ.get("PORT")),
