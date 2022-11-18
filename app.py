@@ -4,7 +4,7 @@ from flask import (
 import os
 from werkzeug.security import (
     generate_password_hash, check_password_hash)
-from flask_pymongo import PyMongo
+from pymongo import MongoClient
 from flask_talisman import Talisman
 from datetime import date
 from bson.objectid import ObjectId
@@ -21,13 +21,9 @@ app = Flask(__name__)
 if 'DYNO' in os.environ:
     Talisman(app, content_security_policy=None)
 ca = certifi.where()
-app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
-app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
-
-mongo = PyMongo(app, tlsCAFile=ca)
-
+mongo = MongoClient(os.environ.get("MONGO_URI"), tlsCAFile=ca)
 
 @app.route("/")
 def index():
