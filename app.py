@@ -11,6 +11,7 @@ from bson.objectid import ObjectId
 import random
 import string
 import requests
+import certifi
 if os.path.exists("env.py"):
     import env
 
@@ -19,12 +20,13 @@ app = Flask(__name__)
 # Lines 17 and 18 to get the app to redirect to https was taken from Stack Overflow.
 if 'DYNO' in os.environ:
     Talisman(app, content_security_policy=None)
+ca = certifi.where()
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
 
 
-mongo = PyMongo(app)
+mongo = PyMongo(app, tlsCAFile=ca)
 
 
 @app.route("/")
